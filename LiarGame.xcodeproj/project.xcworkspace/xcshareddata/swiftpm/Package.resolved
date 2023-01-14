@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "linknavigator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/interactord/LinkNavigator.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "eb1fddb82c65b4c6724815aedff221e5ce66ebd9"
+      }
+    },
+    {
       "identity" : "lottie-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios.git",
