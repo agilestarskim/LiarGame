@@ -17,7 +17,7 @@ struct GameView: View {
             Text("\(game.subject.rawValue)")
                 .font(.title.bold())
                 .padding()
-            Text("\(game.mode.rawValue)모드")
+            Text("\(game.gameMode.rawValue)모드")
             Spacer()
             if vm.isGameStart{
                 timerView
@@ -47,9 +47,8 @@ struct GameView: View {
     var cardView: some View {
         VStack(spacing: 20){
             
-            
             if vm.index == game.liar {
-                if game.mode == .fool {
+                if game.gameMode == .fool {
                     Text(game.wrongAnswerForFool)
                         .font(.largeTitle.bold())
                 } else {
@@ -96,12 +95,8 @@ struct GameView: View {
                     .font(.title2)
                     .clipShape(Capsule())
                     .shadow(color: .gray, radius: 5, x: 5, y: 5)
-            }
-            
-            
+            }            
         }
-        
-        
     }
     
     var buttonView: some View {

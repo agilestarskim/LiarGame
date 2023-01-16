@@ -58,7 +58,7 @@ struct ResultView: View {
     var liarWinningView: some View {
         VStack(spacing: 30) {
             Spacer()
-            Text(game.mode == .spy ? "라이어 스파이 승리!!" : "라이어 승리!!")
+            Text(game.gameMode == .spy ? "라이어 스파이 승리!!" : "라이어 승리!!")
                 .font(.largeTitle.bold())
             if game.selectedLiar != nil {
                 Text("\(game.selectedLiar! + 1)번은 라이어가 아닙니다.")
@@ -163,7 +163,7 @@ struct ResultView_Previews: PreviewProvider {
     }
     
     static func test1() {
-        preview_game.mode = .spy
+        preview_game.gameMode = .spy
         preview_game.spy = 3
         preview_game.selectedSpy = preview_game.spy
     }

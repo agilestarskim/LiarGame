@@ -13,7 +13,7 @@ struct ChoiceView: View {
     let navigator: LinkNavigatorType
     var body: some View {
         ScrollView {
-            if game.mode == .spy {
+            if game.gameMode == .spy {
                 spyChoiceView
             } else {
                 choiceView
@@ -136,7 +136,7 @@ struct ChoiceView_Previews: PreviewProvider {
     static var previews: some View {
         ChoiceView(navigator: LinkNavigator(dependency: AppDependency(), builders: []))
             .onAppear{
-                preview_game.mode = .normal
+                preview_game.gameMode = .normal
             }
             .environmentObject(preview_game)
     }
