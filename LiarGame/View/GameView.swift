@@ -46,44 +46,40 @@ struct GameView: View {
     
     var cardView: some View {
         VStack(spacing: 20){
-            
-            if vm.index == game.liar {
-                if game.gameMode == .fool {
-                    Text(game.wrongAnswerForFool)
-                        .font(.largeTitle.bold())
-                } else {
-                    Text("라이어 당첨")
-                        .font(.largeTitle.bold())
-                }
-                
-            }
-            
-            else if vm.index == game.spy {
+            switch game.users[vm.index].roll {
+            case .none:
+                Text(game.answer)
+                    .font(.largeTitle.bold())
+            case .liar:
+                Text("라이어 당첨")
+                    .font(.largeTitle.bold())
+            case .spy:
                 Text("스파이 당첨")
                     .font(.largeTitle.bold())
-                Text("\(game.answer)")
+                Text(game.answer)
                     .font(.title)
             }
             
-            else {
-                Text(game.answer)
-                    .font(.largeTitle.bold())
-            }
-            HStack{
-                Text("당신의 번호는")
-                Text("\(vm.index + 1)번")
-                    .bold()
-                Text("입니다.")
-            }
+            switch game.namingMode {
+            case .name:
+                Text("-\(game.users[vm.index].name)-")
+            case .number:
+                HStack{
+                    Text("당신의 번호는")
+                    Text("\(vm.index + 1)번")
+                        .bold()
+                    Text("입니다.")
+                }
 
-            Text("번호를 꼭 기억해주세요")
-                .font(.caption)
-                .foregroundColor(.secondary)
+                Text("번호를 꼭 기억해주세요")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
             
             Button {
                 vm.showingCard = false
                 vm.index += 1
-                if vm.index == game.numberOfMembers {
+                if vm.index == game.users.count {
                     vm.isGameStart = true
                 }
             } label: {
@@ -93,24 +89,46 @@ struct GameView: View {
                     .background(Color(red: 0, green: 0.5, blue: 0))
                     .foregroundColor(.white)
                     .font(.title2)
-                    .clipShape(Capsule())
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .shadow(color: .gray, radius: 5, x: 5, y: 5)
             }            
         }
     }
     
     var buttonView: some View {
-        Button {
-            vm.showingCard = true
-        } label: {
-            Text("제시어 확인하기")
-                .padding()
-                .padding([.horizontal], 20)
-                .background(Color(red: 0, green: 0, blue: 0.5))
-                .foregroundColor(.white)
-                .font(.title2)
-                .clipShape(Capsule())
-                .shadow(color: .gray, radius: 5, x: 5, y: 5)
+        VStack{
+            switch game.namingMode{
+            case .number:
+                Button {
+                    vm.showingCard = true
+                } label: {
+                    Text("제시어 확인하기")
+                        .padding()
+                        .padding([.horizontal], 20)
+                        .background(Color(red: 0, green: 0, blue: 0.5))
+                        .foregroundColor(.white)
+                        .font(.title2)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(color: .gray, radius: 5, x: 5, y: 5)
+                }
+            case .name:
+                Button {
+                    vm.showingCard = true
+                } label: {
+                    VStack(spacing: 10){
+                        Text("\(game.users[vm.index].name)님")
+                            .bold()
+                        Text("제시어 확인하기")
+                    }
+                    .padding()
+                    .padding([.horizontal], 20)
+                    .background(Color(red: 0, green: 0, blue: 0.5))
+                    .foregroundColor(.white)
+                    .font(.title2)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .shadow(color: .gray, radius: 5, x: 5, y: 5)
+                }
+            }
         }
         
     }
@@ -138,7 +156,7 @@ struct GameView: View {
                     .background(Color.red)
                     .foregroundColor(.white)
                     .font(.title2)
-                    .clipShape(Capsule())
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .shadow(color: .gray, radius: 5, x: 5, y: 5)
             }
         }
@@ -159,15 +177,19 @@ struct GameRouteBuilder: RouteBuilder {
 
 
 struct GameView_Previews: PreviewProvider {
-    static let preivew_game = Game()
+    static let preview_game = Game()
     static var previews: some View {
         GameView(navigator: LinkNavigator(dependency: AppDependency(), builders: []))
             .onAppear {
-                preivew_game.liar = 3
-                preivew_game.spy = 2
-                preivew_game.answer = "국회의원"
+                preview_game.users[0].roll = .liar
+                preview_game.users[1].roll = .spy
+                preview_game.users[0].name = "김민성"
+                preview_game.users[1].name = "이시온"
+                preview_game.users[2].name = "박준혁"
+                preview_game.namingMode = .name
+                preview_game.answer = "국회의원"
             }
-            .environmentObject(preivew_game)
+            .environmentObject(preview_game)
     }
 }
 

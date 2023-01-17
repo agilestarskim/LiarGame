@@ -132,6 +132,10 @@ struct SettingView: View {
     var checkLiar: Bool {
         Int(game.users.count / 3) < game.numberOfLiars
     }
+    //TODO: 이름지정모드에서 이름을 지정하지 않았을 때 게임시작 방지
+    var checkName: Bool {
+        return true
+    }
     
 }
 

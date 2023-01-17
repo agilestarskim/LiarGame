@@ -8,25 +8,27 @@
 import SwiftUI
 
 final class Game: ObservableObject {
-    @Published var subject: Subjects = .job
-    @Published var gameMode: GameMode = .normal
-    @Published var namingMode: NamingMode = .number
-    @Published var users: [User] = [User](repeating: User(), count: 3)    
-    @Published var numberOfLiars = 1
-    @Published var liarsMode: LiarsMode = .all
-    @Published var time: Int = 2
+    //게임 시작 전 세팅 관련 변수
+    @Published var subject: Subjects = .job //주제
+    @Published var gameMode: GameMode = .normal //일반, 스파이, 바보 모드
+    @Published var namingMode: NamingMode = .number //번호, 이름 모드
+    @Published var users: [User] = [User](repeating: User(), count: 3) //User(name,liar,spy)
+    @Published var numberOfLiars = 1 //라이어 수
+    @Published var liarsMode: LiarsMode = .all //라이어를 전부 잡아야 승리할 지, 한명만 잡아도 승리할 지 결정
+    @Published var time: Int = 2 //게임시간(분)
+    
+    //게임 시작 후 게임정보 관련 변수
+    var answer: String = "" //candidates에서 subject에 연관된 단어를 무작위로 찾음.
+    var wrongAnswerForFool: String = "" //바보모드를 위해 answer를 제외한 단어
+    var selectedLiar: Int? = nil //게임 중 지목당한 라이어
+    var selectedSpy: Int? = nil //게임 중 지목당한 스파이
+    var selectedCandidate: String = "" //게임 중 라이어가 선택한 정답 후보
     
     
     //deprecated
     @Published var numberOfMembers: Int = 3
-    
-    var answer: String = ""
-    var wrongAnswerForFool: String = ""
     var liar: Int = 0
     var spy: Int? = nil
-    var selectedLiar: Int? = nil
-    var selectedSpy: Int? = nil
-    var selectedCandidate: String = ""
     
     let candidates: [Subjects : [String]] = [
         .object : ["헤드폰", "암막커튼", "고속충전기", "샹들리에", "무선이어폰", "발가락양말", "탈모샴푸", "콧털제거기", "혀 클리너", "무선마우스", "방독면", "스타킹", "가발", "에프킬라", "선글라스", "선크림", "에어컨", "무전기", "손목시계", "비누"],
@@ -37,6 +39,7 @@ final class Game: ObservableObject {
         .location : ["카페", "도서관", "콘서트 장", "화장실", "모텔", "리조트", "영화관", "방탈출카페", "식당", "미용실", "우주", "남극", "탄광", "무인도", "네일샵", "응급실", "묘지", "귀신의 집", "사막", "집"],
         .foods : ["개구리 뒷다리 튀김", "청국장", "김치", "건새우", "불가사리 튀김", "전갈꼬치", "탕후루", "카스테라", "해파리냉채", "케이크", "계란말이", "마라탕", "순대", "곱창전골", "만두전골", "불고기", "깍두기", "피자", "수제비" ,"된장찌개"]
     ]
+    
     func addUser() {
         guard users.count < 20 else { return }
         self.users.append(User())
@@ -53,22 +56,34 @@ final class Game: ObservableObject {
     }
     
     func resetGame() {
-        resetItem()
+        resetInGameSetting()
+        resetRoll()
         shuffleAnswer()
-        shuffleLiar()
+        setLiar()
         if self.gameMode == .spy {
-            shuffleSpy()
+            setSpy()
+        }
+        self.users.forEach { user in
+            print(user.roll)
         }
     }
-    func resetItem() {
+    //게임 시작 후 변경된 세팅 초기화
+    private func resetInGameSetting() {
         self.selectedSpy = nil
         self.selectedLiar = nil
         self.selectedCandidate = ""
         self.wrongAnswerForFool = ""
-        self.spy = nil
+        //self.spy = nil
     }
     
-    func shuffleAnswer() {
+    //이전 게임에서 부여된 역할 초기화
+    private func resetRoll() {
+        for index in self.users.indices {
+            self.users[index].roll = .none
+        }
+    }
+    //정답 설정
+    private func shuffleAnswer() {
         //이전과 똑같은 문제 나오는 것 방지
         var newAnswer = (self.candidates[self.subject]?.randomElement())!
         if self.answer != "" && newAnswer == self.answer {
@@ -82,12 +97,35 @@ final class Game: ObservableObject {
             self.wrongAnswerForFool = (self.candidates[self.subject]?.randomElement())!
         }
     }
-    
-    func shuffleLiar() {
+    //라이어 설정
+    private func setLiar() {
+        let numOfUsers = self.users.count
+        let numOfLiars = self.numberOfLiars
+        var liars = Set<Int>()
+        while liars.count < numOfLiars {
+            liars.insert(Int.random(in: 0...(numOfUsers - 1)))
+            print("randomLiars: \(liars)")
+        }
+        //example: numOfUsers 6, numOfLiars 2, liars = [1,5]
+        //example: numOfUsers 5, numOfLiars 1, liars = [3]
+        liars.forEach { index in
+            self.users[index].roll = .liar
+        }
+        
+        
+        //deprecated
         self.liar = Int.random(in: 0..<self.numberOfMembers)
     }
     
-    func shuffleSpy() {
+    private func setSpy() {
+        //users에서 라이어가 아닌 유저를 뽑아 그 중 랜덤한 유저를 뽑고 인덱스를 찾아 해당 인덱스의 유저를 스파이로 지정한다.
+        guard let user = self.users.filter({ $0.roll != .liar }).randomElement() else { return }
+        guard let index = self.users.firstIndex(of: user) else { return }
+        self.users[index].roll = .spy
+        
+        
+        
+        //deprecated
         self.spy = Int.random(in: 0..<self.numberOfMembers)
         while(self.spy == self.liar){
             self.spy = Int.random(in: 0..<self.numberOfMembers)
@@ -95,10 +133,14 @@ final class Game: ObservableObject {
     }
 }
 //Memeber Model
-struct User {
+struct User: Equatable {
+    var id = UUID()
     var name: String = ""
-    var liar: Bool = false
-    var spy: Bool = false
+    var roll: Roll = .none
+}
+
+enum Roll {
+    case none, liar, spy
 }
 
 //enums
