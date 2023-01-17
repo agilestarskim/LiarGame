@@ -7,115 +7,106 @@
 
 import LinkNavigator
 import SwiftUI
-
+enum SpyOrLiar: String, CaseIterable, Equatable {
+    case liar = "라이어 찾기"
+    case spy = "스파이 찾기"
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+}
 struct ChoiceView: View {
     @EnvironmentObject var game: Game
+    @State private var spyOrLiar: SpyOrLiar = .liar
     let navigator: LinkNavigatorType
     var body: some View {
         ScrollView {
-            if game.gameMode == .spy {
-                spyChoiceView
-            } else {
-                choiceView
-            }
+            headerView
+            stateView
+            pickerView
+            choiceView
         }
         .navigationBarHidden(true)
     }
     
+    var headerView: some View {
+        VStack{
+            switch game.gameMode {
+            case .normal, .fool:
+                Text("라이어를 맞춰주세요")
+                    .font(.largeTitle.bold())
+            case .spy:
+                Text("라이어 또는 스파이를 맞춰주세요")
+                    .font(.title2.bold())
+            }
+        }
+        .padding(.top, 30)
+    }
+    
+    var stateView: some View {
+        HStack {
+            Text("라이어: \(game.numberOfLiars)명")
+            if game.gameMode == .spy {
+                Text("스파이: 1명")
+            }
+        }
+        .padding(.top)
+    }
+    
+    var pickerView: some View {
+        VStack{
+            if game.gameMode == .spy {
+                Picker("라이어 또는 스파이", selection: $spyOrLiar) {
+                    ForEach(SpyOrLiar.allCases, id: \.self) { value in
+                        Text(value.localizedName)
+                    }
+                }
+                .disabled(game.selectedLiars.count > 0)
+                .pickerStyle(.segmented)
+            }else{
+                EmptyView()
+            }
+        }
+        .padding()
+    }
+
     var choiceView: some View {
         VStack {
-            Text("라이어를 맞춰주세요")
-                .font(.largeTitle.bold())
-                .padding(.top)
-            ForEach(0..<game.numberOfMembers, id: \.self) { selectedNumber in
+            ForEach(game.users.indices, id: \.self) { index in
                 Button {
-                    game.selectedLiar = selectedNumber
-                    if checkLiar() {
-                        navigator.next(paths: ["lastChance"], items: [:], isAnimated: true)
-                    } else {
-                        navigator.next(paths: ["result"], items: [:], isAnimated: true)
+                    switch spyOrLiar {
+                    case .liar:
+                        game.selectedLiars.insert(index)
+                    case .spy:
+                        game.selectedSpy = index
                     }
                 } label: {
-                    Text("\(selectedNumber + 1)번")
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .font(.largeTitle.bold())
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .padding()
+                    HStack {
+                        Text(game.namingMode == .number ? "\(index + 1)번" : game.users[index].name)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .font(.largeTitle.bold())
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(game.selectedLiars.contains(index) ? .gray :
+                                            spyOrLiar == .liar ? .blue : .red)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding()
+                    }
                 }
-                
+                .disabled(game.selectedLiars.contains(index))
             }
+        }
+        .onChange(of: game.selectedLiars){ selectedLiar in            
+            
+            guard game.selectedLiars.count == game.numberOfLiars else { return }
+            if game.selectedLiars == game.getLiarsIndexes {
+                navigator.next(paths: ["lastChance"], items: [:], isAnimated: true)
+            } else {
+                navigator.next(paths: ["result"], items: [:], isAnimated: true)
+            }
+        }
+        .onChange(of: game.selectedSpy) { selectedSpy in
+            navigator.next(paths: ["result"], items: [:], isAnimated: true)
         }
     }
     
-    var spyChoiceView: some View {
-        VStack {
-            Text("정답을 맞춰주세요")
-                .font(.title.bold())
-                .padding(.top, 30)
-            Text("라이어 스파이 둘 중 하나만 맞춰도 시민 승리")
-                .font(.title3)
-                .padding(.vertical, 20)
-            HStack {
-                VStack{
-                    Text("라이어")
-                        .font(.largeTitle)
-                    ForEach(0..<game.numberOfMembers, id: \.self) { selectedNumber in
-                        Button {
-                            game.selectedLiar = selectedNumber
-                            
-                            if checkLiar() {
-                                navigator.next(paths: ["lastChance"], items: [:], isAnimated: true)
-                            } else {
-                                navigator.next(paths: ["result"], items: [:], isAnimated: true)
-                            }
-                        } label: {
-                            Text("\(selectedNumber + 1)번")
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                                .font(.largeTitle.bold())
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .padding()
-                        }
-                        
-                    }
-                }
-                
-                VStack{
-                    Text("스파이")
-                        .font(.largeTitle)
-                    ForEach(0..<game.numberOfMembers, id: \.self) { selectedNumber in
-                        Button {
-                            game.selectedSpy = selectedNumber
-                            navigator.next(paths: ["result"], items: [:], isAnimated: true)
-                        } label: {
-                            Text("\(selectedNumber + 1)번")
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                                .font(.largeTitle.bold())
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(.red)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .padding()
-                        }
-                        
-                    }
-                }
-            }
-        }
-    }
-    
-    func checkLiar() -> Bool {
-        if game.selectedLiar == game.liar {
-            return true
-        } else {
-            return false
-        }
-    }
 }
 
 struct ChoiceRouteBuilder: RouteBuilder {
@@ -136,7 +127,17 @@ struct ChoiceView_Previews: PreviewProvider {
     static var previews: some View {
         ChoiceView(navigator: LinkNavigator(dependency: AppDependency(), builders: []))
             .onAppear{
-                preview_game.gameMode = .normal
+                preview_game.gameMode = .spy
+                preview_game.numberOfLiars = 2                
+                preview_game.users[0].roll = .liar
+                preview_game.users[1].roll = .spy
+                preview_game.users[2].roll = .liar
+                
+                preview_game.users[0].name = "김민성"
+                preview_game.users[1].name = "이시온"
+                preview_game.users[2].name = "박준혁"
+                preview_game.namingMode = .name
+                preview_game.answer = "국회의원"
             }
             .environmentObject(preview_game)
     }

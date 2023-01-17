@@ -13,12 +13,12 @@ struct ResultView: View {
     let navigator: LinkNavigatorType
     var body: some View {
         VStack{
-            //시민이 스파이모드에서 스파이를 선택해서 스파이를 맞춤
-            if (game.selectedSpy != nil && game.selectedSpy == game.spy) {
+            //시민이 스파이모드에서 스파이를 선택해서 스파이를 맞춤            
+            if (game.selectedSpy != nil && game.selectedSpy == game.getSpyIndex) {
                 citizenWinningView
             }
             //시민이 스파이를 선택하고 틀리거나 라이어를 선택하고 틀림
-            else if (game.selectedSpy != nil && game.selectedSpy != game.spy) || (game.selectedLiar != nil && game.selectedLiar != game.liar) {
+            else if (game.selectedSpy != nil && game.selectedSpy != game.getSpyIndex) || (game.selectedLiars != [] && game.selectedLiars != game.getLiarsIndexes) {
                 //라이어 스파이 승리
                 liarWinningView
             }
@@ -41,9 +41,14 @@ struct ResultView: View {
             Spacer()
             Text("시민 승리!!")
                 .font(.largeTitle.bold())
+            switch game.namingMode {
+            case .number:
+                Text("\(game.selectedSpy! + 1)번은 스파이 입니다.")
+                    .font(.title)
+            case .name:
+                Text("\(game.users[game.selectedSpy!].name)은(는) 스파이 입니다.")
+            }
             
-            Text("\(game.selectedSpy! + 1)번은 스파이 입니다.")
-                .font(.title)
           
             LottieView(fileName: "Dance")
                 .frame(width: 300, height: 300)
@@ -60,15 +65,43 @@ struct ResultView: View {
             Spacer()
             Text(game.gameMode == .spy ? "라이어 스파이 승리!!" : "라이어 승리!!")
                 .font(.largeTitle.bold())
-            if game.selectedLiar != nil {
-                Text("\(game.selectedLiar! + 1)번은 라이어가 아닙니다.")
-                    .font(.title)
+            if game.selectedLiars != [] {
+                ForEach(Array(game.selectedLiars), id: \.self){ index in
+                    if !game.getLiarsIndexes.contains(index) {
+                        switch game.namingMode {
+                        case .number:
+                            Text("\(index + 1)번은 라이어가 아닙니다.")
+                                .font(.title2)
+                        case .name:
+                            Text("\(game.users[index].name)은(는) 라이어가 아닙니다.")
+                                .font(.title2)
+                        }
+                        
+                    }
+                }
+                
             }
             else if game.selectedSpy != nil {
-                Text("\(game.selectedSpy! + 1)번은 스파이가 아닙니다.")
-                    .font(.title)
+                switch game.namingMode {
+                case .number:
+                    Text("\(game.selectedSpy! + 1)번은 스파이가 아닙니다.")
+                        .font(.title2)
+                case .name:
+                    Text("\(game.users[game.selectedSpy!].name)은(는) 스파이가 아닙니다.")
+                        .font(.title2)
+                }
+                
             }
-            
+            if game.gameMode == .spy {
+                switch game.namingMode {
+                case .number:
+                    Text("스파이는 \(game.getSpyIndex + 1)번 입니다.")
+                        .font(.title2)
+                case .name:
+                    Text("스파이는 \(game.users[game.getSpyIndex].name) 입니다.")
+                        .font(.title2)
+                }
+            }
             LottieView(fileName: "Laughing")
                 .frame(width: 300, height: 300)
             Text("틀렸지롱")
@@ -170,7 +203,7 @@ struct ResultView_Previews: PreviewProvider {
     
     static func test2() {
         preview_game.answer = "국회의원"
-        preview_game.selectedLiar = 2
+        preview_game.selectedLiars = [2]
         preview_game.liar = 3
     }
     

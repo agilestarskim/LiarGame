@@ -10,8 +10,12 @@ import SwiftUI
 
 struct SettingView: View {
     @EnvironmentObject private var game: Game
-    @StateObject private var vm =  ViewModel()
     @FocusState private var isFocused: Bool
+    
+    let normalDescription = "라이어를 찾으면 라이어는 정답을 맞출 기회가 한 번 주어집니다. 정답을 맞추면 라이어 승리, 틀리면 시민 승리입니다."
+    let spyDescription = "스파이에게도 키워드를 제공합니다. 스파이는 라이어가 정답을 유추할 수 있도록 질문합니다. 스파이는 라이어를 도와 라이어팀이 승리하도록 이끌어야합니다. 스파이가 지목당하면 시민이 승리합니다."
+    let foolDescription = "라이어는 자신이 라이어인지 모릅니다. 라이어는 일반 시민들과 다른 키워드가 주어집니다."
+    
     let navigator: LinkNavigatorType
     var body: some View {
         Form(content: {
@@ -32,11 +36,11 @@ struct SettingView: View {
             }, footer: {
                 switch game.gameMode {
                 case .normal:
-                    Text(vm.normalDescription)
+                    Text(self.normalDescription)
                 case .spy:
-                    Text(vm.spyDescription)
+                    Text(self.spyDescription)
                 case .fool:
-                    Text(vm.foolDescription)
+                    Text(self.foolDescription)
                 }
             })
             
@@ -83,31 +87,18 @@ struct SettingView: View {
             
             Section {
                 Stepper("라이어 수 \(game.numberOfLiars)명", value: $game.numberOfLiars, in: 1...10)
-                if game.numberOfLiars > 1 {
-                    Picker("라이어모드", selection: $game.liarsMode){
-                        ForEach(LiarsMode.allCases, id: \.self) { value in
-                            Text(value.localizedName)
-                        }
-                    }.pickerStyle(.segmented)
-                }
-            } footer: {
-                if game.liarsMode == .all && game.numberOfLiars > 1 {
-                    Text("라이어를 모두 잡아야 승리입니다.")
-                }
-                else if game.liarsMode == .one && game.numberOfLiars > 1 {
-                    Text("한 명의 라이어만 잡으면 승리입니다.")
-                }
-            }
-            
-            Section {
                 Stepper("제한시간 \(game.time) 분", value: $game.time, in: 1...10)
             }
             
             Section(content: {
-                Button("게임시작"){
+                Button {
                     game.resetGame()
                     navigator.next(paths: ["game"], items: [:], isAnimated: true)
+                } label: {
+                    Text("게임시작")
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 }
+                
                 .disabled(checkSpy || checkLiar)
             }, footer: {
                 if(checkSpy){

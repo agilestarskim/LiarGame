@@ -51,8 +51,14 @@ struct GameView: View {
                 Text(game.answer)
                     .font(.largeTitle.bold())
             case .liar:
-                Text("라이어 당첨")
-                    .font(.largeTitle.bold())
+                if game.gameMode == .fool {
+                    Text(game.wrongAnswerForFool)
+                        .font(.largeTitle.bold())
+                } else {
+                    Text("라이어 당첨")
+                        .font(.largeTitle.bold())
+                }
+                
             case .spy:
                 Text("스파이 당첨")
                     .font(.largeTitle.bold())
@@ -116,7 +122,7 @@ struct GameView: View {
                     vm.showingCard = true
                 } label: {
                     VStack(spacing: 10){
-                        Text("\(game.users[vm.index].name)님")
+                        Text("\(game.users[vm.index].name)의")
                             .bold()
                         Text("제시어 확인하기")
                     }

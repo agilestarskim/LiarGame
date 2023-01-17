@@ -14,16 +14,25 @@ final class Game: ObservableObject {
     @Published var namingMode: NamingMode = .number //번호, 이름 모드
     @Published var users: [User] = [User](repeating: User(), count: 3) //User(name,liar,spy)
     @Published var numberOfLiars = 1 //라이어 수
-    @Published var liarsMode: LiarsMode = .all //라이어를 전부 잡아야 승리할 지, 한명만 잡아도 승리할 지 결정
     @Published var time: Int = 2 //게임시간(분)
     
     //게임 시작 후 게임정보 관련 변수
     var answer: String = "" //candidates에서 subject에 연관된 단어를 무작위로 찾음.
     var wrongAnswerForFool: String = "" //바보모드를 위해 answer를 제외한 단어
-    var selectedLiar: Int? = nil //게임 중 지목당한 라이어
-    var selectedSpy: Int? = nil //게임 중 지목당한 스파이
+    @Published var selectedLiars: Set<Int> = [] //게임 중 지목당한 라이어
+    @Published var selectedSpy: Int? = nil //게임 중 지목당한 스파이
     var selectedCandidate: String = "" //게임 중 라이어가 선택한 정답 후보
     
+    var getLiarsIndexes: Set<Int> {
+        Set(self.users.enumerated().filter { $0.element.roll == .liar }.map { $0.offset })
+    }
+    var getSpyIndex: Int {
+        return self.users.firstIndex(where: { $0.roll == .spy }) ?? -1        
+    }
+    
+    var getMissingLiarIndex: [Int] {
+        return []
+    }
     
     //deprecated
     @Published var numberOfMembers: Int = 3
@@ -64,13 +73,13 @@ final class Game: ObservableObject {
             setSpy()
         }
         self.users.forEach { user in
-            print(user.roll)
+            print(user.name, user.roll)
         }
     }
     //게임 시작 후 변경된 세팅 초기화
     private func resetInGameSetting() {
         self.selectedSpy = nil
-        self.selectedLiar = nil
+        self.selectedLiars = []
         self.selectedCandidate = ""
         self.wrongAnswerForFool = ""
         //self.spy = nil
@@ -85,22 +94,16 @@ final class Game: ObservableObject {
     //정답 설정
     private func shuffleAnswer() {
         //이전과 똑같은 문제 나오는 것 방지
-        var newAnswer = (self.candidates[self.subject]?.randomElement())!
-        if self.answer != "" && newAnswer == self.answer {
-            while(newAnswer == self.answer) {
-                newAnswer = (self.candidates[self.subject]?.randomElement())!
-            }
-        }
+        var newAnswer = self.candidates[self.subject]!.filter { $0 != self.answer}.randomElement()!
         self.answer = newAnswer
-        self.wrongAnswerForFool = (self.candidates[self.subject]?.randomElement())!
-        while(self.answer == self.wrongAnswerForFool) {
-            self.wrongAnswerForFool = (self.candidates[self.subject]?.randomElement())!
-        }
+        //바보모드를 위해 정답을 제외한 랜덤 단어 저장
+        self.wrongAnswerForFool = self.candidates[self.subject]!.filter { $0 != self.answer}.randomElement()!
     }
     //라이어 설정
     private func setLiar() {
         let numOfUsers = self.users.count
         let numOfLiars = self.numberOfLiars
+        //겹치지 않게 랜덤한 번호를 저장하는 알고리즘
         var liars = Set<Int>()
         while liars.count < numOfLiars {
             liars.insert(Int.random(in: 0...(numOfUsers - 1)))
@@ -112,9 +115,6 @@ final class Game: ObservableObject {
             self.users[index].roll = .liar
         }
         
-        
-        //deprecated
-        self.liar = Int.random(in: 0..<self.numberOfMembers)
     }
     
     private func setSpy() {
@@ -122,14 +122,6 @@ final class Game: ObservableObject {
         guard let user = self.users.filter({ $0.roll != .liar }).randomElement() else { return }
         guard let index = self.users.firstIndex(of: user) else { return }
         self.users[index].roll = .spy
-        
-        
-        
-        //deprecated
-        self.spy = Int.random(in: 0..<self.numberOfMembers)
-        while(self.spy == self.liar){
-            self.spy = Int.random(in: 0..<self.numberOfMembers)
-        }        
     }
 }
 //Memeber Model
@@ -154,12 +146,6 @@ enum GameMode: String, Equatable, CaseIterable {
 enum NamingMode: String, Equatable, CaseIterable {
     case number = "자동 번호 부여"
     case name = "이름 직접 지정"
-    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
-}
-
-enum LiarsMode: String, Equatable, CaseIterable {
-    case one = "한 명 잡기"
-    case all = "모두 잡기"
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
 
