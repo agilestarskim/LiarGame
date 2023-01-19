@@ -7,11 +7,13 @@
 
 import LinkNavigator
 import SwiftUI
+
 enum SpyOrLiar: String, CaseIterable, Equatable {
     case liar = "라이어 찾기"
     case spy = "스파이 찾기"
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
+
 struct ChoiceView: View {
     @EnvironmentObject var game: Game
     @State private var spyOrLiar: SpyOrLiar = .liar

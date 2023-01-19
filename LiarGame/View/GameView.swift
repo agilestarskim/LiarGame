@@ -169,13 +169,13 @@ struct GameView: View {
             
         }
         .onChange(of: vm.remainingTime){ remainingTime in
+            //10초에 틱톡 소리가 나오고 1초에 벨소리가 울림
             if remainingTime == 10 {
                 SoundManager.instance.play(file: "ticktock")
             } else if remainingTime == 1 {
                 SoundManager.instance.stop(file: "ticktock")
                 SoundManager.instance.play(file: "bell")
             }
-            
         }
     }
 }

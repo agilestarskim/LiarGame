@@ -12,6 +12,7 @@ struct RollTableView: View {
     @EnvironmentObject var game: Game
     
     var sortedUserList: [User] {
+        //스파이, 라이어, 시민 순으로 정렬한다.
         return game.users.sorted(by: { user1, user2 in
             switch (user1.roll, user2.roll) {
             case (.spy, _), (.liar, .none): return true
