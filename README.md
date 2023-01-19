@@ -5,7 +5,6 @@
 
 # 스크린샷
 
-![Apple iPhone 11 Pro Max-2](https://user-images.githubusercontent.com/79740398/178144973-0c860a85-3e67-47af-b333-f107fbaf5a60.png)
-![Apple iPhone 11 Pro Max-3](https://user-images.githubusercontent.com/79740398/178144978-58522c3e-95b3-41c4-b52c-7771b3db86db.png)
-![Apple iPhone 11 Pro Max-4](https://user-images.githubusercontent.com/79740398/178144981-017b3597-3cfe-4ca2-b827-04861ea23fbe.png)
-![Apple iPhone 11 Pro Max-5](https://user-images.githubusercontent.com/79740398/178144988-42d15a1a-d205-41b5-bb97-f225fe29ced6.png)
+세팅 | 게임 | 선택 | 결과 |
+| :---------------: | :---------------: | :---------------: | :---------------: |
+| <img src="https://user-images.githubusercontent.com/79740398/213497885-84344f32-a8db-4865-b9f6-ad9753caf282.PNG" width="180" height="400"/>| <img src="https://user-images.githubusercontent.com/79740398/213498170-e89aa7be-569d-437c-bd8a-588006d56493.PNG" width="180" height="400"/> |<img src="https://user-images.githubusercontent.com/79740398/213498326-13479cd2-b435-4265-81df-697860184dde.PNG" width="180" height="400"/>| <img src="https://user-images.githubusercontent.com/79740398/213498833-cefc234a-1589-401c-aef7-faec506cf77e.PNG" width="180" height="400"/> |
