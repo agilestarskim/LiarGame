@@ -136,7 +136,6 @@ struct GameView: View {
                 }
             }
         }
-        
     }
     
     var timerView: some View {

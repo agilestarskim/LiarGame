@@ -14,7 +14,6 @@ struct AppRouterGroup {
         ChoiceRouteBuilder(),
         LastChanceRouteBuilder(),
         ResultRouteBuilder()        
-        
     ]
   }
 }

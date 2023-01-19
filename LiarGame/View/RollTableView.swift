@@ -58,8 +58,6 @@ struct RollTableView: View {
     }
 }
 
-
-
 struct RollTableView_Previews: PreviewProvider {
     static let preview_game = Game()
     static var previews: some View {
