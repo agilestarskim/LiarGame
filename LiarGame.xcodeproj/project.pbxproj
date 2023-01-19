@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F03F72D2977D90C00D58A2C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F03F72C2977D90C00D58A2C /* User.swift */; };
+		1F03F72F2977DBBC00D58A2C /* RollTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F03F72E2977DBBC00D58A2C /* RollTableView.swift */; };
+		1F03F73229780FD200D58A2C /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F03F73129780FD200D58A2C /* MyButton.swift */; };
+		1F03F7342978158D00D58A2C /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F03F7332978158D00D58A2C /* HalfSheet.swift */; };
 		1F2993D7286D9F5100A044F7 /* LiarGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */; };
 		1F2993DB286D9F5300A044F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2993DA286D9F5300A044F7 /* Assets.xcassets */; };
 		1F2993DE286D9F5300A044F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2993DD286D9F5300A044F7 /* Preview Assets.xcassets */; };
@@ -31,6 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F03F72C2977D90C00D58A2C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1F03F72E2977DBBC00D58A2C /* RollTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollTableView.swift; sourceTree = "<group>"; };
+		1F03F73129780FD200D58A2C /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
+		1F03F7332978158D00D58A2C /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		1F2993D3286D9F5100A044F7 /* LiarGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiarGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiarGameApp.swift; sourceTree = "<group>"; };
 		1F2993DA286D9F5300A044F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +75,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F03F72B2977D8F200D58A2C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F03F72C2977D90C00D58A2C /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F03F73029780FAC00D58A2C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1F03F73129780FD200D58A2C /* MyButton.swift */,
+				1F03F7332978158D00D58A2C /* HalfSheet.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		1F2993CA286D9F5100A044F7 = {
 			isa = PBXGroup;
 			children = (
@@ -91,8 +116,10 @@
 				1FF3B91A2940D3300057ED8C /* Info.plist */,
 				1F4BAB17297173A7007CCF6A /* View */,
 				1F4BAB1E297174D1007CCF6A /* ViewModel */,
+				1F03F72B2977D8F200D58A2C /* Model */,
 				1F4BAB292971893B007CCF6A /* LinkNavigator */,
 				1F4BAB18297173BD007CCF6A /* Lotties */,
+				1F03F73029780FAC00D58A2C /* Extension */,
 				1F2993DA286D9F5300A044F7 /* Assets.xcassets */,
 				1F2993DC286D9F5300A044F7 /* Preview Content */,
 			);
@@ -115,6 +142,7 @@
 				1F29940D286F0A5500A044F7 /* ChoiceView.swift */,
 				1F68568528731697002AA0D4 /* LastChanceView.swift */,
 				1F6856782872ED02002AA0D4 /* ResultView.swift */,
+				1F03F72E2977DBBC00D58A2C /* RollTableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -233,17 +261,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F03F72D2977D90C00D58A2C /* User.swift in Sources */,
 				1F2993E5286D9FB200A044F7 /* SettingView.swift in Sources */,
+				1F03F73229780FD200D58A2C /* MyButton.swift in Sources */,
 				1F29940E286F0A5500A044F7 /* ChoiceView.swift in Sources */,
 				1F2993D7286D9F5100A044F7 /* LiarGameApp.swift in Sources */,
 				1F4BAB2F297189C3007CCF6A /* AppDelegate.swift in Sources */,
 				1F4BAB2B2971896F007CCF6A /* AppDependency.swift in Sources */,
 				1F4BAB3129719993007CCF6A /* GameViewModel.swift in Sources */,
 				1F4BAB2229717BCE007CCF6A /* Game.swift in Sources */,
+				1F03F72F2977DBBC00D58A2C /* RollTableView.swift in Sources */,
 				1F6856792872ED02002AA0D4 /* ResultView.swift in Sources */,
 				1F4BAB2D29718996007CCF6A /* AppRouterGroup.swift in Sources */,
 				1F29940C286EDD9200A044F7 /* GameView.swift in Sources */,
 				1F68567B2873093D002AA0D4 /* LottieView.swift in Sources */,
+				1F03F7342978158D00D58A2C /* HalfSheet.swift in Sources */,
 				1F68568628731697002AA0D4 /* LastChanceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

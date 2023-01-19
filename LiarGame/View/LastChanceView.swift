@@ -24,11 +24,11 @@ struct LastChanceView: View {
             else {
                 switch game.namingMode {
                 case .number:
-                    Text("\(game.selectedLiars.first! + 1)번은 라이어 입니다.")
+                    Text("\(game.getOneSelectedLiar + 1)번은 라이어 입니다.")
                         .font(.largeTitle.bold())
                         .padding(.vertical, 30)
                 case .name:
-                    Text("\(game.users[game.selectedLiars.first!].name)은(는) 라이어 입니다.")
+                    Text("\(game.users[game.getOneSelectedLiar].name)은(는) 라이어 입니다.")
                         .font(.largeTitle.bold())
                         .padding(.vertical, 30)
                 }
@@ -70,7 +70,24 @@ struct LastChanceRouteBuilder: RouteBuilder {
 struct LastChanceView_Previews: PreviewProvider {
     static let preview_game = Game()
     static var previews: some View {
-        LastChanceView(navigator: LinkNavigator(dependency: AppDependency(), builders: []))            
+        LastChanceView(navigator: LinkNavigator(dependency: AppDependency(), builders: []))
+            .onAppear {
+                preview_game.selectedLiars = [0]
+                
+                preview_game.gameMode = .normal
+                preview_game.numberOfLiars = 1
+                preview_game.users[0].roll = .liar
+                preview_game.users[1].roll = .none
+                preview_game.users[2].roll = .none
+                
+                preview_game.users[0].name = "김민성"
+                preview_game.users[1].name = "이시온"
+                preview_game.users[2].name = "박준혁"
+                preview_game.namingMode = .name
+                preview_game.answer = "국회의원"
+                preview_game.selectedCandidate = ""
+                
+            }
             .environmentObject(preview_game)
     }
 }

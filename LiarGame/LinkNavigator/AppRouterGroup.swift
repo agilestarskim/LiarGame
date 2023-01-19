@@ -13,7 +13,7 @@ struct AppRouterGroup {
         GameRouteBuilder(),
         ChoiceRouteBuilder(),
         LastChanceRouteBuilder(),
-        ResultRouteBuilder()
+        ResultRouteBuilder()        
         
     ]
   }

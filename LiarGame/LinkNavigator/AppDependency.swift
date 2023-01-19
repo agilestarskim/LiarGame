@@ -10,4 +10,6 @@
 
 import LinkNavigator
 
-struct AppDependency: DependencyType { } // you need to adopt DependencyType protocol here.
+struct AppDependency: DependencyType {
+    
+} // you need to adopt DependencyType protocol here.

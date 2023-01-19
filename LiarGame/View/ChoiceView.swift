@@ -47,6 +47,7 @@ struct ChoiceView: View {
                 Text("스파이: 1명")
             }
         }
+        .font(.title2)
         .padding(.top)
     }
     
@@ -73,9 +74,9 @@ struct ChoiceView: View {
                 Button {
                     switch spyOrLiar {
                     case .liar:
-                        game.selectedLiars.insert(index)
+                        onTapLiarButton(index: index)
                     case .spy:
-                        game.selectedSpy = index
+                        onTapSpyButton(index: index)
                     }
                 } label: {
                     HStack {
@@ -93,18 +94,21 @@ struct ChoiceView: View {
                 .disabled(game.selectedLiars.contains(index))
             }
         }
-        .onChange(of: game.selectedLiars){ selectedLiar in            
-            
-            guard game.selectedLiars.count == game.numberOfLiars else { return }
-            if game.selectedLiars == game.getLiarsIndexes {
-                navigator.next(paths: ["lastChance"], items: [:], isAnimated: true)
-            } else {
-                navigator.next(paths: ["result"], items: [:], isAnimated: true)
-            }
-        }
-        .onChange(of: game.selectedSpy) { selectedSpy in
+    }
+    
+    private func onTapLiarButton(index: Int) {
+        game.selectedLiars.insert(index)
+        guard game.selectedLiars.count == game.numberOfLiars else { return }
+        if game.selectedLiars == game.getLiarsIndexes {
+            navigator.next(paths: ["lastChance"], items: [:], isAnimated: true)
+        } else {
             navigator.next(paths: ["result"], items: [:], isAnimated: true)
         }
+    }
+    
+    private func onTapSpyButton(index: Int) {
+        game.selectedSpy = index
+        navigator.next(paths: ["result"], items: [:], isAnimated: true)
     }
     
 }
