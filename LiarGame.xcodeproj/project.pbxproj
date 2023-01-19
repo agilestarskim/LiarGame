@@ -109,11 +109,11 @@
 		1F03F735297900A500D58A2C /* SoundEffect */ = {
 			isa = PBXGroup;
 			children = (
-				1F03F74629794E2E00D58A2C /* laugh.mp3 */,
 				1F03F73A2979010F00D58A2C /* SoundManager.swift */,
 				1F03F736297900C800D58A2C /* ticktock.mp3 */,
 				1F03F738297900F800D58A2C /* bell.mp3 */,
 				1F03F7402979287000D58A2C /* hooray.mp3 */,
+				1F03F74629794E2E00D58A2C /* laugh.mp3 */,
 				1F03F74229792C8A00D58A2C /* noitsnot.mp3 */,
 				1F03F7442979300800D58A2C /* trumpet.mp3 */,
 			);
