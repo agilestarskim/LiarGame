@@ -141,6 +141,7 @@ struct GameView: View {
     
     var timerView: some View {
         VStack{
+            Spacer()
             Text("\(vm.remainingTime)초")
                 .font(.largeTitle)
                 .onReceive(vm.timer){ _ in
@@ -151,8 +152,7 @@ struct GameView: View {
                     }
                 }
             Text("남았습니다.")
-                .padding(.bottom)
-
+            Spacer()
             Button {
                 vm.isGameEnd = true
             } label: {
@@ -165,6 +165,17 @@ struct GameView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .shadow(color: .gray, radius: 5, x: 5, y: 5)
             }
+            .padding(.top, 50)
+            
+        }
+        .onChange(of: vm.remainingTime){ remainingTime in
+            if remainingTime == 10 {
+                SoundManager.instance.play(file: "ticktock")
+            } else if remainingTime == 1 {
+                SoundManager.instance.stop(file: "ticktock")
+                SoundManager.instance.play(file: "bell")
+            }
+            
         }
     }
 }
@@ -194,6 +205,7 @@ struct GameView_Previews: PreviewProvider {
                 preview_game.users[2].name = "박준혁"
                 preview_game.namingMode = .name
                 preview_game.answer = "국회의원"
+                preview_game.time = 1
             }
             .environmentObject(preview_game)
     }

@@ -107,7 +107,6 @@ final class Game: ObservableObject {
         var liars = Set<Int>()
         while liars.count < numOfLiars {
             liars.insert(Int.random(in: 0...(numOfUsers - 1)))
-            print("randomLiars: \(liars)")
         }
         //example: numOfUsers 6, numOfLiars 2, liars = [1,5]
         //example: numOfUsers 5, numOfLiars 1, liars = [3]

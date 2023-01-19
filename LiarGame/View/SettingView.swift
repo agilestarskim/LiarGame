@@ -99,14 +99,16 @@ struct SettingView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 }
                 
-                .disabled(checkSpy || checkLiar)
+                .disabled(checkSpy || checkLiar || checkName)
             }, footer: {
-                if(checkSpy){
+                if(checkSpy) {
                     Text("스파이 모드는 5명부터 가능합니다.")
                         .foregroundColor(.red)
-                } else if (checkLiar){
+                } else if (checkLiar) {
                     Text("라이어의 수는 3명당 1명씩 늘릴 수 있습니다.")
                         .foregroundColor(.red)
+                } else if (checkName) {
+                    Text("참가자의 이름을 모두 입력해 주세요.")
                 }
             })
         })
@@ -115,17 +117,17 @@ struct SettingView: View {
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle("세팅")
     }
-    
+    //스파이모드에서 전체인원이 5명 이하일 때 게임시작 방지
     var checkSpy: Bool {
         game.gameMode == .spy && game.users.count < 5
     }
-    
+    //라이어의 수가 전체 인원의 3분의 1보다 클 때 게임시작 방지
     var checkLiar: Bool {
         Int(game.users.count / 3) < game.numberOfLiars
     }
-    //TODO: 이름지정모드에서 이름을 지정하지 않았을 때 게임시작 방지
+    //이름지정모드에서 이름을 지정하지 않았을 때 게임시작 방지
     var checkName: Bool {
-        return true
+        game.namingMode == .name && game.users.filter { $0.name == ""}.count != 0
     }
     
 }
