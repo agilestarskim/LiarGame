@@ -131,7 +131,7 @@ struct ResultView: View {
     }
     
     var restartButton: some View {
-        Button {
+        Button {            
             navigator.backOrNext(path: "setting", items: [:], isAnimated: true)
         } label: {
             Text("다시하기")
@@ -142,7 +142,10 @@ struct ResultView: View {
                 .background(.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding()
-        }        
+        }
+        .onDisappear {
+            game.rotateSingleLeft(&game.users)
+        }
     }
 }
 

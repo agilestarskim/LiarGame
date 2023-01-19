@@ -89,7 +89,7 @@ struct SettingView: View {
                 Stepper("라이어 수 \(game.numberOfLiars)명", value: $game.numberOfLiars, in: 1...10)
                 Stepper("제한시간 \(game.time) 분", value: $game.time, in: 1...10)
                 Toggle("효과음 켜기", isOn: $game.soundEffect)
-            }
+            }.listSectionSeparator(.visible)
             
             Section(content: {
                 Button {
@@ -116,7 +116,7 @@ struct SettingView: View {
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.large)
-        .navigationTitle("세팅")
+        .navigationTitle("세팅")        
     }
     //스파이모드에서 전체인원이 5명 이하일 때 게임시작 방지
     var checkSpy: Bool {

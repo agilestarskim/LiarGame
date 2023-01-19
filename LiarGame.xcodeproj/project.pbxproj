@@ -14,10 +14,10 @@
 		1F03F737297900C800D58A2C /* ticktock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F736297900C800D58A2C /* ticktock.mp3 */; };
 		1F03F739297900F800D58A2C /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F738297900F800D58A2C /* bell.mp3 */; };
 		1F03F73B2979010F00D58A2C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F03F73A2979010F00D58A2C /* SoundManager.swift */; };
-		1F03F73F2979267500D58A2C /* laugh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F73E2979267500D58A2C /* laugh.mp3 */; };
 		1F03F7412979287000D58A2C /* hooray.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F7402979287000D58A2C /* hooray.mp3 */; };
 		1F03F74329792C8A00D58A2C /* noitsnot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F74229792C8A00D58A2C /* noitsnot.mp3 */; };
 		1F03F7452979300800D58A2C /* trumpet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F7442979300800D58A2C /* trumpet.mp3 */; };
+		1F03F74729794E2E00D58A2C /* laugh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F74629794E2E00D58A2C /* laugh.mp3 */; };
 		1F2993D7286D9F5100A044F7 /* LiarGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */; };
 		1F2993DB286D9F5300A044F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2993DA286D9F5300A044F7 /* Assets.xcassets */; };
 		1F2993DE286D9F5300A044F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2993DD286D9F5300A044F7 /* Preview Assets.xcassets */; };
@@ -49,10 +49,10 @@
 		1F03F736297900C800D58A2C /* ticktock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ticktock.mp3; sourceTree = "<group>"; };
 		1F03F738297900F800D58A2C /* bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell.mp3; sourceTree = "<group>"; };
 		1F03F73A2979010F00D58A2C /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		1F03F73E2979267500D58A2C /* laugh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laugh.mp3; sourceTree = "<group>"; };
 		1F03F7402979287000D58A2C /* hooray.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hooray.mp3; sourceTree = "<group>"; };
 		1F03F74229792C8A00D58A2C /* noitsnot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noitsnot.mp3; sourceTree = "<group>"; };
 		1F03F7442979300800D58A2C /* trumpet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trumpet.mp3; sourceTree = "<group>"; };
+		1F03F74629794E2E00D58A2C /* laugh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laugh.mp3; sourceTree = "<group>"; };
 		1F2993D3286D9F5100A044F7 /* LiarGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiarGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiarGameApp.swift; sourceTree = "<group>"; };
 		1F2993DA286D9F5300A044F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,11 +109,11 @@
 		1F03F735297900A500D58A2C /* SoundEffect */ = {
 			isa = PBXGroup;
 			children = (
+				1F03F74629794E2E00D58A2C /* laugh.mp3 */,
 				1F03F73A2979010F00D58A2C /* SoundManager.swift */,
 				1F03F736297900C800D58A2C /* ticktock.mp3 */,
 				1F03F738297900F800D58A2C /* bell.mp3 */,
 				1F03F7402979287000D58A2C /* hooray.mp3 */,
-				1F03F73E2979267500D58A2C /* laugh.mp3 */,
 				1F03F74229792C8A00D58A2C /* noitsnot.mp3 */,
 				1F03F7442979300800D58A2C /* trumpet.mp3 */,
 			);
@@ -275,6 +275,7 @@
 			files = (
 				1F03F74329792C8A00D58A2C /* noitsnot.mp3 in Resources */,
 				1F68568828734730002AA0D4 /* wrong.json in Resources */,
+				1F03F74729794E2E00D58A2C /* laugh.mp3 in Resources */,
 				1F4BAB352971C935007CCF6A /* Laughing.json in Resources */,
 				1F03F739297900F800D58A2C /* bell.mp3 in Resources */,
 				1F685682287311A9002AA0D4 /* lose.json in Resources */,
@@ -284,7 +285,6 @@
 				1F2993DB286D9F5300A044F7 /* Assets.xcassets in Resources */,
 				1F03F737297900C800D58A2C /* ticktock.mp3 in Resources */,
 				1F03F7452979300800D58A2C /* trumpet.mp3 in Resources */,
-				1F03F73F2979267500D58A2C /* laugh.mp3 in Resources */,
 				1F4BAB3D2971D827007CCF6A /* Twerking.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

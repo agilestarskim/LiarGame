@@ -67,6 +67,14 @@ final class Game: ObservableObject {
         return self.users.firstIndex(of: user) ?? 0
     }
     
+    func rotateSingleLeft(_ users : inout [User]) {
+        let first = users.first!
+        for i in 0..<users.count - 1 {
+            users[i] = users[i + 1]
+        }
+        users[users.count - 1] = first
+    }
+    
     func resetGame() {
         resetInGameSetting()
         resetRoll()
@@ -124,6 +132,8 @@ final class Game: ObservableObject {
         guard let index = self.users.firstIndex(of: user) else { return }
         self.users[index].roll = .spy
     }
+    
+
 }
 
 //enums
