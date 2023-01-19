@@ -50,8 +50,12 @@ struct ResultView: View {
                 .frame(width: 300, height: 300)
             
             Text("잡았지롱")
-                .font(.largeTitle.bold())
-            
+                .font(.largeTitle.bold())            
+        }
+        .onAppear {
+            if game.soundEffect {
+                SoundManager.instance.play(file: "trumpet", volume: 0.5, speed: 1.4)
+            }
         }
     }
     
@@ -63,6 +67,11 @@ struct ResultView: View {
                 .frame(width: 300, height: 300)
             Text("틀렸지롱")
                 .font(.largeTitle.bold())
+        }
+        .onAppear {
+            if game.soundEffect {
+                SoundManager.instance.play(file: "laugh")
+            }
         }
     }
     
@@ -77,6 +86,11 @@ struct ResultView: View {
             Text("맞췄지롱")
                 .font(.largeTitle.bold())
         }
+        .onAppear {
+            if game.soundEffect {
+                SoundManager.instance.play(file: "laugh")
+            }
+        }
     }
     
     var lastChanceFailure: some View {
@@ -89,6 +103,11 @@ struct ResultView: View {
                 .frame(width: 300, height: 300)
             Text("응 아니야")
                 .font(.largeTitle.bold())
+        }
+        .onAppear {
+            if game.soundEffect {
+                SoundManager.instance.play(file: "noitsnot")
+            }
         }
     }
     
@@ -104,8 +123,7 @@ struct ResultView: View {
                 .background(.indigo)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding()
-        }
-        
+        }        
         .halfSheet(showSheet: $showingRollTable) {
             RollTableView()
                 .environmentObject(game)

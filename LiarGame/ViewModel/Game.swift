@@ -12,9 +12,10 @@ final class Game: ObservableObject {
     @Published var subject: Subjects = .job //주제
     @Published var gameMode: GameMode = .normal //일반, 스파이, 바보 모드
     @Published var namingMode: NamingMode = .number //번호, 이름 모드
-    @Published var users: [User] = [User](repeating: User(), count: 3) //User(name,liar,spy)
+    @Published var users: [User] = [User(), User(), User()] //User(name,liar,spy)
     @Published var numberOfLiars = 1 //라이어 수
     @Published var time: Int = 2 //게임시간(분)
+    @Published var soundEffect = true
     
     //게임 시작 후 게임정보 관련 변수
     var answer: String = "" //candidates에서 subject에 연관된 단어를 무작위로 찾음.
@@ -35,6 +36,7 @@ final class Game: ObservableObject {
         guard let liar = self.selectedLiars.first else { return 0 }
         return liar
     }
+
     
     let candidates: [Subjects : [String]] = [
         .object : ["헤드폰", "암막커튼", "고속충전기", "샹들리에", "무선이어폰", "발가락양말", "탈모샴푸", "콧털제거기", "혀 클리너", "무선마우스", "방독면", "스타킹", "가발", "에프킬라", "선글라스", "선크림", "에어컨", "무전기", "손목시계", "비누"],

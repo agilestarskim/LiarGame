@@ -8,7 +8,7 @@
 import Foundation
 
 struct User: Equatable, Identifiable {
-    var id = UUID()
+    let id = UUID()
     var name: String = ""
     var roll: Roll = .none
 }

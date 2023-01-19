@@ -88,6 +88,7 @@ struct SettingView: View {
             Section {
                 Stepper("라이어 수 \(game.numberOfLiars)명", value: $game.numberOfLiars, in: 1...10)
                 Stepper("제한시간 \(game.time) 분", value: $game.time, in: 1...10)
+                Toggle("효과음 켜기", isOn: $game.soundEffect)
             }
             
             Section(content: {

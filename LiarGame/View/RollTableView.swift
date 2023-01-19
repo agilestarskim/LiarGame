@@ -10,34 +10,44 @@ import SwiftUI
 
 struct RollTableView: View {
     @EnvironmentObject var game: Game
+    
+    var sortedUserList: [User] {
+        return game.users.sorted(by: { user1, user2 in
+            switch (user1.roll, user2.roll) {
+            case (.spy, _), (.liar, .none): return true
+            case (.none, .liar), (_, .spy): return false
+            default: return user1.name < user2.name
+            }})
+    }
+                                 
     var body: some View {
         List {
-            ForEach(game.users.indices, id: \.self){ index in
+            ForEach(sortedUserList){ user in
                 HStack {
                     switch game.namingMode {
                     case .name:
-                        Text(game.users[index].name)
+                        Text(user.name)
                             .fontWeight(.semibold)
                             .font(.title2)
                             .padding()
                     case .number:
-                        Text("\(index + 1) 번")
+                        Text("\(game.findUserIndex(of: user) + 1)번")
                             .font(.title2.bold())
                     }
                     
                     Spacer()
-                    switch game.users[index].roll {
+                    switch user.roll {
                     case.none:
-                        Text(game.users[index].roll.rawValue)
+                        Text(user.roll.rawValue)
                             .tracking(10)
                             .bold()
                             .myButtonStyle(color: .gray)
                     case .liar:
-                        Text(game.users[index].roll.rawValue)
+                        Text(user.roll.rawValue)
                             .bold()
                             .myButtonStyle(color: Color(red: 0, green: 0.5, blue: 0))
                     case .spy:
-                        Text(game.users[index].roll.rawValue)
+                        Text(user.roll.rawValue)
                             .bold()
                             .myButtonStyle(color: .red)
                     }                    

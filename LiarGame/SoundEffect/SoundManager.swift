@@ -15,16 +15,17 @@ class SoundManager {
     
     private var player: AVAudioPlayer?
     
-    func play(file: String) {
-        let path = Bundle.main.path(forResource: file, ofType: "mp3")!
-        let url = URL(fileURLWithPath: path)
+    func play(file: String, volume: Float = 1, speed: Float = 1) {
+        guard let url = Bundle.main.url(forResource: file, withExtension: "mp3") else { return }
         do {
-            player = try AVAudioPlayer(contentsOf: url)            
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.enableRate = true
+            player?.rate = speed
+            player?.setVolume(volume, fadeDuration: 0)
             player?.play()
         }catch {
             print(error)
         }
-        
     }
     
     func stop(file: String) {

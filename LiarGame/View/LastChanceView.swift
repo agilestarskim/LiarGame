@@ -50,6 +50,11 @@ struct LastChanceView: View {
             }
             .padding()
         }
+        .onAppear{
+            if game.soundEffect {
+                SoundManager.instance.play(file: "hooray")
+            }            
+        }
         .navigationBarHidden(true)
     }
 }
