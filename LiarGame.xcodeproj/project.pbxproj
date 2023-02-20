@@ -42,6 +42,7 @@
 		1FD42B7029A3842F000336F5 /* KeywordSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD42B6F29A3842F000336F5 /* KeywordSettingView.swift */; };
 		1FD42B7929A3A239000336F5 /* Game+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD42B7829A3A239000336F5 /* Game+.swift */; };
 		1FD42B7B29A3A337000336F5 /* Keywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD42B7A29A3A337000336F5 /* Keywords.swift */; };
+		1FD42B7D29A3BEA4000336F5 /* KeywordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD42B7C29A3BEA4000336F5 /* KeywordDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		1FD42B6F29A3842F000336F5 /* KeywordSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSettingView.swift; sourceTree = "<group>"; };
 		1FD42B7829A3A239000336F5 /* Game+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+.swift"; sourceTree = "<group>"; };
 		1FD42B7A29A3A337000336F5 /* Keywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keywords.swift; sourceTree = "<group>"; };
+		1FD42B7C29A3BEA4000336F5 /* KeywordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDetailView.swift; sourceTree = "<group>"; };
 		1FF3B91A2940D3300057ED8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,7 +150,7 @@
 				1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */,
 				1FF3B91A2940D3300057ED8C /* Info.plist */,
 				1F4BAB17297173A7007CCF6A /* Scenes */,
-				1F4BAB1E297174D1007CCF6A /* EnvironmentObject */,
+				1F4BAB1E297174D1007CCF6A /* Environment */,
 				1F03F72B2977D8F200D58A2C /* Model */,
 				1F4BAB292971893B007CCF6A /* LinkNavigator */,
 				1FD42B7629A39E7E000336F5 /* Resources */,
@@ -189,13 +191,14 @@
 			path = Lotties;
 			sourceTree = "<group>";
 		};
-		1F4BAB1E297174D1007CCF6A /* EnvironmentObject */ = {
+		1F4BAB1E297174D1007CCF6A /* Environment */ = {
 			isa = PBXGroup;
 			children = (
 				1F4BAB2129717BCE007CCF6A /* Game.swift */,
 				1FD42B7829A3A239000336F5 /* Game+.swift */,
+				1FD42B7A29A3A337000336F5 /* Keywords.swift */,
 			);
-			path = EnvironmentObject;
+			path = Environment;
 			sourceTree = "<group>";
 		};
 		1F4BAB292971893B007CCF6A /* LinkNavigator */ = {
@@ -212,6 +215,7 @@
 			children = (
 				1F2993E4286D9FB200A044F7 /* SettingView.swift */,
 				1FD42B6F29A3842F000336F5 /* KeywordSettingView.swift */,
+				1FD42B7C29A3BEA4000336F5 /* KeywordDetailView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -241,19 +245,10 @@
 		1FD42B7629A39E7E000336F5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1FD42B7729A3A10E000336F5 /* Keywords */,
 				1F4BAB18297173BD007CCF6A /* Lotties */,
 				1F03F735297900A500D58A2C /* SoundEffect */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		1FD42B7729A3A10E000336F5 /* Keywords */ = {
-			isa = PBXGroup;
-			children = (
-				1FD42B7A29A3A337000336F5 /* Keywords.swift */,
-			);
-			path = Keywords;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +346,7 @@
 				1FD42B7029A3842F000336F5 /* KeywordSettingView.swift in Sources */,
 				1F29940E286F0A5500A044F7 /* ChoiceView.swift in Sources */,
 				1F2993D7286D9F5100A044F7 /* LiarGameApp.swift in Sources */,
+				1FD42B7D29A3BEA4000336F5 /* KeywordDetailView.swift in Sources */,
 				1F4BAB2F297189C3007CCF6A /* AppDelegate.swift in Sources */,
 				1F4BAB2B2971896F007CCF6A /* AppDependency.swift in Sources */,
 				1F4BAB3129719993007CCF6A /* IntroViewModel.swift in Sources */,

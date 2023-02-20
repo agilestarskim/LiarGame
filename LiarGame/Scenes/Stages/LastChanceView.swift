@@ -37,7 +37,7 @@ struct LastChanceView: View {
             Text("라이어에게 마지막 기회가 주어집니다.")
                 .font(.title2)
             LazyVGrid(columns: columns, spacing: 20){
-                ForEach(game.candidates[game.subject, default: []], id:\.self){ candidate in
+                ForEach(game.keywords[game.subject, default: []], id:\.self){ candidate in
                     Button{
                         game.selectedCandidate = candidate
                         navigator.next(paths: ["result"], items: [:], isAnimated: true)

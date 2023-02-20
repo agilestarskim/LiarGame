@@ -8,9 +8,15 @@
 import Foundation
 
 extension Game {
+    
+    var subjects: [String] {
+        return Array(keywords.keys)
+    }
+    
     var getLiarsIndexes: Set<Int> {
         Set(self.users.enumerated().filter { $0.element.roll == .liar }.map { $0.offset })
     }
+    
     var getSpyIndex: Int {
         return self.users.firstIndex(where: { $0.roll == .spy }) ?? -1
     }
@@ -77,10 +83,10 @@ extension Game {
     //정답 설정
     private func shuffleAnswer() {
         //이전과 똑같은 문제 나오는 것 방지
-        let newAnswer = self.candidates[self.subject]!.filter { $0 != self.answer}.randomElement()!
+        let newAnswer = self.keywords[self.subject]!.filter { $0 != self.answer}.randomElement()!
         self.answer = newAnswer
         //바보모드를 위해 정답을 제외한 랜덤 단어 저장
-        self.wrongAnswerForFool = self.candidates[self.subject]!.filter { $0 != self.answer}.randomElement()!
+        self.wrongAnswerForFool = self.keywords[self.subject]!.filter { $0 != self.answer}.randomElement()!
     }
     //라이어 설정
     private func setLiar() {

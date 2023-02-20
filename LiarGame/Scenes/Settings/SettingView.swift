@@ -20,9 +20,9 @@ struct SettingView: View {
     var body: some View {
         Form(content: {
             Section {
-                Picker("주제: \(game.subject.rawValue)", selection: $game.subject){
-                    ForEach(Subjects.allCases, id: \.self) { subject in
-                        Text(subject.localizedName)
+                Picker("주제: \(game.subject)", selection: $game.subject){
+                    ForEach(game.subjects, id: \.self) { subject in
+                        Text(subject)
                     }
                 }
                 HStack {

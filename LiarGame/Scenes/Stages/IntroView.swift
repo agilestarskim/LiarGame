@@ -14,7 +14,7 @@ struct IntroView: View {
     let navigator: LinkNavigatorType
     var body: some View {
         VStack{
-            Text("\(game.subject.rawValue)")
+            Text("\(game.subject)")
                 .font(.title.bold())
                 .padding()
             Text("\(game.gameMode.rawValue)모드")
