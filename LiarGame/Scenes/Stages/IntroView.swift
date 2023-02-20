@@ -8,7 +8,7 @@
 import LinkNavigator
 import SwiftUI
 
-struct GameView: View {
+struct IntroView: View {
     @EnvironmentObject var game: Game
     @StateObject private var vm = ViewModel()
     let navigator: LinkNavigatorType
@@ -179,13 +179,13 @@ struct GameView: View {
     }
 }
 
-struct GameRouteBuilder: RouteBuilder {
-  var matchPath: String { "game" }
+struct IntroRouteBuilder: RouteBuilder {
+  var matchPath: String { "intro" }
 
   var build: (LinkNavigatorType, [String: String], DependencyType) -> MatchingViewController? {
     { navigator, items, dependency in
       return WrappingController(matchingKey: matchPath) {
-          GameView(navigator: navigator)
+          IntroView(navigator: navigator)
       }
     }
   }
@@ -195,7 +195,7 @@ struct GameRouteBuilder: RouteBuilder {
 struct GameView_Previews: PreviewProvider {
     static let preview_game = Game()
     static var previews: some View {
-        GameView(navigator: LinkNavigator(dependency: AppDependency(), builders: []))
+        IntroView(navigator: LinkNavigator(dependency: AppDependency(), builders: []))
             .onAppear {
                 preview_game.users[0].roll = .liar
                 preview_game.users[1].roll = .spy

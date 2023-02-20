@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension GameView {
+extension IntroView {
     class ViewModel: ObservableObject {
         let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         @Published var remainingTime: Int = 10

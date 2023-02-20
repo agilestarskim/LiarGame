@@ -12,6 +12,7 @@ struct User: Equatable, Identifiable {
     var name: String = ""
     var roll: Roll = .none
 }
+
 enum Roll: String {
     case none = "시민"
     case liar = "라이어"

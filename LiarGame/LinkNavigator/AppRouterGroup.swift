@@ -10,7 +10,8 @@ struct AppRouterGroup {
   var routers: [RouteBuilder] {
     [
         SettingRouteBuilder(),
-        GameRouteBuilder(),
+        KeywordSettingtRouteBuilder(),
+        IntroRouteBuilder(),
         ChoiceRouteBuilder(),
         LastChanceRouteBuilder(),
         ResultRouteBuilder()        

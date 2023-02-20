@@ -20,12 +20,24 @@ struct SettingView: View {
     var body: some View {
         Form(content: {
             Section {
-                Picker(game.subject.rawValue, selection: $game.subject){
+                Picker("주제: \(game.subject.rawValue)", selection: $game.subject){
                     ForEach(Subjects.allCases, id: \.self) { subject in
                         Text(subject.localizedName)
                     }
                 }
-            } 
+                HStack {
+                    Text("게임을 더 재밌게 즐기고 싶다면?")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Button("키워드 수정"){
+                        navigator.next(paths: ["keywordSetting"], items: [:], isAnimated: true)
+                    }
+                }
+                
+            } footer: {
+                
+                
+            }
             
             Section(content: {
                 Picker("모드", selection: $game.gameMode){
@@ -94,7 +106,7 @@ struct SettingView: View {
             Section(content: {
                 Button {
                     game.resetGame()
-                    navigator.next(paths: ["game"], items: [:], isAnimated: true)
+                    navigator.next(paths: ["intro"], items: [:], isAnimated: true)
                 } label: {
                     Text("게임시작")
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
