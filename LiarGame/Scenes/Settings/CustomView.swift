@@ -7,21 +7,20 @@
 
 import SwiftUI
 
-struct KeywordDetailView: View {
+struct CustomView: View {
     @EnvironmentObject var game: Game
     @Environment(\.dismiss) private var dismiss
-    let subject: String
-    let isSystemKeywords: Bool
     @State private var showingBackAlert = false
-    @State private var title = ""
+    @State private var subject: String
+    
+    init(subject: String) {
+        self._subject = State(initialValue: subject)
+    }
+    
     var body: some View {
         List {
             Section {
-                if isSystemKeywords{
-                    Text(subject)
-                } else {
-                    TextField("제목을 입력하세요 예)스포츠 ", text: $title)
-                }
+                TextField("제목을 입력하세요 예)스포츠 ", text: $subject)
             }
             
             Section {
@@ -30,11 +29,7 @@ struct KeywordDetailView: View {
             
             Section {
                 Button("저장") {
-                    if self.isSystemKeywords {
-                        game.keywordsContainer.saveSystemKeywords([:])
-                    } else {
-                        game.keywordsContainer.saveCustomKeywords([:])
-                    }
+                    game.keywordsContainer.saveCustomKeywords([:])
                 }
                 //TODO: title이 이미 존재하는지 확인
                 //TODO: 키워드가 10개 이상인지 확인
@@ -59,8 +54,8 @@ struct KeywordDetailView: View {
     }
 }
 
-struct KeywordDetailView_Previews: PreviewProvider {
+struct CustomView_Previews: PreviewProvider {
     static var previews: some View {
-        KeywordDetailView(subject: "직업", isSystemKeywords: false)
+        CustomView(subject: "")
     }
 }

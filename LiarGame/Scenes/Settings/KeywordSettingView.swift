@@ -16,7 +16,7 @@ struct KeywordSettingView: View {
         List {
             Section {
                 ForEach(game.keywordsContainer.systemSubjects, id: \.self) { subject in
-                    NavigationLink(subject, destination: KeywordDetailView(subject: subject, isSystemKeywords: true))
+                    NavigationLink(subject, destination: SystemView(subject: subject))
                 }
                 
             } header: {
@@ -26,11 +26,11 @@ struct KeywordSettingView: View {
             Section {
                 ForEach(game.keywordsContainer.customSubjects, id: \.self) { subject in
                     NavigationLink(subject) {
-                        KeywordDetailView(subject: subject, isSystemKeywords: false)
+                        CustomView(subject: subject)
                     }
                 }
                 NavigationLink {
-                    KeywordDetailView(subject: "", isSystemKeywords: false)
+                    CustomView(subject: "")
                 } label: {
                     Text("추가")
                         .foregroundColor(.blue)
