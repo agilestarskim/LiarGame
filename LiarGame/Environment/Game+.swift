@@ -46,6 +46,8 @@ extension Game {
         return self.users.firstIndex(of: user) ?? 0
     }
     
+    //유저의 순서를 shift한다.
+    //States/ResultView.swift에서 다시하기 버튼을 클릭하면 trigger된다.
     func rotateSingleLeft(_ users : inout [User]) {
         let first = users.first!
         for i in 0..<users.count - 1 {
@@ -62,10 +64,6 @@ extension Game {
         if self.gameMode == .spy {
             setSpy()
         }
-//        test
-//        self.users.forEach { user in
-//            print(user.name, user.roll)
-//        }
     }
     //게임 시작 후 변경된 세팅 초기화
     private func resetInGameSetting() {

@@ -25,18 +25,22 @@ struct SettingView: View {
                         Text(subject)
                     }
                 }
-                HStack {
-                    Text("게임을 더 재밌게 즐기고 싶다면?")
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Button("키워드 수정"){
-                        navigator.next(paths: ["keywordSetting"], items: [:], isAnimated: true)
+                
+                NavigationLink {
+                    KeywordSettingView()
+                } label: {
+                    HStack {
+                        Text("new!")
+                            .foregroundColor(.black)
+                            .bold()
+                            .padding(5)
+                            .background(.yellow)
+                            .cornerRadius(5)
+                        Spacer()
+                        Text("나만의 키워드 만들기")
+                            .bold()
                     }
                 }
-                
-            } footer: {
-                
-                
             }
             
             Section(content: {

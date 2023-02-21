@@ -12,6 +12,8 @@ import SwiftUI
 @main
 struct LiarGameApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    //Keywords class에서 init과 함께 만들어진 system, custom keywords를 merge하여 game에 주입함.
+    //앱 실행과 동시에 game의 keywords는 userDefaults로 부터 데이터를 할당받음.
     @StateObject var game = Game()
     var navigator: LinkNavigator {
         appDelegate.navigator

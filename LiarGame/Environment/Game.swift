@@ -24,8 +24,11 @@ final class Game: ObservableObject {
     @Published var selectedSpy: Int? = nil //게임 중 지목당한 스파이
     var selectedCandidate: String = "" //게임 중 라이어가 선택한 정답 후보
     
-    //키워드: 앱을 처음시작하거나 키워드를 변경할 때 set 된다.
-    var keywords: [String : [String]] = Keywords.defaultKeywords
+    var keywords: [String : [String]] {
+        keywordsContainer.intergratedKeywords
+    }
+    
+    var keywordsContainer: Keywords = Keywords.instance
 }
 
 enum GameMode: String, Equatable, CaseIterable {

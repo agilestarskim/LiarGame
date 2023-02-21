@@ -7,27 +7,57 @@
 
 import Foundation
 
-final class Keywords: ObservableObject {
-    
-    init() {
+final class Keywords {
+    //생성자를 부를 때 마다 UserDefaults를 읽어들이는 것은 비효율적이기 때문에 싱글톤으로 생성
+    static let instance: Keywords = Keywords()
+    let userDefaults = UserDefaults.standard
+    let systemKeyName = "systemKeywords"
+    let customKeyName = "customKeywords"
+    private init() {
         //UserDefaults에서 systemKeywords와 customKeywords를 가져와서 set함
+        //systemKeyName으로 데이터를 가져와 할당한다. 만약 데이터가 없으면 default 키워드를 할당한다.
+        if let systemKeywords = userDefaults.dictionary(forKey: systemKeyName) as? [String: [String]]  {
+            self.systemKeywords = systemKeywords
+        } else {
+            self.systemKeywords = self.defaultKeywords
+        }
         
-        //UserDefaults에 저장된 데이터가 없다면 
+        //customKeyName으로 데이터를 가져와 할당한다. 만약 데이터가 없으면 빈 데이터를 할당한다.
+        if let customKeywords = userDefaults.dictionary(forKey: customKeyName) as? [String: [String]] {
+            self.customKeywords = customKeywords
+        } else {
+            self.customKeywords = [:]
+        }
+    }
+    var systemKeywords: [String: [String]]
+    
+    var customKeywords: [String: [String]]
+    
+    var intergratedKeywords: [String: [String]] {
+        //키가 중복될 시 systemKeywords를 우선으로 merge
+        self.systemKeywords.merging(self.customKeywords){ (current, _) in current }
     }
     
-    var systemKeywords: [String: [String]] = [:]
-    
-    var customKeywords: [String: [String]] = [:]
-    
-    func fetchSystemKeywords() {
-        
+    //keywordDetailView에서 접근
+    var systemSubjects: [String] {
+        Array(systemKeywords.keys)
+    }
+    //keywordDetailView에서 접근
+    var customSubjects: [String] {
+        Array(customKeywords.keys)
     }
     
-    func fetchCustomKeywords() {
-        
+    func saveSystemKeywords(_ data: [String: [String]]) {
+        userDefaults.set(data, forKey: self.systemKeyName)
+        systemKeywords = data
     }
     
-    static let defaultKeywords: [String : [String]] = [
+    func saveCustomKeywords(_ data: [String: [String]]) {
+        userDefaults.set(data, forKey: self.customKeyName)
+        customKeywords = data
+    }
+    
+    let defaultKeywords: [String : [String]] = [
         "물건" : ["헤드폰", "암막커튼", "고속충전기", "샹들리에", "무선이어폰", "발가락양말", "탈모샴푸", "콧털제거기", "혀 클리너", "무선마우스", "방독면", "스타킹", "가발", "에프킬라", "선글라스", "선크림", "에어컨", "무전기", "손목시계", "비누"],
         "직업" : ["건축가", "탐정", "세무사", "농부", "백수", "대통령", "국회의원", "청소부", "좀도둑", "클럽MD", "교사", "공무원", "래퍼", "인권운동가", "개그맨", "스턴트맨", "광부", "배우", "아이돌", "어부"],
         "동물" : ["기니피그", "알파카", "오랑우탄", "돌고래", "사자", "호랑이", "말", "토끼", "사슴", "침팬지", "박쥐", "양", "기린", "하마", "도마뱀", "개구리", "치타", "표범", "상어", "판다"],
