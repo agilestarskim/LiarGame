@@ -14,6 +14,7 @@ struct SystemView: View {
     @State var originalKeywords: [String]
     @State var keywords: [String]
     @State private var showingBackAlert = false
+    @State private var showingResetAlert = false
     
     init(title: String, keywords: [String]) {
         self.title = title
@@ -79,10 +80,22 @@ struct SystemView: View {
                     }
                 }
                 .alert("취소하시겠습니까?", isPresented: $showingBackAlert) {
-                    Button("취소하기", role: .destructive){ dismiss() }
                     Button("계속하기", role: .cancel){}
+                    Button("취소하기", role: .destructive){ dismiss() }
                 } message: {
                     Text("취소하시면 작성한 데이터는 모두 사라집니다.")
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("초기화") {
+                    showingResetAlert = true
+                }
+                .alert("모든 내용을 초기화시키겠습니까?", isPresented: $showingResetAlert) {
+                    Button("취소", role: .cancel){}
+                    Button("초기화", role: .destructive) {
+                        keywords = Keyword.defaultKeywords[title, default: []]
+                    }
                 }
             }
         }
