@@ -84,7 +84,6 @@ struct SystemView: View {
                 } message: {
                     Text("취소하시면 작성한 데이터는 모두 사라집니다.")
                 }
-
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -104,7 +103,7 @@ struct SystemView: View {
     }
     
     private func save() {
-        game.keyword.save(key: self.title, value: self.keywords)
+        game.keyword.save(key: self.title, value: self.keywords, for: .system)
         game.keyword = Keyword()
         dismiss()
     }

@@ -18,6 +18,7 @@
 		1F03F74329792C8A00D58A2C /* noitsnot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F74229792C8A00D58A2C /* noitsnot.mp3 */; };
 		1F03F7452979300800D58A2C /* trumpet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F7442979300800D58A2C /* trumpet.mp3 */; };
 		1F03F74729794E2E00D58A2C /* laugh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F74629794E2E00D58A2C /* laugh.mp3 */; };
+		1F27E04429A65A440003EBB8 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F27E04329A65A440003EBB8 /* Toast.swift */; };
 		1F2993D7286D9F5100A044F7 /* LiarGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */; };
 		1F2993DB286D9F5300A044F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2993DA286D9F5300A044F7 /* Assets.xcassets */; };
 		1F2993DE286D9F5300A044F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2993DD286D9F5300A044F7 /* Preview Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		1F03F74229792C8A00D58A2C /* noitsnot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noitsnot.mp3; sourceTree = "<group>"; };
 		1F03F7442979300800D58A2C /* trumpet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trumpet.mp3; sourceTree = "<group>"; };
 		1F03F74629794E2E00D58A2C /* laugh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laugh.mp3; sourceTree = "<group>"; };
+		1F27E04329A65A440003EBB8 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		1F2993D3286D9F5100A044F7 /* LiarGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiarGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiarGameApp.swift; sourceTree = "<group>"; };
 		1F2993DA286D9F5300A044F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				1F03F73129780FD200D58A2C /* MyButton.swift */,
 				1F03F7332978158D00D58A2C /* HalfSheet.swift */,
+				1F27E04329A65A440003EBB8 /* Toast.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				1F68567B2873093D002AA0D4 /* LottieView.swift in Sources */,
 				1F03F7342978158D00D58A2C /* HalfSheet.swift in Sources */,
 				1F68568628731697002AA0D4 /* LastChanceView.swift in Sources */,
+				1F27E04429A65A440003EBB8 /* Toast.swift in Sources */,
 				1F03F73B2979010F00D58A2C /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

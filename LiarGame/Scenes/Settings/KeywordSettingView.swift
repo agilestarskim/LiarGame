@@ -11,6 +11,7 @@ import SwiftUI
 struct KeywordSettingView: View {
     @EnvironmentObject var game: Game
     @State private var showingResetAlert = false
+    @State private var showingConfirmToast = false
     
     var body: some View {
         List {
@@ -21,7 +22,6 @@ struct KeywordSettingView: View {
                     } label: {
                         Text(subject)
                     }
-
                 }
                 
             } header: {
@@ -51,12 +51,32 @@ struct KeywordSettingView: View {
                 showingResetAlert = true
             }
         }
-        .alert("초기화하시겠습니까?", isPresented: $showingResetAlert) {
-            Button("취소", role: .cancel){}
-            Button("초기화", role: .destructive){
-                
+        .confirmationDialog("키워드를 초기화합니다.", isPresented: $showingResetAlert) {
+            Button("기본제공 키워드 초기화"){
+                reset(for: .system)
             }
+            Button("나만의 키워드 초기화"){
+                reset(for: .custom)
+            }
+            Button("전체 초기화"){
+                reset(for: .all)
+            }
+            Button("취소", role: .cancel){}
         }
+        .toast(message: "초기화되었습니다.", isShowing: $showingConfirmToast, config: .init())
+    }
+    
+    func reset(for resetMode: Keyword.RemoveMode) {
+        switch resetMode {
+        case .system:
+            game.keyword.removeFromUserDefaults(for: .system)
+        case .custom:
+            game.keyword.removeFromUserDefaults(for: .custom)
+        case .all:
+            game.keyword.removeFromUserDefaults(for: .all)
+        }
+        game.keyword = Keyword()
+        showingConfirmToast = true
     }
 }
 

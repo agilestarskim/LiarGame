@@ -11,6 +11,7 @@ struct CustomView: View {
     @EnvironmentObject var game: Game
     @Environment(\.dismiss) private var dismiss
     @State private var showingBackAlert = false
+    @State private var showingRemoveAlert = false
     @State var title: String
     @State private var originalTitle: String
     @State var keywords: [String]
@@ -89,8 +90,8 @@ struct CustomView: View {
                     }
                 }
                 .alert("취소하시겠습니까?", isPresented: $showingBackAlert) {
-                    Button("취소하기", role: .destructive){ dismiss() }
                     Button("계속하기", role: .cancel){}
+                    Button("취소하기", role: .destructive){ dismiss() }
                 } message: {
                     Text("취소하시면 작성한 데이터는 모두 사라집니다.")
                 }
@@ -98,7 +99,12 @@ struct CustomView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("삭제") {
-                    remove()
+                    showingRemoveAlert = true
+                }
+                .disabled(!game.keyword.customSubjects.contains(originalTitle))
+                .alert("삭제하시겠습니까?", isPresented: $showingRemoveAlert) {
+                    Button("계속하기", role: .cancel){}
+                    Button("삭제하기", role: .destructive){ remove() }
                 }
             }
         }
@@ -130,7 +136,7 @@ struct CustomView: View {
         game.keyword.save(
             key: self.title,
             value: self.keywords,
-            isSystem: false,
+            for: .custom,
             originalTitle: self.originalTitle
         )
         game.keyword = Keyword()
@@ -138,7 +144,9 @@ struct CustomView: View {
     }
     
     private func remove() {
-        
+        game.keyword.remove(key: originalTitle)
+        game.keyword = Keyword()
+        dismiss()
     }
 }
 

@@ -51,14 +51,20 @@ final class Keyword {
         wholeKeywords.keys.sorted()
     }
     
-    func save(key: String, value: [String], isSystem: Bool = true, originalTitle: String = "") {
+    enum RemoveMode {
+        case system, custom, all
+    }
+    
+    func save(key: String, value: [String], for removeMode: RemoveMode, originalTitle: String = "") {
         //빈 문자열이나 공백을 모두 제거
         let trimmedKeywords = value.filter { !$0.isEmpty }.map { $0.trimmingCharacters(in: .whitespaces) }
-        if isSystem {
+        switch removeMode {
+        case .system:
             var data = systemKeywords
             data.updateValue(trimmedKeywords, forKey: key)
             userDefaults.set(data, forKey: systemKeyName)
-        } else {
+            return
+        case .custom:
             var data = customKeywords
             //제목이 수정되었다면 이전 이름으로 된 데이터를 지운다
             //원본제목이 빈 문자열은 새로 만든 키워드이므로 지울 필요가 없다
@@ -67,6 +73,27 @@ final class Keyword {
             }
             data.updateValue(trimmedKeywords, forKey: key)
             userDefaults.set(data, forKey: customKeyName)
+            return
+        case .all:
+            return
+        }
+    }
+    
+    func remove(key: String) {
+        var data = customKeywords
+        data.removeValue(forKey: key)
+        userDefaults.set(data, forKey: customKeyName)
+    }
+    
+    func removeFromUserDefaults(for removeMode: RemoveMode) {
+        switch removeMode {
+        case .all:
+            userDefaults.removeObject(forKey: systemKeyName)
+            userDefaults.removeObject(forKey: customKeyName)
+        case .system:
+            userDefaults.removeObject(forKey: systemKeyName)
+        case .custom:
+            userDefaults.removeObject(forKey: customKeyName)
         }
     }
     
