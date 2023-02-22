@@ -29,7 +29,7 @@ struct SystemView: View {
             
             Section {
                 ForEach(keywords.indices, id: \.self) { index in
-                    TextField("", text: $keywords[index])
+                    TextField("키워드를 입력하세요", text: $keywords[index])
                         .autocorrectionDisabled(true)
                 }
                 .onDelete { indexSet in
@@ -88,11 +88,6 @@ struct SystemView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear {
-            let data = game.keyword.systemKeywords[title] ?? []
-            self.keywords = data
-            self.originalKeywords = data
-        }
     }
     
     var checkCount: Bool {
@@ -109,10 +104,8 @@ struct SystemView: View {
     }
     
     private func save() {
-        var data = game.keyword.systemKeywords
-        let trimmedKeywords = self.keywords.filter { !$0.isEmpty }.map { $0.trimmingCharacters(in: .whitespaces) }
-        data.updateValue(trimmedKeywords, forKey: self.title)
-        game.keyword.saveSystemKeywords(data)
+        game.keyword.save(key: self.title, value: self.keywords)
+        game.keyword = Keyword()
         dismiss()
     }
 }

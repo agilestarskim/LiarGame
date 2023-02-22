@@ -31,11 +31,11 @@ struct KeywordSettingView: View {
             Section {
                 ForEach(game.keyword.customSubjects, id: \.self) { subject in
                     NavigationLink(subject) {
-                        CustomView(subject: subject)
+                        CustomView(title: subject, keywords: game.keyword.customKeywords[subject] ?? [])
                     }
                 }
                 NavigationLink {
-                    CustomView(subject: "")
+                    CustomView(title: "", keywords: ["", "", "", "", "", "", "", "", "", ""])
                 } label: {
                     Text("추가")
                         .foregroundColor(.blue)
@@ -53,7 +53,9 @@ struct KeywordSettingView: View {
         }
         .alert("초기화하시겠습니까?", isPresented: $showingResetAlert) {
             Button("취소", role: .cancel){}
-            Button("초기화", role: .destructive){}
+            Button("초기화", role: .destructive){
+                
+            }
         }
     }
 }

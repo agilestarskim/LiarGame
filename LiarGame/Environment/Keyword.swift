@@ -8,18 +8,16 @@
 import Foundation
 
 final class Keyword {
-    //생성자를 부를 때 마다 UserDefaults를 읽어들이는 것은 비효율적이기 때문에 싱글톤으로 생성
-    static let instance: Keyword = Keyword()
-    let userDefaults = UserDefaults.standard
-    let systemKeyName = "systemKeywords"
-    let customKeyName = "customKeywords"
-    private init() {
+    private let userDefaults = UserDefaults.standard
+    private let systemKeyName = "systemKeywords"
+    private let customKeyName = "customKeywords"
+    init() {
         //UserDefaults에서 systemKeywords와 customKeywords를 가져와서 set함
         //systemKeyName으로 데이터를 가져와 할당한다. 만약 데이터가 없으면 default 키워드를 할당한다.
         if let systemKeywords = userDefaults.dictionary(forKey: systemKeyName) as? [String: [String]]  {
             self.systemKeywords = systemKeywords
         } else {
-            self.systemKeywords = self.defaultKeywords
+            self.systemKeywords = Keyword.defaultKeywords
         }
         
         //customKeyName으로 데이터를 가져와 할당한다. 만약 데이터가 없으면 빈 데이터를 할당한다.
@@ -48,22 +46,31 @@ final class Keyword {
         self.systemKeywords.merging(self.customKeywords){ (current, _) in current }
     }
     
-    //
+    //대부분 뷰에서 접근함.
     var wholeSubjects: [String] {
         wholeKeywords.keys.sorted()
     }
     
-    func saveSystemKeywords(_ data: [String: [String]]) {
-        userDefaults.set(data, forKey: self.systemKeyName)
-        systemKeywords = data
+    func save(key: String, value: [String], isSystem: Bool = true, originalTitle: String = "") {
+        //빈 문자열이나 공백을 모두 제거
+        let trimmedKeywords = value.filter { !$0.isEmpty }.map { $0.trimmingCharacters(in: .whitespaces) }
+        if isSystem {
+            var data = systemKeywords
+            data.updateValue(trimmedKeywords, forKey: key)
+            userDefaults.set(data, forKey: systemKeyName)
+        } else {
+            var data = customKeywords
+            //제목이 수정되었다면 이전 이름으로 된 데이터를 지운다
+            //원본제목이 빈 문자열은 새로 만든 키워드이므로 지울 필요가 없다
+            if originalTitle != key && !originalTitle.isEmpty {
+                data.removeValue(forKey: originalTitle)
+            }
+            data.updateValue(trimmedKeywords, forKey: key)
+            userDefaults.set(data, forKey: customKeyName)
+        }
     }
     
-    func saveCustomKeywords(_ data: [String: [String]]) {
-        userDefaults.set(data, forKey: self.customKeyName)
-        customKeywords = data
-    }
-    
-    let defaultKeywords: [String : [String]] = [
+    static let defaultKeywords: [String : [String]] = [
         "물건" : ["헤드폰", "암막커튼", "고속충전기", "샹들리에", "무선이어폰", "발가락양말", "탈모샴푸", "콧털제거기", "혀 클리너", "무선마우스", "방독면", "스타킹", "가발", "에프킬라", "선글라스", "선크림", "에어컨", "무전기", "손목시계", "비누"],
         "직업" : ["건축가", "탐정", "세무사", "농부", "백수", "대통령", "국회의원", "청소부", "좀도둑", "클럽MD", "교사", "공무원", "래퍼", "인권운동가", "개그맨", "스턴트맨", "광부", "배우", "아이돌", "어부"],
         "동물" : ["기니피그", "알파카", "오랑우탄", "돌고래", "사자", "호랑이", "말", "토끼", "사슴", "침팬지", "박쥐", "양", "기린", "하마", "도마뱀", "개구리", "치타", "표범", "상어", "판다"],

@@ -30,7 +30,7 @@ struct SettingView: View {
                     KeywordSettingView()
                 } label: {
                     HStack {
-                        Text("new!")
+                        Text("new")
                             .foregroundColor(.black)
                             .bold()
                             .padding(5)

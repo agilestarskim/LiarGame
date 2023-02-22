@@ -24,7 +24,7 @@ final class Game: ObservableObject {
     @Published var selectedSpy: Int? = nil //게임 중 지목당한 스파이
     var selectedCandidate: String = "" //게임 중 라이어가 선택한 정답 후보
     
-    @Published var keyword: Keyword = Keyword.instance
+    @Published var keyword: Keyword = Keyword()
 }
 
 enum GameMode: String, Equatable, CaseIterable {
