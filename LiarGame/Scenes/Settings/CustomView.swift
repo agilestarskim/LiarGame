@@ -20,16 +20,18 @@ struct CustomView: View {
     var body: some View {
         List {
             Section {
-                TextField("제목을 입력하세요 예)스포츠 ", text: $subject)
+                TextField("제목을 입력하세요 예)스포츠", text: $subject)
             }
             
             Section {
-                
+                ForEach(game.keyword.customKeywords[subject, default: []], id: \.self) { keyword in
+                    Text(keyword)
+                }
             }
             
             Section {
                 Button("저장") {
-                    game.keywordsContainer.saveCustomKeywords([:])
+                    game.keyword.saveCustomKeywords([:])
                 }
                 //TODO: title이 이미 존재하는지 확인
                 //TODO: 키워드가 10개 이상인지 확인

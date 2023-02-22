@@ -21,7 +21,7 @@ struct SettingView: View {
         Form(content: {
             Section {
                 Picker("주제: \(game.subject)", selection: $game.subject){
-                    ForEach(game.subjects, id: \.self) { subject in
+                    ForEach(game.keyword.wholeSubjects, id: \.self) { subject in
                         Text(subject)
                     }
                 }

@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class Keywords {
+final class Keyword {
     //생성자를 부를 때 마다 UserDefaults를 읽어들이는 것은 비효율적이기 때문에 싱글톤으로 생성
-    static let instance: Keywords = Keywords()
+    static let instance: Keyword = Keyword()
     let userDefaults = UserDefaults.standard
     let systemKeyName = "systemKeywords"
     let customKeyName = "customKeywords"
@@ -31,20 +31,26 @@ final class Keywords {
     }
     var systemKeywords: [String: [String]]
     
+    //keywordDetailView에서 접근
+    var systemSubjects: [String] {
+        systemKeywords.keys.sorted()
+    }
+    
     var customKeywords: [String: [String]]
     
-    var intergratedKeywords: [String: [String]] {
+    //keywordDetailView에서 접근
+    var customSubjects: [String] {
+        customKeywords.keys.sorted()
+    }
+    
+    var wholeKeywords: [String: [String]] {
         //키가 중복될 시 systemKeywords를 우선으로 merge
         self.systemKeywords.merging(self.customKeywords){ (current, _) in current }
     }
     
-    //keywordDetailView에서 접근
-    var systemSubjects: [String] {
-        Array(systemKeywords.keys)
-    }
-    //keywordDetailView에서 접근
-    var customSubjects: [String] {
-        Array(customKeywords.keys)
+    //
+    var wholeSubjects: [String] {
+        wholeKeywords.keys.sorted()
     }
     
     func saveSystemKeywords(_ data: [String: [String]]) {

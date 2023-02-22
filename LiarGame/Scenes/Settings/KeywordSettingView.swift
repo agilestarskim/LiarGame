@@ -15,8 +15,13 @@ struct KeywordSettingView: View {
     var body: some View {
         List {
             Section {
-                ForEach(game.keywordsContainer.systemSubjects, id: \.self) { subject in
-                    NavigationLink(subject, destination: SystemView(subject: subject))
+                ForEach(game.keyword.systemSubjects, id: \.self) { subject in
+                    NavigationLink {
+                        SystemView(title: subject, keywords: game.keyword.systemKeywords[subject] ?? [])
+                    } label: {
+                        Text(subject)
+                    }
+
                 }
                 
             } header: {
@@ -24,7 +29,7 @@ struct KeywordSettingView: View {
             }
             
             Section {
-                ForEach(game.keywordsContainer.customSubjects, id: \.self) { subject in
+                ForEach(game.keyword.customSubjects, id: \.self) { subject in
                     NavigationLink(subject) {
                         CustomView(subject: subject)
                     }
