@@ -80,7 +80,7 @@ struct SettingView: View {
                     ForEach(game.users.indices, id: \.self) { index in
                         HStack{
                             Text("\(index + 1)")
-                            TextField("Please enter your name".localized, text: $game.users[index].name)
+                            TextField("Please enter the name".localized, text: $game.users[index].name)
                                 .id(index)
                                 .focused($isFocused)
                             Image(systemName: "xmark.circle")

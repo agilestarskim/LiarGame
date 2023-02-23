@@ -19,7 +19,10 @@ struct IntroView: View {
                 .font(.title.bold())
                 .padding()
             //TODO: 번역
-            Text("\(game.gameMode.rawValue)모드")
+            HStack {
+                Text(game.gameMode.localizedName)
+                Text("Mode".localized)
+            }
             Spacer()
             if vm.isGameStart{
                 timerView
@@ -111,7 +114,7 @@ struct IntroView: View {
                 Button {
                     vm.showingCard = true
                 } label: {
-                    Text("Checking your keyword".localized)
+                    Text("Check keyword".localized)
                         .padding()
                         .padding([.horizontal], 20)
                         .background(Color(red: 0, green: 0, blue: 0.5))
@@ -160,7 +163,7 @@ struct IntroView: View {
             Button {
                 vm.isGameEnd = true
             } label: {
-                Text("Voting for liars".localized)
+                Text("Vote for liars".localized)
                     .padding()
                     .padding([.horizontal], 20)
                     .background(Color.red)

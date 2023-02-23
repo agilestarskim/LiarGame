@@ -39,8 +39,7 @@ struct RollTableView: View {
                     Spacer()
                     switch user.roll {
                     case.none:
-                        Text(user.roll.localizedName)
-                            .tracking(10)
+                        Text(user.roll.localizedName)                            
                             .bold()
                             .myButtonStyle(color: .gray)
                     case .liar:

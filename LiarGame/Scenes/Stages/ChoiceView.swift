@@ -31,10 +31,10 @@ struct ChoiceView: View {
         VStack{
             switch game.gameMode {
             case .normal, .fool:
-                Text("Guess who Liar is".localized)
+                Text("Guess who liar is".localized)
                     .font(.largeTitle.bold())
             case .spy:
-                Text("Guess who Liar or Spy is".localized)
+                Text("Guess who liar or spy is".localized)
                     .font(.title2.bold())
             }
         }

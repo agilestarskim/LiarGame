@@ -1,63 +1,71 @@
-/* 
-  Localizable.strings
-  LiarGame
-
-  Created by 김민성 on 2023/02/23.
-  
-*/
-
-//Common
 "Add" = "追加";
-"Make your own keyword" = "自分だけのキーワード作り";
-"Reset" = "リセットする";
-"Cancel" = "キャンセルする";
-
-//Settings/SettingView.swift
-"normalDescription" = "ライアーを見つけると、ライアーは正解する機会が一度与えられますよ。 正解を当てるとライアー勝利、間違えると市民勝利ですよ。";
-"spyDescription" = "スパイにキーワードも提供してください。 スパイは嘘つきが正しい答えを推論できるように質問をする。 スパイは嘘つきを助け、嘘つきチームを勝利に導くべきだ。 スパイが指摘されれば、市民が勝つ。";
-"foolDescription" = "嘘つきは彼が嘘つきだということを知らない。 嘘つきには一般市民とは違うキーワードが与えられている。";
-
-
+"Make your own keyword" = "独自のキーワードを作成する";
+"Reset" = "リセット";
+"Cancel" = "キャンセル";
+"normalDescription" = "嘘つきを見つけた場合、正しい答えを推測するチャンスが 1 回与えられます。正解すれば嘘つきの勝ち、間違えれば市民の勝ち。";
+"spyDescription" = "スパイにもキーワードを提供します。スパイは、嘘つきが正しい答えを推測できるように質問をします。スパイはうそつきを助け、うそつきチームを勝利に導く必要があります。スパイを指摘すれば市民の勝ち。";
+"foolDescription" = "うそつきは、自分がうそつきであることを知りません。嘘つきには、一般市民とは異なるキーワードが与えられます。";
 "Mode" = "モード";
-"Naming mode" = "ネーミングモード";
-"Please enter your name" = "お名前を入力してください";
-"Turn on sound effects" = "効果音をつける";
-"Game Start" = "ゲームスタート";
-"Spy mode is available for at least 5 people" = "スパイモードは5人以上が利用できる。";
-"The number of liars can be increased by one per three people." = "嘘つきの数は3人に1人増加する可能性がある。";
-"Please enter all the names of the participants." = "すべての参加者の名前を入力してください。";
-"Settings" = "セッティング";
-
-//Settings/KeywordSettingView.swift
-"System keywords" = "システムキーワード";
-"Custom keywords" = "ユーザー定義キーワード";
-"Reset keywords" = "キーワードをリセットする。";
-"Reset system Keywords" = "システムキーワードのリセット";
-"Reset custom Keywords" = "ユーザー定義キーワードをリセットする";
-"Reset all keywords" = "すべてのキーワードをリセットする";
+"Naming mode" = "命名モード";
+"Please enter your name" = "名前を入力してください";
+"Turn on sound effects" = "効果音をオンにする";
+"Game Start" = "ゲーム開始";
+"Spy mode is available for at least 5 people" = "スパイモードは 5 人以上で利用できます。";
+"The number of liars can be increased by one per three people." = "嘘つきの数は、3 人に 1 人増える可能性があります。";
+"Please enter all the names of the participants." = "参加者全員のお名前をご記入ください。";
+"Settings" = "設定";
+"System keywords" = "システム キーワード";
+"Custom keywords" = "カスタム キーワード";
+"Reset keywords" = "キーワードをリセットします。";
+"Reset system Keywords" = "システム キーワードのリセット";
+"Reset custom Keywords" = "カスタム キーワードをリセットする";
+"Reset all keywords" = "すべてのキーワードをリセット";
 "It has been reset." = "リセットされました。";
-
-//Settings/SystemView.swift
-//Settings/CustomView.swift
 "Please enter the keyword" = "キーワードを入力してください";
-"You can modify, add, and delete words." = "単語を修正、追加、削除することができる。";
-"You can delete the word by pushing it to the left." = "単語を左に押して削除することができる。";
-"Save" = "セーブ";
-"There is no modified content." = "修正された内容はありません。";
-"You need more than 10 keywords. Please add keywords." = "10個以上のキーワードが必要だ。 キーワードを追加してください。";
-"Duplicate keywords exist. Please change or delete them." = "重複するキーワードが存在する。 それらを変更または削除してください。";
-"Modifying keywords" = "キーワード修正";
-"Would you like to cancel?" = "キャンセルされますか?";
-"Continue" = "続けてください";
-"If you cancel, all the data you have created will be deleted." = "キャンセルすると、あなたが作成したすべてのデータが削除されるでしょう。";
-
-"Would you like to reset everything?" = "すべてをリセットしますか?";
-
-
-
-"Enter the title. ex)sports" = "タイトルを入力してください。 ex)スポーツ";
-"The same title already exists. Please change the title." = "同じタイトルがすでに存在する。 タイトルを変えてください。";
+"You can modify, add, and delete words." = "単語を変更、追加、および削除できます。";
+"You can delete the word by pushing it to the left." = "単語を左に押すと単語を削除できます。";
+"Save" = "保存";
+"There is no modified content." = "変更内容はありません。";
+"You need more than 10 keywords. Please add keywords." = "10 個以上のキーワードが必要です。キーワードを追加してください。";
+"Duplicate keywords exist. Please change or delete them." = "重複するキーワードが存在します。変更または削除してください。";
+"Modifying keywords" = "キーワードの変更";
+"Would you like to cancel?" = "キャンセルしますか？";
+"Continue" = "続く";
+"If you cancel, all the data you have created will be deleted." = "キャンセルすると、作成したすべてのデータが削除されます。";
+"Would you like to reset everything?" = "すべてをリセットしますか？";
+"Enter the title. ex)sports" = "タイトルを入力します。例）スポーツ";
+"The same title already exists. Please change the title." = "同じタイトルが既に存在します。タイトルを変更してください";
 "Please enter the title." = "タイトルを入力してください。";
-"Delete" = "削除する";
+"Delete" = "消去";
 "Would you like to Delete?" = "削除しますか?";
-
+"You are LIAR" = "嘘つき当選";
+"You are SPY" = "スパイ当選";
+"Please remember the number." = "番号を覚えておいてください。";
+"Confirm" = "確認";
+"Check keyword" = "キーワードの確認";
+"Vote for liars" = "嘘つきに投票";
+"Finding Liars" = "嘘つきを見つける";
+"Finding Spy" = "スパイを見つける";
+"Guess who liar is" = "誰がうそつきだと思いますか";
+"Guess who liar or spy is" = "うそつきまたはスパイが誰であるかを推測する";
+"Liar or Spy" = "嘘つきまたはスパイ";
+"You found all the liars." = "あなたはすべての嘘つきを見つけました。";
+"The liar is given the last chance." = "嘘つきには最後のチャンスが与えられます。";
+"Citizen's victory" = "市民の勝利";
+"I got you!" = "見つけた！";
+"Liar and spy's victory" = "嘘つきとスパイの勝利";
+"Liar's victory" = "嘘つきの勝利";
+"Wrong~" = "間違ってるバカ~";
+"That's the answer" = "それが答えです";
+"I got it right!" = "わかった！";
+"That's not the answer" = "それは答えじゃない";
+"No It's not" = "違うのに? バカなの?";
+"Check the liars" = "嘘つきをチェック";
+"ReStart" = "再起動";
+"Normal" = "一般";
+"Spy" = "スパイ";
+"Fool" = "バカ";
+"Play with Number" = "数字で遊ぶ";
+"Play with Name" = "名前で遊ぶ";
+"Citizen" = "市民";
+"Liar" = "うそつき";

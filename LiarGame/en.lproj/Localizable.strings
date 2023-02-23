@@ -1,32 +1,19 @@
-/* 
-  Localizable.strings
-  LiarGame
-
-  Created by 김민성 on 2023/02/23.
-  
-*/
-
-//Common
 "Add" = "Add";
 "Make your own keyword" = "Make your own keyword";
 "Reset" = "Reset";
 "Cancel" = "Cancel";
-
-//Settings/SettingView.swift
 "normalDescription" = "If you find a liar, he or she will be given one chance to guess the correct answer. If you get the right answer, the liar wins, and if you get it wrong, the citizen wins.";
 "spyDescription" = "Provide keywords to spies as well. The spy asks questions so that the liar can infer the correct answer. The spy should help the liar and lead the liar team to victory. If a spy is pointed out, the citizen wins.";
 "foolDescription" = "Liar doesn't know he's a liar. Liars are given different keywords from ordinary citizens.";
 "Mode" = "Mode";
 "Naming mode" = "Naming mode";
-"Please enter your name" = "Please enter your name";
+"Please enter your name" = "Please enter the name";
 "Turn on sound effects" = "Turn on sound effects";
 "Game Start" = "Game Start";
 "Spy mode is available for at least 5 people" = "Spy mode is available for at least 5 people.";
 "The number of liars can be increased by one per three people." = "The number of liars can be increased by one per three people.";
 "Please enter all the names of the participants." = "Please enter all the names of the participants.";
 "Settings" = "Settings";
-
-//Settings/KeywordSettingView.swift
 "System keywords" = "System keywords";
 "Custom keywords" = "Custom keywords";
 "Reset keywords" = "Reset keywords.";
@@ -34,9 +21,6 @@
 "Reset custom Keywords" = "Reset custom keywords";
 "Reset all keywords" = "Reset all keywords";
 "It has been reset." = "It has been reset.";
-
-//Settings/SystemView.swift
-//Settings/CustomView.swift
 "Please enter the keyword" = "Please enter the keyword";
 "You can modify, add, and delete words." = "You can modify, add, and delete words.";
 "You can delete the word by pushing it to the left." = "You can delete the word by pushing it to the left.";
@@ -48,61 +32,40 @@
 "Would you like to cancel?" = "Would you like to cancel?";
 "Continue" = "Continue";
 "If you cancel, all the data you have created will be deleted." = "If you cancel, all the data you have created will be deleted.";
-
 "Would you like to reset everything?" = "Would you like to reset everything?";
-
 "Enter the title. ex)sports" = "Enter the title. ex)sports";
 "The same title already exists. Please change the title." = "The same title already exists. Please change the title";
 "Please enter the title." = "Please enter the title.";
 "Delete" = "Delete";
 "Would you like to Delete?" = "Would you like to Delete?";
-
-//Stages/IntroView.swift
 "You are LIAR" = "You are LIAR";
 "You are SPY" = "You are SPY";
 "Please remember the number." = "Please remember the number.";
 "Confirm" = "Confirm";
-"Checking your keyword" = "Checking your keyword";
-"Voting for liars" = "Voting for liars";
-
-
-//Stages/ChoiceView.swift
+"Check keyword" = "Check keyword";
+"Vote for liars" = "Vote for liars";
 "Finding Liars" = "Finding Liars";
 "Finding Spy" = "Finding Spy";
 "Guess who liar is" = "Guess who liar is";
-"Guess who Liar or Spy is" = "Guess who Liar or Spy is";
+"Guess who liar or spy is" = "Guess who liar or spy is";
 "Liar or Spy" = "Liar or Spy";
-
-//Stages/LastChanceView.swift
 "You found all the liars." = "You found all the liars.";
-
 "The liar is given the last chance." = "The liar is given the last chance.";
-
-//States/ResultView.swift
 "Citizen's victory" = "Citizen's victory";
-"I got you!" = "I got you!"
+"I got you!" = "I got you!";
 "Liar and spy's victory" = "Liar and spy's victory";
 "Liar's victory" = "Liar's victory";
 "Wrong~" = "Wrong~";
-
 "That's the answer" = "That's the answer";
-"I got it right!" = "I got it right!"
-
+"I got it right!" = "I got it right!";
 "That's not the answer" = "That's not the answer";
 "No It's not" = "No It's not";
-
 "Check the liars" = "Check the liars";
 "ReStart" = "ReStart";
-
-//Environment/Game
 "Normal" = "Normal";
 "Spy" = "Spy";
 "Fool" = "Fool";
-
 "Play with Number" = "Play with Number";
 "Play with Name" = "Play with Name";
-
-//Model/User
 "Citizen" = "Citizen";
 "Liar" = "Liar";
-"Spy" = "Spy";
