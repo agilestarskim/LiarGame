@@ -43,13 +43,13 @@ struct ResultView: View {
     }
     var citizenWinningView: some View {
         VStack(spacing: 30){
-            Text("시민 승리!!")
+            Text("Citizen's victory".localized)
                 .font(.largeTitle.bold())         
           
             LottieView(fileName: "Dance")
                 .frame(width: 300, height: 300)
             
-            Text("잡았지롱")
+            Text("I got you!".localized)
                 .font(.largeTitle.bold())            
         }
         .onAppear {
@@ -61,11 +61,11 @@ struct ResultView: View {
     
     var liarWinningView: some View {
         VStack(spacing: 30) {
-            Text(game.gameMode == .spy ? "라이어 스파이 승리!!" : "라이어 승리!!")
+            Text(game.gameMode == .spy ? "Liar and spy's victory".localized : "Liar's victory".localized)
                 .font(.largeTitle.bold())
             LottieView(fileName: "Laughing")
                 .frame(width: 300, height: 300)
-            Text("틀렸지롱")
+            Text("Wrong~".localized)
                 .font(.largeTitle.bold())
         }
         .onAppear {
@@ -77,13 +77,13 @@ struct ResultView: View {
     
     var lastChanceSuccess: some View {
         VStack(spacing: 30) {
-            Text("라이어 승리!!")
+            Text("Liar's victory".localized)
                 .font(.largeTitle.bold())
-            Text("정답입니다.")
+            Text("That's the answer".localized)
                 .font(.title)
             LottieView(fileName: "Laughing")
                 .frame(width: 300, height: 300)
-            Text("맞췄지롱")
+            Text("I got it right!".localized)
                 .font(.largeTitle.bold())
         }
         .onAppear {
@@ -95,13 +95,13 @@ struct ResultView: View {
     
     var lastChanceFailure: some View {
         VStack(spacing: 30) {
-            Text("시민 승리!!")
+            Text("Citizen's victory".localized)
                 .font(.largeTitle.bold())
-            Text("정답이 아닙니다.")
+            Text("That's not the answer".localized)
                 .font(.title)
             LottieView(fileName: "Twerking")
                 .frame(width: 300, height: 300)
-            Text("응 아니야")
+            Text("No It's not".localized)
                 .font(.largeTitle.bold())
         }
         .onAppear {
@@ -115,7 +115,7 @@ struct ResultView: View {
         Button {
             showingRollTable = true
         } label: {
-            Text("라이어 확인")
+            Text("Check the liars".localized)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .font(.largeTitle.bold())
                 .foregroundColor(.white)
@@ -134,7 +134,7 @@ struct ResultView: View {
         Button {            
             navigator.backOrNext(path: "setting", items: [:], isAnimated: true)
         } label: {
-            Text("다시하기")
+            Text("ReStart".localized)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .font(.largeTitle.bold())
                 .foregroundColor(.white)

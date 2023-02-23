@@ -28,14 +28,14 @@ final class Game: ObservableObject {
 }
 
 enum GameMode: String, Equatable, CaseIterable {
-    case normal = "일반"
-    case spy = "스파이"
-    case fool = "바보"
+    case normal = "Normal"
+    case spy = "Spy"
+    case fool = "Fool"
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
 
 enum NamingMode: String, Equatable, CaseIterable {
-    case number = "자동 번호 부여"
-    case name = "이름 직접 지정"
+    case number = "Play with Number"
+    case name = "Play with Name"
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }

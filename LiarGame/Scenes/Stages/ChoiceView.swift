@@ -9,8 +9,8 @@ import LinkNavigator
 import SwiftUI
 
 enum SpyOrLiar: String, CaseIterable, Equatable {
-    case liar = "라이어 찾기"
-    case spy = "스파이 찾기"
+    case liar = "Finding Liars"
+    case spy = "Finding Spy"
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
 
@@ -21,7 +21,6 @@ struct ChoiceView: View {
     var body: some View {
         ScrollView {
             headerView
-            stateView
             pickerView
             choiceView
         }
@@ -32,31 +31,20 @@ struct ChoiceView: View {
         VStack{
             switch game.gameMode {
             case .normal, .fool:
-                Text("라이어를 맞춰주세요")
+                Text("Guess who Liar is".localized)
                     .font(.largeTitle.bold())
             case .spy:
-                Text("라이어 또는 스파이를 맞춰주세요")
+                Text("Guess who Liar or Spy is".localized)
                     .font(.title2.bold())
             }
         }
         .padding(.top, 30)
     }
     
-    var stateView: some View {
-        HStack {
-            Text("라이어: \(game.numberOfLiars)명")
-            if game.gameMode == .spy {
-                Text("스파이: 1명")
-            }
-        }
-        .font(.title2)
-        .padding(.top)
-    }
-    
     var pickerView: some View {
         VStack{
             if game.gameMode == .spy {
-                Picker("라이어 또는 스파이", selection: $spyOrLiar) {
+                Picker("Liar or Spy".localized, selection: $spyOrLiar) {
                     ForEach(SpyOrLiar.allCases, id: \.self) { value in
                         Text(value.localizedName)
                     }
@@ -82,6 +70,7 @@ struct ChoiceView: View {
                     }
                 } label: {
                     HStack {
+                        //TODO: 번역
                         Text(game.namingMode == .number ? "\(index + 1)번" : game.users[index].name)
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .font(.largeTitle.bold())

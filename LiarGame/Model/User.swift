@@ -5,7 +5,7 @@
 //  Created by 김민성 on 2023/01/18.
 //
 
-import Foundation
+import SwiftUI
 
 struct User: Equatable, Identifiable {
     let id = UUID()
@@ -14,9 +14,10 @@ struct User: Equatable, Identifiable {
 }
 
 enum Roll: String {
-    case none = "시민"
-    case liar = "라이어"
-    case spy = "스파이"
+    case none = "Citizen"
+    case liar = "Liar"
+    case spy = "Spy"
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
 
 

@@ -15,7 +15,7 @@ struct LastChanceView: View {
         ScrollView {
             //라이어가 여러 명일 때는 그냥 일괄적으로 표시
             if game.getLiarsIndexes.count > 1 {
-                Text("라이어를 모두 맞췄습니다.")
+                Text("You found all the liars.".localized)
                     .font(.largeTitle.bold())
                     .padding(.vertical, 30)
             }
@@ -24,6 +24,7 @@ struct LastChanceView: View {
             else {
                 switch game.namingMode {
                 case .number:
+                    //TODO: 번역
                     Text("\(game.getOneSelectedLiar + 1)번은 라이어 입니다.")
                         .font(.largeTitle.bold())
                         .padding(.vertical, 30)
@@ -34,7 +35,7 @@ struct LastChanceView: View {
                 }
             }
             
-            Text("라이어에게 마지막 기회가 주어집니다.")
+            Text("The liar is given the last chance.".localized)
                 .font(.title2)
             LazyVGrid(columns: columns, spacing: 20){
                 ForEach(game.keyword.wholeKeywords[game.subject, default: []], id:\.self){ candidate in

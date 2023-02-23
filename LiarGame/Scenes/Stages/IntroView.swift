@@ -14,9 +14,11 @@ struct IntroView: View {
     let navigator: LinkNavigatorType
     var body: some View {
         VStack{
+            //TODO: 번역
             Text("\(game.subject)")
                 .font(.title.bold())
                 .padding()
+            //TODO: 번역
             Text("\(game.gameMode.rawValue)모드")
             Spacer()
             if vm.isGameStart{
@@ -55,12 +57,12 @@ struct IntroView: View {
                     Text(game.wrongAnswerForFool)
                         .font(.largeTitle.bold())
                 } else {
-                    Text("라이어 당첨")
+                    Text("You are LIAR".localized)
                         .font(.largeTitle.bold())
                 }
                 
             case .spy:
-                Text("스파이 당첨")
+                Text("You are SPY".localized)
                     .font(.largeTitle.bold())
                 Text(game.answer)
                     .font(.title)
@@ -71,13 +73,14 @@ struct IntroView: View {
                 Text("-\(game.users[vm.index].name)-")
             case .number:
                 HStack{
+                    //TODO: 번역 및 한 줄로
                     Text("당신의 번호는")
                     Text("\(vm.index + 1)번")
                         .bold()
                     Text("입니다.")
                 }
 
-                Text("번호를 꼭 기억해주세요")
+                Text("Please remember the number.".localized)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -89,7 +92,7 @@ struct IntroView: View {
                     vm.isGameStart = true
                 }
             } label: {
-                Text("확인완료")
+                Text("Confirm".localized)
                     .padding()
                     .padding([.horizontal], 20)
                     .background(Color(red: 0, green: 0.5, blue: 0))
@@ -108,7 +111,7 @@ struct IntroView: View {
                 Button {
                     vm.showingCard = true
                 } label: {
-                    Text("제시어 확인하기")
+                    Text("Checking your keyword".localized)
                         .padding()
                         .padding([.horizontal], 20)
                         .background(Color(red: 0, green: 0, blue: 0.5))
@@ -122,6 +125,7 @@ struct IntroView: View {
                     vm.showingCard = true
                 } label: {
                     VStack(spacing: 10){
+                        //TODO: 번역 및 통일화
                         Text("\(game.users[vm.index].name)의")
                             .bold()
                         Text("제시어 확인하기")
@@ -141,6 +145,7 @@ struct IntroView: View {
     var timerView: some View {
         VStack{
             Spacer()
+            //TODO: 번역 및 통일화
             Text("\(vm.remainingTime)초")
                 .font(.largeTitle)
                 .onReceive(vm.timer){ _ in
@@ -155,7 +160,7 @@ struct IntroView: View {
             Button {
                 vm.isGameEnd = true
             } label: {
-                Text("라이어 맞추기")
+                Text("Voting for liars".localized)
                     .padding()
                     .padding([.horizontal], 20)
                     .background(Color.red)
