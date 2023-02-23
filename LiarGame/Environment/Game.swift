@@ -39,14 +39,3 @@ enum NamingMode: String, Equatable, CaseIterable {
     case name = "이름 직접 지정"
     var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
 }
-
-//enum Subjects: String, Equatable, CaseIterable {
-//    case object = "물건"
-//    case job = "직업"
-//    case animal = "동물"
-//    case country = "국가"
-//    case singer = "가수"
-//    case location = "장소"
-//    case foods = "음식"
-//    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
-//}

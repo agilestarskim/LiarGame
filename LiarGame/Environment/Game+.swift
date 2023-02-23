@@ -9,8 +9,6 @@ import Foundation
 
 extension Game {
     
-    
-    
     var getLiarsIndexes: Set<Int> {
         Set(self.users.enumerated().filter { $0.element.roll == .liar }.map { $0.offset })
     }

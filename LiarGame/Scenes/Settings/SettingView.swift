@@ -20,6 +20,7 @@ struct SettingView: View {
     var body: some View {
         Form(content: {
             Section {
+                //TODO: 번역
                 Picker("주제: \(game.subject)", selection: $game.subject){
                     ForEach(game.keyword.wholeSubjects, id: \.self) { subject in
                         Text(subject)
@@ -37,14 +38,14 @@ struct SettingView: View {
                             .background(.yellow)
                             .cornerRadius(5)
                         Spacer()
-                        Text("나만의 키워드 만들기")
+                        Text("Make your own keyword".localized)
                             .bold()
                     }
                 }
             }
             
             Section(content: {
-                Picker("모드", selection: $game.gameMode){
+                Picker("Mode".localized, selection: $game.gameMode){
                     ForEach(GameMode.allCases, id: \.self) { value in
                         Text(value.localizedName)
                     }
@@ -52,22 +53,23 @@ struct SettingView: View {
             }, footer: {
                 switch game.gameMode {
                 case .normal:
-                    Text(self.normalDescription)
+                    Text("normalDescription".localized)
                 case .spy:
-                    Text(self.spyDescription)
+                    Text("spyDescription".localized)
                 case .fool:
-                    Text(self.foolDescription)
+                    Text("foolDescription".localized)
                 }
             })
             
             Section {
-                Picker("네이밍모드", selection: $game.namingMode){
+                Picker("Naming mode".localized, selection: $game.namingMode){
                     ForEach(NamingMode.allCases, id: \.self) { value in
                         Text(value.localizedName)
                     }
                 }.pickerStyle(.segmented)
                 switch game.namingMode {
-                case .number:                    
+                case .number:
+                    //TODO: 번역
                     Stepper("인원 수 \(game.users.count)명") {
                         game.addUser()
                     } onDecrement: {
@@ -78,7 +80,7 @@ struct SettingView: View {
                     ForEach(game.users.indices, id: \.self) { index in
                         HStack{
                             Text("\(index + 1)")
-                            TextField("이름을 입력하세요", text: $game.users[index].name)
+                            TextField("Please enter your name".localized, text: $game.users[index].name)
                                 .id(index)
                                 .focused($isFocused)
                             Image(systemName: "xmark.circle")
@@ -94,7 +96,7 @@ struct SettingView: View {
                     }
                     HStack{
                         Spacer()
-                        Button("추가"){withAnimation{game.addUser()}}
+                        Button("Add".localized){withAnimation{game.addUser()}}
                             .disabled(game.users.count > 19)
                         Spacer()
                     }
@@ -102,9 +104,10 @@ struct SettingView: View {
             }
             
             Section {
+                //TODO: 번역
                 Stepper("라이어 수 \(game.numberOfLiars)명", value: $game.numberOfLiars, in: 1...10)
                 Stepper("제한시간 \(game.time) 분", value: $game.time, in: 1...10)
-                Toggle("효과음 켜기", isOn: $game.soundEffect)
+                Toggle("Turn on sound effects".localized, isOn: $game.soundEffect)
             }
             
             Section(content: {
@@ -112,27 +115,28 @@ struct SettingView: View {
                     game.resetGame()
                     navigator.next(paths: ["intro"], items: [:], isAnimated: true)
                 } label: {
-                    Text("게임시작")
+                    Text("Game Start".localized)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 }
                 
                 .disabled(checkSpy || checkLiar || checkName)
             }, footer: {
                 if(checkSpy) {
-                    Text("스파이 모드는 5명부터 가능합니다.")
+                    Text("Spy mode is available for at least 5 people".localized)
                         .foregroundColor(.red)
                 } else if (checkLiar) {
-                    Text("라이어의 수는 3명당 1명씩 늘릴 수 있습니다.")
+                    Text("The number of liars can be increased by one per three people.".localized)
                         .foregroundColor(.red)
                 } else if (checkName) {
-                    Text("참가자의 이름을 모두 입력해 주세요.")
+                    Text("Please enter all the names of the participants.".localized)
+                        .foregroundColor(.red)
                 }
             })
         })
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.large)
-        .navigationTitle("세팅")        
+        .navigationTitle("Settings".localized)        
     }
     //스파이모드에서 전체인원이 5명 이하일 때 게임시작 방지
     var checkSpy: Bool {

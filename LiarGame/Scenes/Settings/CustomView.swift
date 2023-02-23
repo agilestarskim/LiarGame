@@ -28,12 +28,12 @@ struct CustomView: View {
     var body: some View {
         List {
             Section {
-                TextField("제목을 입력하세요 예)스포츠", text: $title)
+                TextField("Enter the title. ex)sports".localized, text: $title)
             }
             
             Section {
                 ForEach(keywords.indices, id: \.self) { index in
-                    TextField("키워드를 입력하세요", text: $keywords[index])
+                    TextField("Please enter the keyword".localized, text: $keywords[index])
                         .autocorrectionDisabled(true)
                 }
                 .onDelete { indexSet in
@@ -42,46 +42,46 @@ struct CustomView: View {
                     }
                 }
                 
-                Button("추가") {
+                Button("Add".localized) {
                     withAnimation {
                         keywords.append("")
                     }
                 }
             } header: {
-                Text("단어를 수정하거나 추가 삭제할 수 있습니다.")
+                Text("You can modify, add, and delete words.".localized)
             } footer: {
-                Text("단어를 왼쪽으로 밀어 삭제할 수 있습니다.")
+                Text("You can delete the word by pushing it to the left.".localized)
             }
             
             
             Section {
-                Button("저장") {
+                Button("Save".localized) {
                     save()
                 }
                 .disabled(checkCount || checkDuplicate || checkEdit || checkDuplicateKey || checkEmptyTitle)
             } footer: {
                 if checkEdit {
-                    Text("수정된 내용이 없습니다.")
+                    Text("There is no modified content.".localized)
                         .foregroundColor(.red)
                 } else if checkCount {
-                    Text("키워드는 10개 이상 필요합니다. 키워드를 추가하세요")
+                    Text("You need more than 10 keywords. Please add keywords.".localized)
                         .foregroundColor(.red)
                 } else if checkDuplicate {
-                    Text("중복된 키워드가 존재합니다. 변경하거나 삭제해주세요")
+                    Text("Duplicate keywords exist. Please change or delete them.".localized)
                         .foregroundColor(.red)
                 } else if checkDuplicateKey {
-                    Text("같은 제목이 이미 존재합니다. 제목을 변경해주세요")
+                    Text("The same title already exists. Please change the title.".localized)
                         .foregroundColor(.red)
                 } else if checkEmptyTitle {
-                    Text("제목을 입력해주세요")
+                    Text("Please enter the title.".localized)
                         .foregroundColor(.red)
                 }
             }
         }
-        .navigationTitle("키워드 수정")
+        .navigationTitle("Modifying keywords".localized)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button("취소") {
+                Button("Cancel".localized) {
                     if self.originalKeywords == self.keywords {
                         dismiss()
                         return
@@ -89,22 +89,22 @@ struct CustomView: View {
                         showingBackAlert = true
                     }
                 }
-                .alert("취소하시겠습니까?", isPresented: $showingBackAlert) {
-                    Button("계속하기", role: .cancel){}
-                    Button("취소하기", role: .destructive){ dismiss() }
+                .alert("Would you like to cancel?".localized, isPresented: $showingBackAlert) {
+                    Button("Continue".localized, role: .cancel){}
+                    Button("Cancel".localized, role: .destructive){ dismiss() }
                 } message: {
-                    Text("취소하시면 작성한 데이터는 모두 사라집니다.")
+                    Text("If you cancel, all the data you have created will be deleted.".localized)
                 }
 
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("삭제") {
+                Button("Delete".localized) {
                     showingRemoveAlert = true
                 }
                 .disabled(!game.keyword.customSubjects.contains(originalTitle))
-                .alert("삭제하시겠습니까?", isPresented: $showingRemoveAlert) {
-                    Button("계속하기", role: .cancel){}
-                    Button("삭제하기", role: .destructive){ remove() }
+                .alert("Would you like to Delete?".localized, isPresented: $showingRemoveAlert) {
+                    Button("Cancel".localized, role: .cancel){}
+                    Button("Delete".localized, role: .destructive){ remove() }
                 }
             }
         }

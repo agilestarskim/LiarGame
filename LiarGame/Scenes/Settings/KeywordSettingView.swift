@@ -25,7 +25,7 @@ struct KeywordSettingView: View {
                 }
                 
             } header: {
-                Text("시스템 제공")
+                Text("System keywords".localized)
             }
             
             Section {
@@ -37,33 +37,33 @@ struct KeywordSettingView: View {
                 NavigationLink {
                     CustomView(title: "", keywords: ["", "", "", "", "", "", "", "", "", ""])
                 } label: {
-                    Text("추가")
+                    Text("Add".localized)
                         .foregroundColor(.blue)
                 }
                 
             } header: {
-                Text("나만의 키워드")
+                Text("Custom keywords".localized)
             }
         }
-        .navigationTitle("나만의 키워드 만들기")
+        .navigationTitle("Make your own keyword".localized)
         .toolbar {
-            Button("초기화") {
+            Button("Reset".localized) {
                 showingResetAlert = true
             }
         }
-        .confirmationDialog("키워드를 초기화합니다.", isPresented: $showingResetAlert) {
-            Button("기본제공 키워드 초기화"){
+        .confirmationDialog("Reset keywords".localized, isPresented: $showingResetAlert) {
+            Button("Reset system Keywords".localized){
                 reset(for: .system)
             }
-            Button("나만의 키워드 초기화"){
+            Button("Reset custom Keywords".localized){
                 reset(for: .custom)
             }
-            Button("전체 초기화"){
+            Button("Reset all keywords".localized){
                 reset(for: .all)
             }
-            Button("취소", role: .cancel){}
+            Button("Cancel".localized, role: .cancel){}
         }
-        .toast(message: "초기화되었습니다.", isShowing: $showingConfirmToast, config: .init())
+        .toast(message: "It has been reset.", isShowing: $showingConfirmToast, config: .init())
     }
     
     func reset(for resetMode: Keyword.RemoveMode) {

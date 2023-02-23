@@ -46,7 +46,7 @@ final class Keyword {
         self.systemKeywords.merging(self.customKeywords){ (current, _) in current }
     }
     
-    //대부분 뷰에서 접근함.
+    //대부분 뷰에서 접근
     var wholeSubjects: [String] {
         wholeKeywords.keys.sorted()
     }
