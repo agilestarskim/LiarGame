@@ -70,8 +70,7 @@ struct ChoiceView: View {
                     }
                 } label: {
                     HStack {
-                        //TODO: 번역
-                        Text(game.namingMode == .number ? "\(index + 1)번" : game.users[index].name)
+                        Text(game.namingMode == .number ? "Number %d".localized(with: index + 1) : game.users[index].name)
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .font(.largeTitle.bold())
                             .foregroundColor(.white)

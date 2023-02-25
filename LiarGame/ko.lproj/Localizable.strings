@@ -7,7 +7,7 @@
 "foolDescription" = "라이어는 자신이 라이어인지 모릅니다. 라이어는 일반 시민들과 다른 키워드가 주어집니다.";
 "Mode" = "모드";
 "Naming mode" = "이름 모드";
-"Please enter your name" = "이름을 입력하세요";
+"Please enter the name" = "이름을 입력하세요";
 "Turn on sound effects" = "효과음 켜기";
 "Game Start" = "게임 시작";
 "Spy mode is available for at least 5 people" = "스파이 모드는 최소 5명부터 가능합니다.";
@@ -69,3 +69,22 @@
 "Play with Name" = "이름으로 플레이";
 "Citizen" = "시민";
 "Liar" = "라이어";
+
+
+//Setting: String interpolation
+"Category: %@" = "카테고리: %@";
+"Players: %d" = "인원 수: %d";
+"Liars: %d" = "라이어 수: %d";
+"Time limit: %d" = "제한시간: %d분";
+
+//Intro: String interpolation
+"Your Number is %d" = "당신은 %d번 입니다";
+"%@'s keyword" = "%@의 제시어";
+"%d seconds" = "%d초";
+
+//Choice: String interpolation
+"Number %d" = "%d번";
+
+//LastChance: String interpolation
+"Number %d is a liar." = "%d번은 라이어입니다.";
+"%@ is a liar." = "%@은(는) 라이어입니다.";

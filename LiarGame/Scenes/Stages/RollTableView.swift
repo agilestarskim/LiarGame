@@ -32,7 +32,7 @@ struct RollTableView: View {
                             .font(.title2)
                             .padding()
                     case .number:
-                        Text("\(game.findUserIndex(of: user) + 1)번")
+                        Text("Number %d".localized(with: game.findUserIndex(of: user) + 1))
                             .font(.title2.bold())
                     }
                     

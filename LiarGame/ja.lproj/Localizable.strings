@@ -7,7 +7,7 @@
 "foolDescription" = "うそつきは、自分がうそつきであることを知りません。嘘つきには、一般市民とは異なるキーワードが与えられます。";
 "Mode" = "モード";
 "Naming mode" = "命名モード";
-"Please enter your name" = "名前を入力してください";
+"Please enter the name" = "名前を入力してください";
 "Turn on sound effects" = "効果音をオンにする";
 "Game Start" = "ゲーム開始";
 "Spy mode is available for at least 5 people" = "スパイモードは 5 人以上で利用できます。";
@@ -69,3 +69,21 @@
 "Play with Name" = "名前で遊ぶ";
 "Citizen" = "市民";
 "Liar" = "うそつき";
+
+//Setting: String interpolation
+"Category: %@" = "カテゴリー: %@";
+"Players: %d" = "人数: %d";
+"Liars: %d" = "うそつき: %d";
+"Time limit: %d" = "制限時間: %d分";
+
+//Intro: String interpolation
+"Your Number is %d" = "あなたは「%d」です";
+"%@'s keyword" = "%@のキーワード";
+"%d seconds" = "%d 秒";
+
+//Choice: String interpolation
+"Number %d" = "%d番の人";
+
+//LastChance: String interpolation
+"Number %d is a liar." = "「%d」はうそつきです。";
+"%@ is a liar." = "%@はうそつきです。";

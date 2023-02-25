@@ -24,12 +24,11 @@ struct LastChanceView: View {
             else {
                 switch game.namingMode {
                 case .number:
-                    //TODO: 번역
-                    Text("\(game.getOneSelectedLiar + 1)번은 라이어 입니다.")
+                    Text("Number %d is a liar.".localized(with: game.getOneSelectedLiar + 1))
                         .font(.largeTitle.bold())
                         .padding(.vertical, 30)
-                case .name:
-                    Text("\(game.users[game.getOneSelectedLiar].name)은(는) 라이어 입니다.")
+                case .name:                    
+                    Text("%@ is a liar.".localized(with: game.users[game.getOneSelectedLiar].name))
                         .font(.largeTitle.bold())
                         .padding(.vertical, 30)
                 }

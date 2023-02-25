@@ -7,7 +7,7 @@
 "foolDescription" = "Liar doesn't know he's a liar. Liars are given different keywords from ordinary citizens.";
 "Mode" = "Mode";
 "Naming mode" = "Naming mode";
-"Please enter your name" = "Please enter the name";
+"Please enter the name" = "Please enter the name";
 "Turn on sound effects" = "Turn on sound effects";
 "Game Start" = "Game Start";
 "Spy mode is available for at least 5 people" = "Spy mode is available for at least 5 people.";
@@ -69,3 +69,23 @@
 "Play with Name" = "Play with Name";
 "Citizen" = "Citizen";
 "Liar" = "Liar";
+
+
+//Setting: String interpolation
+"Category: %@" = "Category: %@";
+"Players: %d" = "Players: %d";
+"Liars: %d" = "Liars: %d";
+"Time limit: %d" = "Time limit: %dmin";
+
+//Intro: String interpolation
+"Your Number is %d" = "Your Number is %d";
+"%@'s keyword" = "%@'s keyword";
+"%d seconds" = "%d seconds";
+
+//Choice: String interpolation
+"Number %d" = "Number %d";
+
+//LastChance: String interpolation
+"Number %d is a liar." = "Number %d is a liar.";
+"%@ is a liar." = "%@ is a liar.";
+

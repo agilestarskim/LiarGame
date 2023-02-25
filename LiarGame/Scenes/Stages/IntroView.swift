@@ -14,11 +14,9 @@ struct IntroView: View {
     let navigator: LinkNavigatorType
     var body: some View {
         VStack{
-            //TODO: 번역
             Text("\(game.subject)")
                 .font(.title.bold())
                 .padding()
-            //TODO: 번역
             HStack {
                 Text(game.gameMode.localizedName)
                 Text("Mode".localized)
@@ -76,11 +74,8 @@ struct IntroView: View {
                 Text("-\(game.users[vm.index].name)-")
             case .number:
                 HStack{
-                    //TODO: 번역 및 한 줄로
-                    Text("당신의 번호는")
-                    Text("\(vm.index + 1)번")
-                        .bold()
-                    Text("입니다.")
+                    //TODO: 번호에 bold처리
+                    Text("Your Number is %d".localized(with: vm.index + 1))
                 }
 
                 Text("Please remember the number.".localized)
@@ -128,10 +123,7 @@ struct IntroView: View {
                     vm.showingCard = true
                 } label: {
                     VStack(spacing: 10){
-                        //TODO: 번역 및 통일화
-                        Text("\(game.users[vm.index].name)의")
-                            .bold()
-                        Text("제시어 확인하기")
+                        Text("%@'s keyword".localized(with: game.users[vm.index].name))
                     }
                     .padding()
                     .padding([.horizontal], 20)
@@ -147,9 +139,8 @@ struct IntroView: View {
     
     var timerView: some View {
         VStack{
-            Spacer()
-            //TODO: 번역 및 통일화
-            Text("\(vm.remainingTime)초")
+            Spacer()            
+            Text("%d seconds".localized(with: vm.remainingTime))
                 .font(.largeTitle)
                 .onReceive(vm.timer){ _ in
                     if vm.remainingTime > 1 {
@@ -158,7 +149,6 @@ struct IntroView: View {
                         vm.isGameEnd = true
                     }
                 }
-            Text("남았습니다.")
             Spacer()
             Button {
                 vm.isGameEnd = true

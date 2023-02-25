@@ -12,16 +12,11 @@ struct SettingView: View {
     @EnvironmentObject private var game: Game
     @FocusState private var isFocused: Bool
     
-    let normalDescription = "라이어를 찾으면 라이어는 정답을 맞출 기회가 한 번 주어집니다. 정답을 맞추면 라이어 승리, 틀리면 시민 승리입니다."
-    let spyDescription = "스파이에게도 키워드를 제공합니다. 스파이는 라이어가 정답을 유추할 수 있도록 질문합니다. 스파이는 라이어를 도와 라이어팀이 승리하도록 이끌어야합니다. 스파이가 지목당하면 시민이 승리합니다."
-    let foolDescription = "라이어는 자신이 라이어인지 모릅니다. 라이어는 일반 시민들과 다른 키워드가 주어집니다."
-    
     let navigator: LinkNavigatorType
     var body: some View {
         Form(content: {
             Section {
-                //TODO: 번역
-                Picker("주제: \(game.subject)", selection: $game.subject){
+                Picker("Category: %@".localized(with: game.subject), selection: $game.subject){
                     ForEach(game.keyword.wholeSubjects, id: \.self) { subject in
                         Text(subject)
                     }
@@ -69,8 +64,7 @@ struct SettingView: View {
                 }.pickerStyle(.segmented)
                 switch game.namingMode {
                 case .number:
-                    //TODO: 번역
-                    Stepper("인원 수 \(game.users.count)명") {
+                    Stepper("Players: %d".localized(with: game.users.count)) {
                         game.addUser()
                     } onDecrement: {
                         game.removeUserLast()
@@ -103,10 +97,9 @@ struct SettingView: View {
                 }            
             }
             
-            Section {
-                //TODO: 번역
-                Stepper("라이어 수 \(game.numberOfLiars)명", value: $game.numberOfLiars, in: 1...10)
-                Stepper("제한시간 \(game.time) 분", value: $game.time, in: 1...10)
+            Section {                
+                Stepper("Liars: %d".localized(with: game.numberOfLiars), value: $game.numberOfLiars, in: 1...10)
+                Stepper("Time limit: %d".localized(with: game.time), value: $game.time, in: 1...10)
                 Toggle("Turn on sound effects".localized, isOn: $game.soundEffect)
             }
             
