@@ -1,3 +1,4 @@
+//settingView
 "Add" = "Add";
 "Make your own keyword" = "Make your own keyword";
 "Reset" = "Reset";
@@ -28,10 +29,10 @@
 "There is no modified content." = "There is no modified content.";
 "You need more than 10 keywords. Please add keywords." = "You need more than 10 keywords. Please add keywords.";
 "Duplicate keywords exist. Please change or delete them." = "Duplicate keywords exist. Please change or delete them.";
-"Modifying keywords" = "Modifying keywords";
-"Would you like to cancel?" = "Would you like to cancel?";
-"Continue" = "Continue";
-"If you cancel, all the data you have created will be deleted." = "If you cancel, all the data you have created will be deleted.";
+"Edit mode" = "Edit mode";
+"Exit" = "Exit";
+"Are you sure you want to exit editing?" = "Are you sure you want to exit editing?";
+"If you exit, The data you just edited will not be saved." = "If you exit, The data you just edited will not be saved.";
 "Would you like to reset everything?" = "Would you like to reset everything?";
 "Enter the title. ex)sports" = "Enter the title. ex)sports";
 "The same title already exists. Please change the title." = "The same title already exists. Please change the title";

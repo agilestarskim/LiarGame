@@ -42,6 +42,7 @@
 		1F685682287311A9002AA0D4 /* lose.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F685681287311A9002AA0D4 /* lose.json */; };
 		1F68568628731697002AA0D4 /* LastChanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F68568528731697002AA0D4 /* LastChanceView.swift */; };
 		1F68568828734730002AA0D4 /* wrong.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F68568728734730002AA0D4 /* wrong.json */; };
+		1FABC3AA29AC6B940012C565 /* RuleBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FABC3A929AC6B940012C565 /* RuleBookView.swift */; };
 		1FD2E52029A5244200F473FA /* SystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD2E51F29A5244200F473FA /* SystemView.swift */; };
 		1FD42B7029A3842F000336F5 /* KeywordSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD42B6F29A3842F000336F5 /* KeywordSettingView.swift */; };
 		1FD42B7929A3A239000336F5 /* Game+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD42B7829A3A239000336F5 /* Game+.swift */; };
@@ -86,6 +87,7 @@
 		1F685681287311A9002AA0D4 /* lose.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lose.json; sourceTree = "<group>"; };
 		1F68568528731697002AA0D4 /* LastChanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastChanceView.swift; sourceTree = "<group>"; };
 		1F68568728734730002AA0D4 /* wrong.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wrong.json; sourceTree = "<group>"; };
+		1FABC3A929AC6B940012C565 /* RuleBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleBookView.swift; sourceTree = "<group>"; };
 		1FD2E51F29A5244200F473FA /* SystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemView.swift; sourceTree = "<group>"; };
 		1FD42B6F29A3842F000336F5 /* KeywordSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSettingView.swift; sourceTree = "<group>"; };
 		1FD42B7829A3A239000336F5 /* Game+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+.swift"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				1FD42B6F29A3842F000336F5 /* KeywordSettingView.swift */,
 				1FD2E51F29A5244200F473FA /* SystemView.swift */,
 				1FD42B7C29A3BEA4000336F5 /* CustomView.swift */,
+				1FABC3A929AC6B940012C565 /* RuleBookView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				1F4BAB2229717BCE007CCF6A /* Game.swift in Sources */,
 				1F03F72F2977DBBC00D58A2C /* RollTableView.swift in Sources */,
 				1F6856792872ED02002AA0D4 /* ResultView.swift in Sources */,
+				1FABC3AA29AC6B940012C565 /* RuleBookView.swift in Sources */,
 				1F4BAB2D29718996007CCF6A /* AppRouterGroup.swift in Sources */,
 				1FD42B7B29A3A337000336F5 /* Keyword.swift in Sources */,
 				1F29940C286EDD9200A044F7 /* IntroView.swift in Sources */,

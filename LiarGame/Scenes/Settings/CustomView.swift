@@ -78,10 +78,10 @@ struct CustomView: View {
                 }
             }
         }
-        .navigationTitle("Modifying keywords".localized)
+        .navigationTitle("Edit mode".localized)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button("Cancel".localized) {
+                Button("Exit".localized) {
                     if self.originalKeywords == self.keywords {
                         dismiss()
                         return
@@ -89,11 +89,11 @@ struct CustomView: View {
                         showingBackAlert = true
                     }
                 }
-                .alert("Would you like to cancel?".localized, isPresented: $showingBackAlert) {
-                    Button("Continue".localized, role: .cancel){}
-                    Button("Cancel".localized, role: .destructive){ dismiss() }
+                .alert("Are you sure you want to exit editing?".localized, isPresented: $showingBackAlert) {
+                    Button("Cancel".localized, role: .cancel){}
+                    Button("Exit".localized, role: .destructive){ dismiss() }
                 } message: {
-                    Text("If you cancel, all the data you have created will be deleted.".localized)
+                    Text("If you exit, The data you just edited will not be saved.".localized)
                 }
 
             }
