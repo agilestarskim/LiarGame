@@ -11,10 +11,11 @@ import SwiftUI
 struct SettingView: View {
     @EnvironmentObject private var game: Game
     @FocusState private var isFocused: Bool
+    @State private var showingRuleBook = false
     
     let navigator: LinkNavigatorType
     var body: some View {
-        Form(content: {
+        Form {
             Section {
                 Picker("Category: %@".localized(with: game.subject), selection: $game.subject){
                     ForEach(game.keyword.wholeSubjects, id: \.self) { subject in
@@ -39,13 +40,13 @@ struct SettingView: View {
                 }
             }
             
-            Section(content: {
+            Section {
                 Picker("Mode".localized, selection: $game.gameMode){
                     ForEach(GameMode.allCases, id: \.self) { value in
                         Text(value.localizedName)
                     }
                 }.pickerStyle(.segmented)
-            }, footer: {
+            } footer: {
                 switch game.gameMode {
                 case .normal:
                     Text("normalDescription".localized)
@@ -54,7 +55,7 @@ struct SettingView: View {
                 case .fool:
                     Text("foolDescription".localized)
                 }
-            })
+            }
             
             Section {
                 Picker("Naming mode".localized, selection: $game.namingMode){
@@ -69,7 +70,7 @@ struct SettingView: View {
                     } onDecrement: {
                         game.removeUserLast()
                     }
-
+                    
                 case .name:
                     ForEach(game.users.indices, id: \.self) { index in
                         HStack{
@@ -94,26 +95,27 @@ struct SettingView: View {
                             .disabled(game.users.count > 19)
                         Spacer()
                     }
-                }            
+                }
             }
             
-            Section {                
+            Section {
                 Stepper("Liars: %d".localized(with: game.numberOfLiars), value: $game.numberOfLiars, in: 1...10)
                 Stepper("Time limit: %d".localized(with: game.time), value: $game.time, in: 1...10)
                 Toggle("Turn on sound effects".localized, isOn: $game.soundEffect)
             }
             
-            Section(content: {
+            Section {
                 Button {
                     game.resetGame()
                     navigator.next(paths: ["intro"], items: [:], isAnimated: true)
                 } label: {
                     Text("Game Start".localized)
+                        .bold()
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                    
                 }
-                
                 .disabled(checkSpy || checkLiar || checkName)
-            }, footer: {
+            } footer: {
                 if(checkSpy) {
                     Text("Spy mode is available for at least 5 people".localized)
                         .foregroundColor(.red)
@@ -124,11 +126,26 @@ struct SettingView: View {
                     Text("Please enter all the names of the participants.".localized)
                         .foregroundColor(.red)
                 }
-            })
+            }
+        }
+        .safeAreaInset(edge: .bottom, alignment: .trailing, spacing: 20) {
+            Button {
+                showingRuleBook = true
+            } label: {
+                Text("?")
+                    .font(.largeTitle.weight(.semibold))
+                    .padding(25)
+                    .foregroundColor(Color.primary)
+                    .background(Color(uiColor: UIColor.tertiarySystemFill))
+                    .clipShape(Circle())
+                    .padding(.trailing, 20)
+            }
+        }
+        .sheet(isPresented: $showingRuleBook, content: {
+            RuleBookView()
         })
-        .navigationBarHidden(false)
+//        .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Settings".localized)        
     }
     //스파이모드에서 전체인원이 5명 이하일 때 게임시작 방지
