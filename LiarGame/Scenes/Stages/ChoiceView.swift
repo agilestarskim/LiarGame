@@ -39,6 +39,8 @@ struct ChoiceView: View {
             }
         }
         .padding(.top, 30)
+        .padding(.horizontal, 12)
+        
     }
     
     var pickerView: some View {
