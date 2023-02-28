@@ -8,12 +8,16 @@
 import SwiftUI
 
 extension View {
-    func myButtonStyle(color: Color, vertical: CGFloat, horizontal: CGFloat) -> some View {
-        modifier(MyButton(color: color, vertical: vertical, horizontal: horizontal))
+    func fitButton(color: Color, vertical: CGFloat, horizontal: CGFloat) -> some View {
+        modifier(FitButton(color: color, vertical: vertical, horizontal: horizontal))
+    }
+    
+    func wideButton(color: Color) -> some View {
+        modifier(WideButton(color: color))
     }
 }
 
-struct MyButton: ViewModifier {
+struct FitButton: ViewModifier {
     let color: Color
     let vertical: CGFloat
     let horizontal: CGFloat
@@ -27,3 +31,19 @@ struct MyButton: ViewModifier {
             .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
+
+
+struct WideButton: ViewModifier {
+    let color: Color
+    func body(content: Content) -> some View {
+        content
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .font(.largeTitle.bold())
+            .foregroundColor(.white)
+            .padding()
+            .background(color)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding()
+    }
+}
+

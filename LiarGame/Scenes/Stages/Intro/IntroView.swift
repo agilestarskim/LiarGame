@@ -25,10 +25,15 @@ struct IntroView: View {
             if vm.isGameStart{
                 timerView
             }else{
-                if vm.showingCard{
-                    cardView
-                }else{
-                    buttonView
+//                if vm.showingCard{
+//                    cardView
+//                }else{
+//                    buttonView
+//                }
+                ZStack {
+                    ForEach(game.users) { user in
+                        
+                    }
                 }
             }
             Spacer()
@@ -91,12 +96,7 @@ struct IntroView: View {
                 }
             } label: {
                 Text("Confirm".localized)
-                    .padding()
-                    .padding([.horizontal], 20)
-                    .background(Color(red: 0, green: 0.5, blue: 0))
-                    .foregroundColor(.white)
-                    .font(.title2)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .myButtonStyle(color: Color(red: 0, green: 0.5, blue: 0), vertical: 20, horizontal: 20)
                     .shadow(color: .gray, radius: 5, x: 5, y: 5)
             }            
         }
