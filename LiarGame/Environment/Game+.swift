@@ -53,8 +53,6 @@ extension Game {
     }
     
     func resetGame() {
-        resetInGameSetting()
-        resetRoll()
         shuffleAnswer()
         setLiar()
         if self.gameMode == .spy {
@@ -62,14 +60,16 @@ extension Game {
         }
     }
     //게임 시작 후 변경된 세팅 초기화
-    private func resetInGameSetting() {
+    //SettingView onAppear시 trigger
+    func resetInGameSetting() {
         self.selectedSpy = nil
         self.selectedLiars = []
         self.selectedCandidate = ""
         self.wrongAnswerForFool = ""
     }
     //이전 게임에서 부여된 역할 초기화
-    private func resetRoll() {
+    //SettingView onAppear시 trigger
+    func resetRoll() {
         for index in self.users.indices {
             self.users[index].roll = .none
         }

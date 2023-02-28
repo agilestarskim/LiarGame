@@ -18,8 +18,11 @@ struct SettingView: View {
         Form {
             Section {
                 Picker("Category: %@".localized(with: game.subject), selection: $game.subject){
-                    ForEach(game.keyword.wholeSubjects, id: \.self) { subject in
+                    ForEach(game.keyword.systemSubjects, id: \.self) { subject in
                         Text(subject)
+                    }
+                    ForEach(game.keyword.customSubjects, id: \.self) { subject in
+                        Text("\(subject)")
                     }
                 }
                 
@@ -138,7 +141,11 @@ struct SettingView: View {
         }
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
-        .navigationTitle("Settings".localized)        
+        .navigationTitle("Settings".localized)
+        .onAppear {
+            game.resetRoll()
+            game.resetInGameSetting()
+        }
     }
     //스파이모드에서 전체인원이 5명 이하일 때 게임시작 방지
     var checkSpy: Bool {
