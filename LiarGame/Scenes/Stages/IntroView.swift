@@ -110,29 +110,17 @@ struct IntroView: View {
                     vm.showingCard = true
                 } label: {
                     Text("Check keyword".localized)
-                        .padding()
-                        .padding([.horizontal], 20)
-                        .background(Color(red: 0, green: 0, blue: 0.5))
-                        .foregroundColor(.white)
-                        .font(.title2)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .shadow(color: .gray, radius: 5, x: 5, y: 5)
                 }
+                .myButtonStyle(color: Color(red: 0, green: 0, blue: 0.5), vertical: 20, horizontal: 20)
+                .shadow(color: .gray, radius: 5, x: 5, y: 5)
             case .name:
                 Button {
                     vm.showingCard = true
                 } label: {
-                    VStack(spacing: 10){
-                        Text("%@'s keyword".localized(with: game.users[vm.index].name))
-                    }
-                    .padding()
-                    .padding([.horizontal], 20)
-                    .background(Color(red: 0, green: 0, blue: 0.5))
-                    .foregroundColor(.white)
-                    .font(.title2)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .shadow(color: .gray, radius: 5, x: 5, y: 5)
+                    Text("%@'s keyword".localized(with: game.users[vm.index].name))
                 }
+                .myButtonStyle(color: Color(red: 0, green: 0, blue: 0.5), vertical: 20, horizontal: 20)
+                .shadow(color: .gray, radius: 5, x: 5, y: 5)
             }
         }
     }

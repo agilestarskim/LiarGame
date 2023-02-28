@@ -55,10 +55,17 @@ struct CustomView: View {
             
             
             Section {
-                Button("Save".localized) {
+                Button {
                     save()
+                } label: {
+                    Text("Save".localized)
+                        .foregroundColor(checkAll ? Color.gray : Color.white)
+                        .bold()
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 }
-                .disabled(checkCount || checkDuplicate || checkEdit || checkDuplicateKey || checkEmptyTitle)
+                .listRowBackground(checkAll ? Color.white : Color.accentColor)
+                .disabled(checkAll)
+                
             } footer: {
                 if checkEdit {
                     Text("There is no modified content.".localized)
@@ -109,6 +116,10 @@ struct CustomView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+    }
+    
+    var checkAll: Bool {
+        checkCount || checkDuplicate || checkEdit || checkDuplicateKey || checkEmptyTitle
     }
     
     var checkCount: Bool {

@@ -134,7 +134,7 @@ struct ResultView: View {
         Button {            
             navigator.backOrNext(path: "setting", items: [:], isAnimated: true)
         } label: {
-            Text("ReStart".localized)
+            Text("Restart".localized)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .font(.largeTitle.bold())
                 .foregroundColor(.white)
@@ -144,7 +144,9 @@ struct ResultView: View {
                 .padding()
         }
         .onDisappear {
-            game.rotateSingleLeft(&game.users)
+            if game.namingMode == .name {
+                game.rotateSingleLeft(&game.users)
+            }
         }
     }
 }

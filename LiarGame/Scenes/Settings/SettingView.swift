@@ -128,23 +128,15 @@ struct SettingView: View {
                 }
             }
         }
-        .safeAreaInset(edge: .bottom, alignment: .trailing, spacing: 20) {
-            Button {
+        .toolbar {
+            Button("How to".localized) {
                 showingRuleBook = true
-            } label: {
-                Text("?")
-                    .font(.largeTitle.weight(.semibold))
-                    .padding(25)
-                    .foregroundColor(Color.primary)
-                    .background(Color(uiColor: UIColor.tertiarySystemFill))
-                    .clipShape(Circle())
-                    .padding(.trailing, 20)
             }
         }
-        .sheet(isPresented: $showingRuleBook, content: {
+        .sheet(isPresented: $showingRuleBook) {
             RuleBookView()
-        })
-//        .navigationBarHidden(false)
+        }
+        .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
         .navigationTitle("Settings".localized)        
     }

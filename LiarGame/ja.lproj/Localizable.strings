@@ -1,3 +1,4 @@
+"How to" = "ルールブック";
 "Add" = "追加";
 "Make your own keyword" = "新しいキーワードを追加する。";
 "Reset" = "リセット";
@@ -61,7 +62,7 @@
 "That's not the answer" = "不正解です。";
 "No It's not" = "バァカー違うよ";
 "Check the liars" = "ライアーを確認する";
-"ReStart" = "再起動";
+"Restart" = "再起動";
 "Normal" = "一般";
 "Spy" = "スパイ";
 "Fool" = "バカ";

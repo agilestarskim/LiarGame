@@ -8,17 +8,19 @@
 import SwiftUI
 
 extension View {
-    func myButtonStyle(color: Color) -> some View {
-        modifier(MyButton(color: color))
+    func myButtonStyle(color: Color, vertical: CGFloat, horizontal: CGFloat) -> some View {
+        modifier(MyButton(color: color, vertical: vertical, horizontal: horizontal))
     }
 }
 
 struct MyButton: ViewModifier {
     let color: Color
+    let vertical: CGFloat
+    let horizontal: CGFloat
     func body(content: Content) -> some View {
         content
-            .padding(.vertical,10)
-            .padding(.horizontal, 20)
+            .padding(.vertical,vertical)
+            .padding(.horizontal, horizontal)
             .foregroundColor(.white)
             .background(color)
             .font(.title2)

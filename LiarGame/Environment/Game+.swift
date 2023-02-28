@@ -43,7 +43,7 @@ extension Game {
     }
     
     //유저의 순서를 shift한다.
-    //States/ResultView.swift에서 다시하기 버튼을 클릭하면 trigger된다.
+    //States/ResultView.swift가 disappear하면 trigger된다.
     func rotateSingleLeft(_ users : inout [User]) {
         let first = users.first!
         for i in 0..<users.count - 1 {

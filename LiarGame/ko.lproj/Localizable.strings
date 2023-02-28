@@ -1,3 +1,4 @@
+"How to" = "게임방법";
 "Add" = "추가";
 "Make your own keyword" = "나만의 키워드 만들기";
 "Reset" = "초기화";
@@ -61,7 +62,7 @@
 "That's not the answer" = "틀렸습니다";
 "No It's not" = "응 아니야";
 "Check the liars" = "라이어 확인";
-"ReStart" = "다시하기";
+"Restart" = "다시하기";
 "Normal" = "일반";
 "Spy" = "스파이";
 "Fool" = "바보";

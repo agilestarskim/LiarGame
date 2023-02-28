@@ -1,4 +1,5 @@
 //settingView
+"How to" = "How to";
 "Add" = "Add";
 "Make your own keyword" = "Make your own keyword";
 "Reset" = "Reset";
@@ -62,7 +63,7 @@
 "That's not the answer" = "That's not the answer";
 "No It's not" = "No It's not";
 "Check the liars" = "Check the liars";
-"ReStart" = "ReStart";
+"Restart" = "Restart";
 "Normal" = "Normal";
 "Spy" = "Spy";
 "Fool" = "Fool";
