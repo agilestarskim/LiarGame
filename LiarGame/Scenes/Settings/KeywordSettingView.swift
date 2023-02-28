@@ -16,9 +16,9 @@ struct KeywordSettingView: View {
     var body: some View {
         List {
             Section {
-                ForEach(game.keyword.systemSubjects, id: \.self) { subject in
+                ForEach(game.systemSubjects, id: \.self) { subject in
                     NavigationLink {
-                        SystemView(title: subject, keywords: game.keyword.systemKeywords[subject] ?? [])
+                        SystemView(title: subject, keywords: game.systemKeywords[subject] ?? [])
                     } label: {
                         Text(subject)
                     }
@@ -29,9 +29,9 @@ struct KeywordSettingView: View {
             }
             
             Section {
-                ForEach(game.keyword.customSubjects, id: \.self) { subject in
+                ForEach(game.customSubjects, id: \.self) { subject in
                     NavigationLink(subject) {
-                        CustomView(title: subject, keywords: game.keyword.customKeywords[subject] ?? [])
+                        CustomView(title: subject, keywords: game.customKeywords[subject] ?? [])
                     }
                 }
                 NavigationLink {
@@ -66,16 +66,16 @@ struct KeywordSettingView: View {
         .toast(message: "It has been reset.", isShowing: $showingConfirmToast, config: .init())
     }
     
-    func reset(for resetMode: Keyword.RemoveMode) {
+    func reset(for resetMode: Game.SetMode) {
         switch resetMode {
         case .system:
-            game.keyword.removeFromUserDefaults(for: .system)
+            game.reset(for: .system)
         case .custom:
-            game.keyword.removeFromUserDefaults(for: .custom)
+            game.reset(for: .custom)
         case .all:
-            game.keyword.removeFromUserDefaults(for: .all)
+            game.reset(for: .all)
         }
-        game.keyword = Keyword()
+//        game.keyword = Keyword()
         showingConfirmToast = true
     }
 }

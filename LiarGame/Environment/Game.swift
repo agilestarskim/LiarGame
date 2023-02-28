@@ -9,7 +9,7 @@ import SwiftUI
 
 final class Game: ObservableObject {
     //게임 시작 전 세팅 관련 변수
-    @Published var subject: String = "직업" //주제
+    @Published var subject: String //주제
     @Published var gameMode: GameMode = .normal //일반, 스파이, 바보 모드
     @Published var namingMode: NamingMode = .number //번호, 이름 모드
     @Published var users: [User] = [User(), User(), User()] //User(name,liar,spy)
@@ -24,7 +24,30 @@ final class Game: ObservableObject {
     @Published var selectedSpy: Int? = nil //게임 중 지목당한 스파이
     var selectedCandidate: String = "" //게임 중 라이어가 선택한 정답 후보
     
-    @Published var keyword: Keyword = Keyword()
+    @Published var systemKeywords: [String: [String]]
+    @Published var customKeywords: [String: [String]]
+    
+    init() {
+        //UserDefaults에서 systemKeywords와 customKeywords를 가져와서 set함
+        let userDefaults = UserDefaults.standard
+        //systemKeyName으로 데이터를 가져와 할당한다. 만약 데이터가 없으면 default 키워드를 할당한다.
+        if let systemKeywords = userDefaults.dictionary(forKey: Keyword.systemKeyName) as? [String: [String]]  {
+            self.systemKeywords = systemKeywords
+        } else {
+            self.systemKeywords = Keyword.defaultKeywords
+            
+        }
+        
+        //customKeyName으로 데이터를 가져와 할당한다. 만약 데이터가 없으면 빈 데이터를 할당한다.
+        if let customKeywords = userDefaults.dictionary(forKey: Keyword.customKeyName) as? [String: [String]] {
+            self.customKeywords = customKeywords
+        } else {
+            self.customKeywords = [:]
+        }
+        
+        //게임에 사용될 subject 초기값은 시스템키워드의 첫번 째 키로 설정
+        self.subject = Keyword.defaultKeywords.keys.first ?? "직업"
+    }
 }
 
 enum GameMode: String, Equatable, CaseIterable {

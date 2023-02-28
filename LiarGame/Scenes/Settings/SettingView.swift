@@ -18,11 +18,11 @@ struct SettingView: View {
         Form {
             Section {
                 Picker("Category: %@".localized(with: game.subject), selection: $game.subject){
-                    ForEach(game.keyword.systemSubjects, id: \.self) { subject in
+                    ForEach(game.systemSubjects, id: \.self) { subject in
                         Text(subject)
                     }
-                    ForEach(game.keyword.customSubjects, id: \.self) { subject in
-                        Text("\(subject)")
+                    ForEach(game.customSubjects, id: \.self) { subject in
+                        Text(subject)
                     }
                 }
                 

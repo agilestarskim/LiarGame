@@ -23,6 +23,31 @@ struct SystemView: View {
     }
     var body: some View {
         List {
+            
+            Section {
+                Button {
+                    save()
+                } label: {
+                    Text("Save".localized)
+                        .foregroundColor(checkAll ? Color.gray : Color.white)
+                        .bold()
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                }
+                .listRowBackground(checkAll ? Color.white : Color.accentColor)
+                .disabled(checkAll)
+            } footer: {
+                if checkEdit {
+                    Text("There is no modified content.".localized)
+                        .foregroundColor(.red)
+                } else if checkCount {
+                    Text("You need more than 10 keywords. Please add keywords.".localized)
+                        .foregroundColor(.red)
+                } else if checkDuplicate {
+                    Text("Duplicate keywords exist. Please change or delete them.".localized)
+                        .foregroundColor(.red)
+                }
+            }
+            
             Section {
                 Text(title)
                     .bold()
@@ -47,30 +72,6 @@ struct SystemView: View {
                 Text("You can modify, add, and delete words.".localized)
             } footer: {
                 Text("You can delete the word by pushing it to the left.".localized)
-            }
-            
-            Section {
-                Button {
-                    save()
-                } label: {
-                    Text("Save".localized)
-                        .foregroundColor(checkAll ? Color.gray : Color.white)
-                        .bold()
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                }
-                .listRowBackground(checkAll ? Color.white : Color.accentColor)
-                .disabled(checkAll)
-            } footer: {
-                if checkEdit {
-                    Text("There is no modified content.".localized)
-                        .foregroundColor(.red)
-                } else if checkCount {
-                    Text("You need more than 10 keywords. Please add keywords.".localized)
-                        .foregroundColor(.red)
-                } else if checkDuplicate {
-                    Text("Duplicate keywords exist. Please change or delete them.".localized)
-                        .foregroundColor(.red)
-                }
             }
         }
         .navigationTitle("Edit mode".localized)
@@ -124,8 +125,8 @@ struct SystemView: View {
     }
     
     private func save() {
-        game.keyword.save(key: self.title, value: self.keywords, for: .system)
-        game.keyword = Keyword()
+        game.save(key: self.title, value: self.keywords, for: .system)
+//        game.keyword = Keyword()
         dismiss()
     }
 }

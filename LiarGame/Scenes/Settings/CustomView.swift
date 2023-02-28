@@ -17,6 +17,8 @@ struct CustomView: View {
     @State var keywords: [String]
     @State private var originalKeywords: [String]
     
+    @FocusState private var focusedReminder: Int?
+    
     init(title: String, keywords: [String]) {
         self._title = State(initialValue: title)
         self._originalTitle = State(initialValue: title)
@@ -27,32 +29,6 @@ struct CustomView: View {
     
     var body: some View {
         List {
-            Section {
-                TextField("Enter the title. ex)sports".localized, text: $title)
-            }
-            
-            Section {
-                ForEach(keywords.indices, id: \.self) { index in
-                    TextField("Please enter the keyword".localized, text: $keywords[index])
-                        .autocorrectionDisabled(true)
-                }
-                .onDelete { indexSet in
-                    withAnimation {
-                        keywords.remove(atOffsets: indexSet)
-                    }
-                }
-                
-                Button("Add".localized) {
-                    withAnimation {
-                        keywords.append("")
-                    }
-                }
-            } header: {
-                Text("You can modify, add, and delete words.".localized)
-            } footer: {
-                Text("You can delete the word by pushing it to the left.".localized)
-            }
-            
             
             Section {
                 Button {
@@ -84,6 +60,43 @@ struct CustomView: View {
                         .foregroundColor(.red)
                 }
             }
+            Section {
+                TextField("Enter the title. ex)sports".localized, text: $title)
+            }
+            
+            Section {
+                ForEach(keywords.indices, id: \.self) { index in
+                    //TODO: 백그라운드 터치 시 키보드 내려가기, return 키 누를 때 키보드 up&down 하는 것 막기
+                    TextField("Please enter the keyword".localized, text: $keywords[index])
+                        .autocorrectionDisabled(true)
+                        .focused($focusedReminder, equals: index)
+                        .onSubmit {
+                            if keywords.filter({ $0.isEmpty }).isEmpty {
+                                focusedReminder = nil
+                            } else {
+                                focusedReminder = index + 1
+                            }
+                        }
+                }
+                .onDelete { indexSet in
+                    withAnimation {
+                        keywords.remove(atOffsets: indexSet)
+                    }
+                }
+                
+                Button("Add".localized) {
+                    withAnimation {
+                        keywords.append("")
+                    }
+                }
+            } header: {
+                Text("You can modify, add, and delete words.".localized)
+            } footer: {
+                Text("You can delete the word by pushing it to the left.".localized)
+            }
+            
+            
+            
         }
         .navigationTitle("Edit mode".localized)
         .toolbar {
@@ -108,7 +121,8 @@ struct CustomView: View {
                 Button("Delete".localized) {
                     showingRemoveAlert = true
                 }
-                .disabled(!game.keyword.customSubjects.contains(originalTitle))
+                //추가 버튼을 눌러 들어와 생성되지 않은 데이터를 삭제하는 것을 방지
+                .disabled(!game.customSubjects.contains(originalTitle))
                 .alert("Would you like to Delete?".localized, isPresented: $showingRemoveAlert) {
                     Button("Cancel".localized, role: .cancel){}
                     Button("Delete".localized, role: .destructive){ remove() }
@@ -136,27 +150,29 @@ struct CustomView: View {
     }
     
     var checkDuplicateKey: Bool {
-        game.keyword.wholeSubjects.filter {$0 != self.originalTitle }.contains(title)
+        game.wholeSubjects.filter {$0 != self.originalTitle }.contains(title)
     }
     
     var checkEmptyTitle: Bool {
         title.isEmpty
     }
     
+    //originalTitle을 파라미터로 넘기는 이유는
+    //원래제목과 바뀐제목을 비교해서 제목이 수정되었다면 이전 이름으로 된 데이터를 지우고 저장하기 위해서이다.
     private func save() {
-        game.keyword.save(
+        game.save(
             key: self.title,
             value: self.keywords,
             for: .custom,
             originalTitle: self.originalTitle
         )
-        game.keyword = Keyword()
+//        game.keyword = Keyword()
         dismiss()
     }
     
     private func remove() {
-        game.keyword.remove(key: originalTitle)
-        game.keyword = Keyword()
+        game.remove(key: originalTitle)
+//        game.keyword = Keyword()
         dismiss()
     }
 }
