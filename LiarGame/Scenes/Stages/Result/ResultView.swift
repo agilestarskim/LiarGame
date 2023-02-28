@@ -116,13 +116,7 @@ struct ResultView: View {
             showingRollTable = true
         } label: {
             Text("Check the liars".localized)
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .font(.largeTitle.bold())
-                .foregroundColor(.white)
-                .padding()
-                .background(.indigo)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding()
+                .wideButton(color: .indigo)
         }        
         .halfSheet(showSheet: $showingRollTable) {
             RollTableView()
@@ -131,17 +125,11 @@ struct ResultView: View {
     }
     
     var restartButton: some View {
-        Button {            
-            navigator.backOrNext(path: "setting", items: [:], isAnimated: true)
+        Button {
+            navigator.rootBackOrNext(path: "setting", items: [:], isAnimated: true)
         } label: {
             Text("Restart".localized)
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .font(.largeTitle.bold())
-                .foregroundColor(.white)
-                .padding()
-                .background(.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding()
+                .wideButton(color: .blue)
         }
         .onDisappear {
             if game.namingMode == .name {
@@ -156,7 +144,7 @@ struct ResultRouteBuilder: RouteBuilder {
 
   var build: (LinkNavigatorType, [String: String], DependencyType) -> MatchingViewController? {
     { navigator, items, dependency in
-      return WrappingController(matchingKey: matchPath) {
+        return WrappingController(matchPath: matchPath) {
           ResultView(navigator: navigator)
       }
     }

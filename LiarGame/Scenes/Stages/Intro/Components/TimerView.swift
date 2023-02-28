@@ -6,9 +6,8 @@
 //
 
 import SwiftUI
-import Combine
 
-struct Timer: View {
+struct TimerView: View {
     @EnvironmentObject var game: Game
     @State var remainingTime: Int
     @Binding var isGameEnd: Bool
@@ -18,13 +17,6 @@ struct Timer: View {
             Spacer()
             Text("%d seconds".localized(with: remainingTime))
                 .font(.largeTitle)
-                .onReceive(timer){ _ in
-                    if remainingTime > 1 {
-                        remainingTime -= 1
-                    }else{
-                        isGameEnd = true
-                    }
-                }
             Spacer()
             Button {
                 isGameEnd = true
@@ -33,12 +25,15 @@ struct Timer: View {
                     .fitButton(color: .red, vertical: 20, horizontal: 20)
                     .shadow(color: .gray, radius: 5, x: 5, y: 5)
             }
-            .padding(.top, 50)
+            Spacer()
             
         }
-        .onAppear {
-            remainingTime = game.time * 60
-            _ = timer.upstream.autoconnect()
+        .onReceive(timer){ _ in
+            if remainingTime > 1 {
+                remainingTime -= 1
+            }else{
+                isGameEnd = true
+            }
         }
         .onDisappear {
             timer.upstream.connect().cancel()

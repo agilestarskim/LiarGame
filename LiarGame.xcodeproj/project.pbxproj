@@ -18,6 +18,8 @@
 		1F03F74329792C8A00D58A2C /* noitsnot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F74229792C8A00D58A2C /* noitsnot.mp3 */; };
 		1F03F7452979300800D58A2C /* trumpet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F7442979300800D58A2C /* trumpet.mp3 */; };
 		1F03F74729794E2E00D58A2C /* laugh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F74629794E2E00D58A2C /* laugh.mp3 */; };
+		1F2000F129ADBE920036644D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2000F029ADBE920036644D /* Card.swift */; };
+		1F2000F429ADCF560036644D /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2000F329ADCF560036644D /* TimerView.swift */; };
 		1F27E04429A65A440003EBB8 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F27E04329A65A440003EBB8 /* Toast.swift */; };
 		1F2993D7286D9F5100A044F7 /* LiarGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */; };
 		1F2993DB286D9F5300A044F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2993DA286D9F5300A044F7 /* Assets.xcassets */; };
@@ -30,7 +32,6 @@
 		1F4BAB2B2971896F007CCF6A /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4BAB2A2971896F007CCF6A /* AppDependency.swift */; };
 		1F4BAB2D29718996007CCF6A /* AppRouterGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4BAB2C29718996007CCF6A /* AppRouterGroup.swift */; };
 		1F4BAB2F297189C3007CCF6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4BAB2E297189C3007CCF6A /* AppDelegate.swift */; };
-		1F4BAB3129719993007CCF6A /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4BAB3029719993007CCF6A /* IntroViewModel.swift */; };
 		1F4BAB352971C935007CCF6A /* Laughing.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4BAB342971C935007CCF6A /* Laughing.json */; };
 		1F4BAB392971D62C007CCF6A /* Dance.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4BAB382971D62C007CCF6A /* Dance.json */; };
 		1F4BAB3D2971D827007CCF6A /* Twerking.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4BAB3C2971D827007CCF6A /* Twerking.json */; };
@@ -62,6 +63,8 @@
 		1F03F74229792C8A00D58A2C /* noitsnot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = noitsnot.mp3; sourceTree = "<group>"; };
 		1F03F7442979300800D58A2C /* trumpet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = trumpet.mp3; sourceTree = "<group>"; };
 		1F03F74629794E2E00D58A2C /* laugh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = laugh.mp3; sourceTree = "<group>"; };
+		1F2000F029ADBE920036644D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		1F2000F329ADCF560036644D /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		1F27E04329A65A440003EBB8 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		1F2993D3286D9F5100A044F7 /* LiarGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiarGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2993D6286D9F5100A044F7 /* LiarGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiarGameApp.swift; sourceTree = "<group>"; };
@@ -74,7 +77,6 @@
 		1F4BAB2A2971896F007CCF6A /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		1F4BAB2C29718996007CCF6A /* AppRouterGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterGroup.swift; sourceTree = "<group>"; };
 		1F4BAB2E297189C3007CCF6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F4BAB3029719993007CCF6A /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
 		1F4BAB342971C935007CCF6A /* Laughing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Laughing.json; sourceTree = "<group>"; };
 		1F4BAB382971D62C007CCF6A /* Dance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dance.json; sourceTree = "<group>"; };
 		1F4BAB3C2971D827007CCF6A /* Twerking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Twerking.json; sourceTree = "<group>"; };
@@ -138,6 +140,42 @@
 				1F03F7442979300800D58A2C /* trumpet.mp3 */,
 			);
 			path = SoundEffect;
+			sourceTree = "<group>";
+		};
+		1F2000ED29ADBDAA0036644D /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				1F29940B286EDD9200A044F7 /* IntroView.swift */,
+				1F2000F229ADBE9E0036644D /* Components */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		1F2000EE29ADBE090036644D /* Selection */ = {
+			isa = PBXGroup;
+			children = (
+				1F29940D286F0A5500A044F7 /* ChoiceView.swift */,
+				1F68568528731697002AA0D4 /* LastChanceView.swift */,
+			);
+			path = Selection;
+			sourceTree = "<group>";
+		};
+		1F2000EF29ADBE2E0036644D /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				1F6856782872ED02002AA0D4 /* ResultView.swift */,
+				1F03F72E2977DBBC00D58A2C /* RollTableView.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		1F2000F229ADBE9E0036644D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1F2000F029ADBE920036644D /* Card.swift */,
+				1F2000F329ADCF560036644D /* TimerView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		1F2993CA286D9F5100A044F7 = {
@@ -247,12 +285,9 @@
 		1FD42B7429A397AD000336F5 /* Stages */ = {
 			isa = PBXGroup;
 			children = (
-				1F29940B286EDD9200A044F7 /* IntroView.swift */,
-				1F4BAB3029719993007CCF6A /* IntroViewModel.swift */,
-				1F29940D286F0A5500A044F7 /* ChoiceView.swift */,
-				1F68568528731697002AA0D4 /* LastChanceView.swift */,
-				1F6856782872ED02002AA0D4 /* ResultView.swift */,
-				1F03F72E2977DBBC00D58A2C /* RollTableView.swift */,
+				1F2000ED29ADBDAA0036644D /* Intro */,
+				1F2000EE29ADBE090036644D /* Selection */,
+				1F2000EF29ADBE2E0036644D /* Result */,
 			);
 			path = Stages;
 			sourceTree = "<group>";
@@ -377,7 +412,6 @@
 				1FD42B7D29A3BEA4000336F5 /* CustomView.swift in Sources */,
 				1F4BAB2F297189C3007CCF6A /* AppDelegate.swift in Sources */,
 				1F4BAB2B2971896F007CCF6A /* AppDependency.swift in Sources */,
-				1F4BAB3129719993007CCF6A /* IntroViewModel.swift in Sources */,
 				1F650F0329A7883500F44E77 /* String+.swift in Sources */,
 				1F4BAB2229717BCE007CCF6A /* Game.swift in Sources */,
 				1F03F72F2977DBBC00D58A2C /* RollTableView.swift in Sources */,
@@ -385,6 +419,8 @@
 				1FABC3AA29AC6B940012C565 /* RuleBookView.swift in Sources */,
 				1F4BAB2D29718996007CCF6A /* AppRouterGroup.swift in Sources */,
 				1FD42B7B29A3A337000336F5 /* Keyword.swift in Sources */,
+				1F2000F129ADBE920036644D /* Card.swift in Sources */,
+				1F2000F429ADCF560036644D /* TimerView.swift in Sources */,
 				1F29940C286EDD9200A044F7 /* IntroView.swift in Sources */,
 				1FD42B7929A3A239000336F5 /* Game+.swift in Sources */,
 				1FD2E52029A5244200F473FA /* SystemView.swift in Sources */,

@@ -160,7 +160,7 @@ struct SettingRouteBuilder: RouteBuilder {
 
   var build: (LinkNavigatorType, [String: String], DependencyType) -> MatchingViewController? {
     { navigator, items, dependency in
-      return WrappingController(matchingKey: matchPath) {
+      return WrappingController(matchPath: matchPath) {
           SettingView(navigator: navigator)
       }
     }

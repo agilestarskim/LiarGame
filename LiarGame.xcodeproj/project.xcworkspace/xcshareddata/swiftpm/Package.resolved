@@ -6,7 +6,7 @@
       "location" : "https://github.com/interactord/LinkNavigator.git",
       "state" : {
         "branch" : "main",
-        "revision" : "eb1fddb82c65b4c6724815aedff221e5ce66ebd9"
+        "revision" : "6994be6a58c2bcf4b588858a9305ec38b8d72a70"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios.git",
       "state" : {
-        "revision" : "4a6058cbbdfe4f74aeae92c8bd51ad3b0de2a1ee",
-        "version" : "3.3.0"
+        "revision" : "b4bd0604ded9574807f41b4004b57dd1226a30a4",
+        "version" : "3.5.0"
       }
     }
   ],
