@@ -78,7 +78,7 @@ struct SystemView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Exit".localized) {
-                    if self.originalKeywords == self.keywords {
+                    if checkEdit {
                         dismiss()
                         return
                     } else {
@@ -100,7 +100,8 @@ struct SystemView: View {
                 .alert("Would you like to reset everything?".localized, isPresented: $showingResetAlert) {
                     Button("Cancel".localized, role: .cancel){}
                     Button("Reset".localized, role: .destructive) {
-                        keywords = Keyword.defaultKeywords[title, default: []]
+                        let defaultKeywords = Keyword.getDefaultKeywords()
+                        keywords = defaultKeywords[title, default: []]
                     }
                 }
             }
@@ -121,7 +122,7 @@ struct SystemView: View {
     }
     
     var checkEdit: Bool {
-        self.originalKeywords.map {$0.trimmingCharacters(in: .whitespaces)} == self.keywords.map {$0.trimmingCharacters(in: .whitespaces)}
+        self.originalKeywords.map {$0.trimmingCharacters(in: .whitespaces)} == self.keywords.filter { !$0.isEmpty }.map {$0.trimmingCharacters(in: .whitespaces)}
     }
     
     private func save() {

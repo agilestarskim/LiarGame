@@ -44,6 +44,7 @@ struct LastChanceView: View {
                     } label: {
                         Text(candidate)
                             .frame(width: 80, height: 50)
+                            .minimumScaleFactor(0.5)
                     }
                     .buttonStyle(.borderedProminent)
                 }

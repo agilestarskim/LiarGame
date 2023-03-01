@@ -27,8 +27,7 @@ extension AppDelegate: UIApplicationDelegate {
               
       do {
            try AVAudioSession.sharedInstance().setActive(true)
-      }
-        catch let error as NSError {
+      } catch let error as NSError {
           print("Error: Could not setActive to true: \(error), \(error.userInfo)")
       }
       return true

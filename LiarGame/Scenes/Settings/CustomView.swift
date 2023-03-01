@@ -39,7 +39,6 @@ struct CustomView: View {
                 }
                 .listRowBackground(checkAll ? Color.white : Color.accentColor)
                 .disabled(checkAll)
-                
             } footer: {
                 if checkEdit {
                     Text("There is no modified content.".localized)
@@ -94,14 +93,12 @@ struct CustomView: View {
                 Text("You can delete the word by pushing it to the left.".localized)
             }
             
-            
-            
         }
         .navigationTitle("Edit mode".localized)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Exit".localized) {
-                    if self.originalKeywords == self.keywords {
+                    if checkEdit {
                         dismiss()
                         return
                     } else {
@@ -129,9 +126,7 @@ struct CustomView: View {
             }
         }
         //백그라운드를 누를 시 키보드 내려감
-        .onTapGesture {
-            self.hideKeyboard()
-        }
+        
         .navigationBarBackButtonHidden(true)
     }
     
@@ -149,11 +144,11 @@ struct CustomView: View {
     }
     
     var checkEdit: Bool {
-        self.originalKeywords.map {$0.trimmingCharacters(in: .whitespaces)} == self.keywords.map {$0.trimmingCharacters(in: .whitespaces)} && self.originalTitle == self.title
+        self.originalKeywords.map {$0.trimmingCharacters(in: .whitespaces)} == self.keywords.filter { !$0.isEmpty }.map {$0.trimmingCharacters(in: .whitespaces)} && self.originalTitle == self.title
     }
     
     var checkDuplicateKey: Bool {
-        game.wholeSubjects.filter {$0 != self.originalTitle }.contains(title)
+        game.wholeSubjects.filter {$0 != self.originalTitle }.contains(title.trimmingCharacters(in: .whitespaces))
     }
     
     var checkEmptyTitle: Bool {
@@ -164,18 +159,16 @@ struct CustomView: View {
     //원래제목과 바뀐제목을 비교해서 제목이 수정되었다면 이전 이름으로 된 데이터를 지우고 저장하기 위해서이다.
     private func save() {
         game.save(
-            key: self.title,
+            key: self.title.trimmingCharacters(in: .whitespaces),
             value: self.keywords,
             for: .custom,
             originalTitle: self.originalTitle
         )
-//        game.keyword = Keyword()
         dismiss()
     }
     
     private func remove() {
         game.remove(key: originalTitle)
-//        game.keyword = Keyword()
         dismiss()
     }
 }

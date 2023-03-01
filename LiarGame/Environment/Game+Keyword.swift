@@ -8,6 +8,8 @@
 import Foundation
 
 extension Game {
+    
+    
     //keywordDetailView에서 접근
     var systemSubjects: [String] {
         systemKeywords.keys.sorted()
@@ -32,6 +34,32 @@ extension Game {
         case system, custom, all
     }
     
+    private func saveInLanguage(data: [String: [String]]) {
+        switch Locale.current.languageCode {
+        case "en":
+            UserDefaults.standard.set(data, forKey: Keyword.systemKeyNameForEN)
+        case "ko":
+            UserDefaults.standard.set(data, forKey: Keyword.systemKeyNameForKO)
+        case "ja":
+            UserDefaults.standard.set(data, forKey: Keyword.systemKeyNameForJA)
+        default:
+            UserDefaults.standard.set(data, forKey: Keyword.systemKeyNameForKO)
+        }
+    }
+    
+    private func removeInLanguage() {
+        switch Locale.current.languageCode {
+        case "en":
+            UserDefaults.standard.removeObject(forKey: Keyword.systemKeyNameForEN)
+        case "ko":
+            UserDefaults.standard.removeObject(forKey: Keyword.systemKeyNameForKO)
+        case "ja":
+            UserDefaults.standard.removeObject(forKey: Keyword.systemKeyNameForJA)
+        default:
+            UserDefaults.standard.removeObject(forKey: Keyword.systemKeyNameForKO)
+        }
+    }
+    
     func save(key: String, value: [String], for removeMode: SetMode, originalTitle: String = "") {
         //빈 문자열이나 공백을 모두 제거
         let trimmedKeywords = value.filter { !$0.isEmpty }.map { $0.trimmingCharacters(in: .whitespaces) }
@@ -40,7 +68,7 @@ extension Game {
             var data = systemKeywords
             data.updateValue(trimmedKeywords, forKey: key)
             //userDefaults에 저장
-            UserDefaults.standard.set(data, forKey: Keyword.systemKeyName)
+            saveInLanguage(data: data)
             //실시간 반영
             systemKeywords = data
             return
@@ -78,13 +106,13 @@ extension Game {
     func reset(for resetMode: SetMode) {
         switch resetMode {
         case .all:
-            self.systemKeywords = Keyword.defaultKeywords
+            self.systemKeywords = Keyword.getDefaultKeywords()
             self.customKeywords = [:]
-            UserDefaults.standard.removeObject(forKey: Keyword.systemKeyName)
+            removeInLanguage()
             UserDefaults.standard.removeObject(forKey: Keyword.customKeyName)
         case .system:
-            self.systemKeywords = Keyword.defaultKeywords
-            UserDefaults.standard.removeObject(forKey: Keyword.systemKeyName)
+            self.systemKeywords = Keyword.getDefaultKeywords()
+            removeInLanguage()
         case .custom:
             self.customKeywords = [:]
             UserDefaults.standard.removeObject(forKey: Keyword.customKeyName)

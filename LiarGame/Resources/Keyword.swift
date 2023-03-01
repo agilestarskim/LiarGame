@@ -8,8 +8,23 @@
 import Foundation
 
 final class Keyword {
-    static let systemKeyName = "systemKeywords"
+    static let systemKeyNameForEN = "systemKeywordsForEN"
+    static let systemKeyNameForKO = "systemKeywordsForKO"
+    static let systemKeyNameForJA = "systemKeywordsForJA"
     static let customKeyName = "customKeywords"
+    
+    static func getDefaultKeywords() -> [String: [String]]{
+        switch Locale.current.languageCode {
+        case "en":
+            return defaultEnglishKeywords
+        case "ko":
+            return defaultKoreanKeywords
+        case "ja":
+            return defaultJapaneseKeywords
+        default:
+            return defaultKoreanKeywords
+        }
+    }
     
     static let defaultEnglishKeywords: [String : [String]] = [
         "Thing" : ["Headphones", "iPhone", "Hoodie", "Dynamite", "Chandelier", "Deodorant", "Jeans", "Car", "Toothbrush", "Air conditioner", "gas mask", "Stockings", "Baseball bat", "Brick", "Sunglasses", "Suncream", "Fan", "Cap", "Nuclear bomb", "Lamp"],
@@ -21,7 +36,7 @@ final class Keyword {
         "Food" : ["Burgers", "Apple Pie", "French Fries", "Hot Dogs", "Pizza", "Durian", "Ants egg soup", "Beef tongue", "Chicken feet", "Frogs legs", "Oysters", "Cornbread", "Macaroni", "Peanut Butter", "Buffalo Wings", "Barbecue", "Cheesecake", "Fried scorpion", "Fried locusts" ,"Corn soup"]
     ]
     
-    static let defaultKeywords: [String : [String]] = [
+    static let defaultKoreanKeywords: [String : [String]] = [
         "물건" : ["헤드폰", "암막커튼", "고속충전기", "샹들리에", "무선이어폰", "발가락양말", "탈모샴푸", "콧털제거기", "혀 클리너", "무선마우스", "방독면", "스타킹", "가발", "에프킬라", "선글라스", "선크림", "에어컨", "무전기", "손목시계", "비누"],
         "직업" : ["건축가", "탐정", "세무사", "농부", "백수", "대통령", "국회의원", "청소부", "좀도둑", "클럽MD", "교사", "공무원", "래퍼", "인권운동가", "개그맨", "스턴트맨", "광부", "배우", "아이돌", "어부"],
         "동물" : ["기니피그", "알파카", "오랑우탄", "돌고래", "사자", "호랑이", "말", "토끼", "사슴", "침팬지", "박쥐", "양", "기린", "하마", "도마뱀", "개구리", "치타", "표범", "상어", "판다"],

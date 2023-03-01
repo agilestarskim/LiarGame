@@ -17,7 +17,7 @@ struct SettingView: View {
     var body: some View {
         Form {
             Section {
-                Picker("Category: %@".localized(with: game.subject), selection: $game.subject){
+                Picker("Category: %@".localized(with: game.tempSubject), selection: $game.tempSubject){
                     ForEach(game.systemSubjects, id: \.self) { subject in
                         Text(subject)
                     }
