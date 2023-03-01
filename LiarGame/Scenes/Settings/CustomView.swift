@@ -16,7 +16,6 @@ struct CustomView: View {
     @State private var originalTitle: String
     @State var keywords: [String]
     @State private var originalKeywords: [String]
-    
     @FocusState private var focusedReminder: Int?
     
     init(title: String, keywords: [String]) {
@@ -29,7 +28,6 @@ struct CustomView: View {
     
     var body: some View {
         List {
-            
             Section {
                 Button {
                     save()
@@ -77,6 +75,7 @@ struct CustomView: View {
                                 focusedReminder = index + 1
                             }
                         }
+                        .submitLabel(.next)
                 }
                 .onDelete { indexSet in
                     withAnimation {
@@ -128,6 +127,10 @@ struct CustomView: View {
                     Button("Delete".localized, role: .destructive){ remove() }
                 }
             }
+        }
+        //백그라운드를 누를 시 키보드 내려감
+        .onTapGesture {
+            self.hideKeyboard()
         }
         .navigationBarBackButtonHidden(true)
     }
