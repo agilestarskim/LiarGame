@@ -122,7 +122,7 @@ struct SystemView: View {
     }
     
     var checkEdit: Bool {
-        self.originalKeywords.map {$0.trimmingCharacters(in: .whitespaces)} == self.keywords.filter { !$0.isEmpty }.map {$0.trimmingCharacters(in: .whitespaces)}
+        self.originalKeywords.map {$0.trimmingCharacters(in: .whitespaces)} == self.keywords.map {$0.trimmingCharacters(in: .whitespaces)}
     }
     
     private func save() {
