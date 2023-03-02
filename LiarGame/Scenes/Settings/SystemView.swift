@@ -127,7 +127,6 @@ struct SystemView: View {
     
     private func save() {
         game.save(key: self.title, value: self.keywords, for: .system)
-//        game.keyword = Keyword()
         dismiss()
     }
 }

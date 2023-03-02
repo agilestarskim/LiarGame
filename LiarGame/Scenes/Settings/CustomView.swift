@@ -111,7 +111,7 @@ struct CustomView: View {
                 } message: {
                     Text("If you exit, The data you just edited will not be saved.".localized)
                 }
-
+                
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Delete".localized) {
@@ -125,8 +125,6 @@ struct CustomView: View {
                 }
             }
         }
-        //백그라운드를 누를 시 키보드 내려감
-        
         .navigationBarBackButtonHidden(true)
     }
     
