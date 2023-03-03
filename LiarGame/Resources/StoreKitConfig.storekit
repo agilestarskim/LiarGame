@@ -1,0 +1,45 @@
+{
+  "identifier" : "54D93FA4",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6445979561",
+      "localizations" : [
+        {
+          "description" : "Make your own keywords used in the game.",
+          "displayName" : "Make your own keywords",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "게임에 사용되는 키워드를 직접 만들어보세요.",
+          "displayName" : "나만의 키워드 만들기",
+          "locale" : "ko"
+        },
+        {
+          "description" : "ゲームに使用されるキーワードを直接追加してみてください。",
+          "displayName" : "新しいキーワードを追加する。",
+          "locale" : "ja"
+        }
+      ],
+      "productID" : "item01",
+      "referenceName" : "나만의 키워드 만들기",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "1633041947",
+    "_developerTeamID" : "G3RC7ALRKZ",
+    "_lastSynchronizedDate" : 699458013.06624901
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

@@ -23,7 +23,6 @@ struct SystemView: View {
     }
     var body: some View {
         List {
-            
             Section {
                 Button {
                     save()

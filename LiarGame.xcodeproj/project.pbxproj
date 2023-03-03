@@ -19,6 +19,8 @@
 		1F03F7452979300800D58A2C /* trumpet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F7442979300800D58A2C /* trumpet.mp3 */; };
 		1F03F74729794E2E00D58A2C /* laugh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1F03F74629794E2E00D58A2C /* laugh.mp3 */; };
 		1F099A4B29B09BC900071622 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F099A4D29B09BC900071622 /* InfoPlist.strings */; };
+		1F099A5329B0E64100071622 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F099A5229B0E64100071622 /* SaveButton.swift */; };
+		1F099A5529B0E7A900071622 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F099A5429B0E7A900071622 /* Store.swift */; };
 		1F2000F129ADBE920036644D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2000F029ADBE920036644D /* CardView.swift */; };
 		1F2000F429ADCF560036644D /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2000F329ADCF560036644D /* TimerView.swift */; };
 		1F2000F629ADE0F80036644D /* Game+Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2000F529ADE0F80036644D /* Game+Keyword.swift */; };
@@ -69,6 +71,9 @@
 		1F099A4C29B09BC900071622 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1F099A4E29B09BD000071622 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1F099A4F29B09BD100071622 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1F099A5129B0E1D800071622 /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
+		1F099A5229B0E64100071622 /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
+		1F099A5429B0E7A900071622 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		1F2000F029ADBE920036644D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		1F2000F329ADCF560036644D /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		1F2000F529ADE0F80036644D /* Game+Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+Keyword.swift"; sourceTree = "<group>"; };
@@ -266,6 +271,7 @@
 				1FD42B7829A3A239000336F5 /* Game+User.swift */,
 				1F6BCEB929AF7E250087943F /* Game+Setting.swift */,
 				1F2000F529ADE0F80036644D /* Game+Keyword.swift */,
+				1F099A5429B0E7A900071622 /* Store.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -291,10 +297,11 @@
 			isa = PBXGroup;
 			children = (
 				1F2993E4286D9FB200A044F7 /* SettingView.swift */,
+				1FABC3A929AC6B940012C565 /* RuleBookView.swift */,
 				1FD42B6F29A3842F000336F5 /* KeywordSettingView.swift */,
 				1FD2E51F29A5244200F473FA /* SystemView.swift */,
 				1FD42B7C29A3BEA4000336F5 /* CustomView.swift */,
-				1FABC3A929AC6B940012C565 /* RuleBookView.swift */,
+				1F099A5229B0E64100071622 /* SaveButton.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -326,6 +333,7 @@
 				1F099A5029B09BF500071622 /* Localization */,
 				1F4BAB18297173BD007CCF6A /* Lotties */,
 				1F03F735297900A500D58A2C /* SoundEffect */,
+				1F099A5129B0E1D800071622 /* StoreKitConfig.storekit */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -449,8 +457,10 @@
 				1F68567B2873093D002AA0D4 /* LottieView.swift in Sources */,
 				1F03F7342978158D00D58A2C /* HalfSheet.swift in Sources */,
 				1F68568628731697002AA0D4 /* LastChanceView.swift in Sources */,
+				1F099A5529B0E7A900071622 /* Store.swift in Sources */,
 				1F27E04429A65A440003EBB8 /* Toast.swift in Sources */,
 				1F03F73B2979010F00D58A2C /* SoundManager.swift in Sources */,
+				1F099A5329B0E64100071622 /* SaveButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

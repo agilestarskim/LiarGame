@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomView: View {
     @EnvironmentObject var game: Game
+    @EnvironmentObject var store: Store
     @Environment(\.dismiss) private var dismiss
     @State private var showingBackAlert = false
     @State private var showingRemoveAlert = false
@@ -29,9 +30,9 @@ struct CustomView: View {
     var body: some View {
         List {
             Section {
-                Button {
+                SaveButton {
                     save()
-                } label: {
+                } content: {
                     Text("Save".localized)
                         .foregroundColor(checkAll ? Color.gray : Color.white)
                         .bold()
@@ -39,6 +40,7 @@ struct CustomView: View {
                 }
                 .listRowBackground(checkAll ? Color.white : Color.accentColor)
                 .disabled(checkAll)
+                
             } footer: {
                 if checkEdit {
                     Text("There is no modified content.".localized)
