@@ -9,8 +9,6 @@ import Foundation
 import StoreKit
 
 typealias Transaction = StoreKit.Transaction
-typealias RenewalInfo = StoreKit.Product.SubscriptionInfo.RenewalInfo
-typealias RenewalState = StoreKit.Product.SubscriptionInfo.RenewalState
 
 public enum StoreError: Error {
     case failedVerification
@@ -23,6 +21,14 @@ class Store: ObservableObject {
     
     init() {
         updateListenerTask = listenForTransactions()
+        Task {
+            do {
+                guard let product = try await Product.products(for: ["item01"]).first else { return }
+                await updateCustomerProductStatus(product: product)
+            } catch {
+                print("Cannot load products")
+            }
+        }
     }
     
     deinit {
