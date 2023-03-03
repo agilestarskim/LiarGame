@@ -58,8 +58,7 @@ extension Game {
             case "ko":
                 self.subject = self.systemSubjects.first ?? "직업"
             case "ja":
-                //TODO: 일본어 설정
-                self.subject = self.systemSubjects.first ?? "직업"
+                self.subject = self.systemSubjects.first ?? "品物"
             default:
                 self.subject = self.systemSubjects.first ?? "직업"
             }            
@@ -67,7 +66,7 @@ extension Game {
     }
     
     //정답 설정
-    //TODO: randomElement가 nil일 때 어떻게 조치할 것인가?
+    //randomElement가 nil일 때 app crash
     private func shuffleAnswer() {
         //이전과 똑같은 문제 나오는 것 방지
         let newAnswer = wholeKeywords[self.subject, default: []].filter { $0 != self.answer}.randomElement()!

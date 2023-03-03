@@ -31,24 +31,24 @@ class Store: ObservableObject {
     
     func listenForTransactions() -> Task<Void, Error> {
         return Task.detached {
-            //Iterate through any transactions that don't come from a direct call to `purchase()`.
+            //purchase()로 직접 호출하지 않는 트랜잭션을 반복한다.
             for await result in Transaction.updates {
                 do {
                     let transaction = try self.checkVerified(result)
 
-                    //Deliver products to the user.
+                    //구입여부를 set한다.
                     Task {
                         do {
                             guard let product = try await Product.products(for: ["item01"]).first else { return }
                             await self.updateCustomerProductStatus(product: product)
                         } catch {
-                            
+                            print("Cannot load products")
                         }
                     }
-                    //Always finish a transaction.
+                    //트랜잭션은 항상 종료된다.
                     await transaction.finish()
                 } catch {
-                    //StoreKit has a transaction that fails verification. Don't deliver content to the user.
+                    //트랜잭션 검증 실패. 사용자에게 콘텐츠를 전달하지 마십시오.
                     print("Transaction failed verification")
                 }
             }
@@ -80,8 +80,7 @@ class Store: ObservableObject {
         }
     }
     
-    func purchase() async throws -> Transaction?  {
-        
+    func purchase() async throws -> Transaction?  {        
             do {
                 guard let product = try await Product.products(for: ["item01"]).first else { return nil }
                 let result = try await product.purchase()

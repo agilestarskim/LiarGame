@@ -10,6 +10,7 @@ import SwiftUI
 
 struct KeywordSettingView: View {
     @EnvironmentObject var game: Game
+    @EnvironmentObject var store: Store
     @State private var showingResetAlert = false
     @State private var showingConfirmToast = false
     
@@ -47,8 +48,10 @@ struct KeywordSettingView: View {
         }
         .navigationTitle("Make your own keyword".localized)
         .toolbar {
-            Button("Reset".localized) {
-                showingResetAlert = true
+            if store.isPurchased {
+                Button("Reset".localized) {
+                    showingResetAlert = true
+                }
             }
         }
         .confirmationDialog("Reset keywords".localized, isPresented: $showingResetAlert) {
@@ -63,7 +66,7 @@ struct KeywordSettingView: View {
             }
             Button("Cancel".localized, role: .cancel){}
         }
-        .toast(message: "It has been reset.", isShowing: $showingConfirmToast, config: .init())
+        .toast(message: "It has been reset.".localized, isShowing: $showingConfirmToast, config: .init())
     }
     
     func reset(for resetMode: Game.SetMode) {
@@ -75,7 +78,6 @@ struct KeywordSettingView: View {
         case .all:
             game.reset(for: .all)
         }
-//        game.keyword = Keyword()
         showingConfirmToast = true
     }
 }

@@ -50,8 +50,7 @@ struct CardView: View {
             case .name:
                 Text("-\(user.name)-")
             case .number:
-                HStack{
-                    //TODO: 번호에 bold처리
+                HStack{                    
                     Text("Your Number is %d".localized(with: game.findUserIndex(of: user) + 1))
                 }
 

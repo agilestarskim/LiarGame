@@ -57,7 +57,10 @@ struct CustomView: View {
                 } else if checkEmptyTitle {
                     Text("Please enter the title.".localized)
                         .foregroundColor(.red)
+                } else if !store.isPurchased {
+                    Text("Once purchased, unlimited use is available".localized)
                 }
+                
             }
             Section {
                 TextField("Enter the title. ex)sports".localized, text: $title)
@@ -65,7 +68,6 @@ struct CustomView: View {
             
             Section {
                 ForEach(keywords.indices, id: \.self) { index in
-                    //TODO: 백그라운드 터치 시 키보드 내려가기, return 키 누를 때 키보드 up&down 하는 것 막기
                     TextField("Please enter the keyword".localized, text: $keywords[index])
                         .autocorrectionDisabled(true)
                         .focused($focusedReminder, equals: index)

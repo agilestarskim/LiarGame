@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SystemView: View {
     @EnvironmentObject var game: Game
+    @EnvironmentObject var store: Store
     @Environment(\.dismiss) private var dismiss
     let title: String
     @State var originalKeywords: [String]
@@ -24,9 +25,9 @@ struct SystemView: View {
     var body: some View {
         List {
             Section {
-                Button {
+                SaveButton {
                     save()
-                } label: {
+                } content: {
                     Text("Save".localized)
                         .foregroundColor(checkAll ? Color.gray : Color.white)
                         .bold()
@@ -44,6 +45,8 @@ struct SystemView: View {
                 } else if checkDuplicate {
                     Text("Duplicate keywords exist. Please change or delete them.".localized)
                         .foregroundColor(.red)
+                } else if !store.isPurchased {
+                    Text("Once purchased, unlimited use is available".localized)
                 }
             }
             
