@@ -13,31 +13,33 @@ struct ResultView: View {
     @State private var showingRollTable = false
     let navigator: LinkNavigatorType
     var body: some View {
-        VStack{
-            Spacer()
-            //시민이 스파이모드에서 스파이를 선택해서 스파이를 맞춤            
-            if (game.selectedSpy != nil && game.selectedSpy == game.getSpyIndex) {
-                citizenWinningView
+        ScrollView {
+            VStack{
+                Spacer()
+                //시민이 스파이모드에서 스파이를 선택해서 스파이를 맞춤
+                if (game.selectedSpy != nil && game.selectedSpy == game.getSpyIndex) {
+                    citizenWinningView
+                }
+                //시민이 스파이를 선택하고 틀리거나 라이어를 선택하고 틀림
+                else if (game.selectedSpy != nil && game.selectedSpy != game.getSpyIndex) || (game.selectedLiars != [] && game.selectedLiars != game.getLiarsIndexes) {
+                    //라이어 스파이 승리
+                    liarWinningView
+                }
+                //마지막 찬스에서 라이어가 정답을 맞춤
+                else if game.selectedCandidate == game.answer {
+                    //라이어 승리
+                    lastChanceSuccess
+                }
+                //마지막 찬스에서 라이어가 정답을 맞추지 못함
+                else if game.selectedCandidate != "" && game.selectedCandidate != game.answer {
+                    //시민 승리
+                    lastChanceFailure
+                }
+                Spacer()
+                showingRollTableButton
+                restartButton
+                
             }
-            //시민이 스파이를 선택하고 틀리거나 라이어를 선택하고 틀림
-            else if (game.selectedSpy != nil && game.selectedSpy != game.getSpyIndex) || (game.selectedLiars != [] && game.selectedLiars != game.getLiarsIndexes) {
-                //라이어 스파이 승리
-                liarWinningView
-            }
-            //마지막 찬스에서 라이어가 정답을 맞춤
-            else if game.selectedCandidate == game.answer {
-                //라이어 승리
-                lastChanceSuccess
-            }
-            //마지막 찬스에서 라이어가 정답을 맞추지 못함
-            else if game.selectedCandidate != "" && game.selectedCandidate != game.answer {
-                //시민 승리
-                lastChanceFailure
-            }
-            Spacer()
-            showingRollTableButton
-            restartButton
-            
         }
         .navigationBarHidden(true)
     }
