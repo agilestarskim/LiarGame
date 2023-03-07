@@ -16,6 +16,7 @@ struct SystemView: View {
     @State var keywords: [String]
     @State private var showingBackAlert = false
     @State private var showingResetAlert = false
+    @State private var showingRestoreAlert = false
     
     init(title: String, keywords: [String]) {
         self.title = title
@@ -75,7 +76,20 @@ struct SystemView: View {
             } footer: {
                 Text("You can delete the word by pushing it to the left.".localized)
             }
+            
+            Section {
+                Button("구매 복원") {
+                    Task {
+                        await store.updateCustomerProductStatus()
+                        self.showingRestoreAlert = true
+                    }
+                }
+                
+            } header: {
+                Text("이미 구매하신 이력이 있나요?")
+            }
         }
+        .toast(message: "구매 복원 완료", isShowing: $showingRestoreAlert, config: .init())
         .navigationTitle("Edit mode".localized)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

@@ -11,7 +11,7 @@ struct SaveButton<Content>: View where Content: View {
     @EnvironmentObject var store: Store
     let save: () -> Void
     @ViewBuilder let content: Content
-    @State private var showErrorMessage = false
+    @State private var showingErrorMessage = false
     var body: some View {
         Button {
             if store.isPurchased {
@@ -24,7 +24,7 @@ struct SaveButton<Content>: View where Content: View {
         } label: {
             content
         }
-        .toast(message: "Error", isShowing: $showErrorMessage, config: .init())
+        .toast(message: "Error", isShowing: $showingErrorMessage, config: .init())
     }
     
     @MainActor
@@ -34,10 +34,10 @@ struct SaveButton<Content>: View where Content: View {
                 save()
             }
         } catch StoreError.failedVerification {
-            showErrorMessage = true
+            showingErrorMessage = true
             print("failedVerification")
         } catch {
-            showErrorMessage = true
+            showingErrorMessage = true
             print("error")
         }
     }

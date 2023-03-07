@@ -22,12 +22,7 @@ class Store: ObservableObject {
     init() {
         updateListenerTask = listenForTransactions()
         Task {
-            do {
-                guard let product = try await Product.products(for: ["item01"]).first else { return }
-                await updateCustomerProductStatus(product: product)
-            } catch {
-                print("Cannot load products")
-            }
+            await updateCustomerProductStatus()
         }
     }
     
@@ -44,12 +39,7 @@ class Store: ObservableObject {
 
                     //구입여부를 set한다.
                     Task {
-                        do {
-                            guard let product = try await Product.products(for: ["item01"]).first else { return }
-                            await self.updateCustomerProductStatus(product: product)
-                        } catch {
-                            print("Cannot load products")
-                        }
+                        await self.updateCustomerProductStatus()
                     }
                     //트랜잭션은 항상 종료된다.
                     await transaction.finish()
@@ -74,14 +64,20 @@ class Store: ObservableObject {
     }
     
     @MainActor
-    func updateCustomerProductStatus(product: Product) async {
+    func updateCustomerProductStatus() async {
         Task {
-            guard let state = await product.currentEntitlement else { return }
-            switch state {
-            case .verified(_):
-                self.isPurchased = true
-            case .unverified(_, _):
-                self.isPurchased = false
+            do {
+                guard let product = try await Product.products(for: ["item01"]).first else { return }
+                guard let state = await product.currentEntitlement else { return }
+                switch state {
+                case .verified(_):
+                    self.isPurchased = true
+                case .unverified(_, _):
+                    self.isPurchased = false
+                }
+            } catch {
+                print("cannot load item")
+                return
             }
         }
     }
@@ -97,7 +93,7 @@ class Store: ObservableObject {
                     let transaction = try checkVerified(verification)
 
                     //The transaction is verified. Deliver content to the user.
-                    await updateCustomerProductStatus(product: product)
+                    await updateCustomerProductStatus()
 
                     //Always finish a transaction.
                     await transaction.finish()

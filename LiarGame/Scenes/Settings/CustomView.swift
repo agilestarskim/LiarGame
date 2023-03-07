@@ -13,6 +13,7 @@ struct CustomView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showingBackAlert = false
     @State private var showingRemoveAlert = false
+    @State private var showingRestoreAlert = false
     @State var title: String
     @State private var originalTitle: String
     @State var keywords: [String]
@@ -28,7 +29,7 @@ struct CustomView: View {
     }
     
     var body: some View {
-        List {
+        List {            
             Section {
                 SaveButton {
                     save()
@@ -60,8 +61,8 @@ struct CustomView: View {
                 } else if !store.isPurchased {
                     Text("Once purchased, unlimited use is available".localized)
                 }
-                
             }
+            
             Section {
                 TextField("Enter the title. ex)sports".localized, text: $title)
             }
@@ -97,7 +98,19 @@ struct CustomView: View {
                 Text("You can delete the word by pushing it to the left.".localized)
             }
             
+            Section {
+                Button("구매 복원") {
+                    Task {
+                        await store.updateCustomerProductStatus()
+                        self.showingRestoreAlert = true
+                    }
+                }
+            } header: {
+                Text("이미 구매하신 이력이 있나요?")
+            }
+            
         }
+        .toast(message: "구매 복원 완료", isShowing: $showingRestoreAlert, config: .init())
         .navigationTitle("Edit mode".localized)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
