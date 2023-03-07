@@ -41,6 +41,11 @@
 "Please enter the title." = "Please enter the title.";
 "Delete" = "Delete";
 "Would you like to Delete?" = "Would you like to Delete?";
+
+"Restore Purchases" = "Restore Purchases";
+"Did you buy it before?" = "Did you buy it before?";
+"Purchase Restore Completed" = "Purchase Restore Completed";
+
 "You are LIAR" = "You are LIAR";
 "You are SPY" = "You are SPY";
 "Please remember the number." = "Please remember the number.";

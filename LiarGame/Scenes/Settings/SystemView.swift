@@ -78,7 +78,7 @@ struct SystemView: View {
             }
             
             Section {
-                Button("구매 복원") {
+                Button("Restore Purchases".localized) {
                     Task {
                         await store.updateCustomerProductStatus()
                         self.showingRestoreAlert = true
@@ -86,10 +86,10 @@ struct SystemView: View {
                 }
                 
             } header: {
-                Text("이미 구매하신 이력이 있나요?")
+                Text("Did you buy it before?".localized)
             }
         }
-        .toast(message: "구매 복원 완료", isShowing: $showingRestoreAlert, config: .init())
+        .toast(message: "Purchase Restore Completed".localized, isShowing: $showingRestoreAlert, config: .init())
         .navigationTitle("Edit mode".localized)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

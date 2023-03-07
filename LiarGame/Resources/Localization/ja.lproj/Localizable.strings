@@ -40,6 +40,11 @@
 "Please enter the title." = "タイトルを入力してください。";
 "Delete" = "消す";
 "Would you like to Delete?" = "削除しますか?";
+
+"Restore Purchases" = "購買復元";
+"Did you buy it before?" = "前に買ったんですか？";
+"Purchase Restore Completed" = "購入復元完了";
+
 "You are LIAR" = "あなたはライアーです。";
 "You are SPY" = "あなたはスパイです。";
 "Please remember the number." = "番号を覚えておいてください。";
