@@ -26,9 +26,9 @@ struct SystemView: View {
     var body: some View {
         List {
             Section {
-                SaveButton {
+                Button {
                     save()
-                } content: {
+                } label: {
                     Text("Save".localized)
                         .foregroundColor(checkAll ? Color.gray : Color.white)
                         .bold()
@@ -46,8 +46,6 @@ struct SystemView: View {
                 } else if checkDuplicate {
                     Text("Duplicate keywords exist. Please change or delete them.".localized)
                         .foregroundColor(.red)
-                } else if !store.isPurchased {
-                    Text("Once purchased, unlimited use is available".localized)
                 }
             }
             
@@ -75,18 +73,6 @@ struct SystemView: View {
                 Text("You can modify, add, and delete words.".localized)
             } footer: {
                 Text("You can delete the word by pushing it to the left.".localized)
-            }
-            
-            Section {
-                Button("Restore Purchases".localized) {
-                    Task {
-                        await store.updateCustomerProductStatus()
-                        self.showingRestoreAlert = true
-                    }
-                }
-                
-            } header: {
-                Text("Did you buy it before?".localized)
             }
         }
         .toast(message: "Purchase Restore Completed".localized, isShowing: $showingRestoreAlert, config: .init())

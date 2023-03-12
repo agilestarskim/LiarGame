@@ -29,7 +29,13 @@ struct RuleBookView: View {
                         
                     Text("Rule Description2".localized)
                     Text("Tip 2".localized).bold()
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .background(Color(uiColor: .tertiarySystemGroupedBackground))
+                        .cornerRadius(5)
+                        
                 }
+                
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Image("rule3")
@@ -38,6 +44,10 @@ struct RuleBookView: View {
                         
                     Text("Rule Description3".localized)
                     Text("Tip 3".localized).bold()
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .background(Color(uiColor: .tertiarySystemGroupedBackground))
+                        .cornerRadius(5)
                 }
                 
                 VStack(alignment: .leading, spacing: 10) {
@@ -47,6 +57,10 @@ struct RuleBookView: View {
                         
                     Text("Rule Description4".localized)
                     Text("Tip 4".localized).bold()
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .background(Color(uiColor: .tertiarySystemGroupedBackground))
+                        .cornerRadius(5)
                 }
             }
             .padding()

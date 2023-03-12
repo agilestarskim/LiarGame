@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SettingView: View {
     @EnvironmentObject private var game: Game
+    @EnvironmentObject private var store: Store
     @FocusState private var isFocused: Bool
     @State private var showingRuleBook = false
     
@@ -26,8 +27,12 @@ struct SettingView: View {
                     }
                 }
                 
-                NavigationLink {
-                    KeywordSettingView()
+                Button {
+                    if store.isPurchased {
+                        navigator.next(paths: ["keyword"], items: [:], isAnimated: true)
+                    } else {
+                        navigator.next(paths: ["purchase"], items: [:], isAnimated: true)
+                    }
                 } label: {
                     HStack {
                         Text("new")
@@ -38,9 +43,14 @@ struct SettingView: View {
                             .cornerRadius(5)
                         Spacer()
                         Text("Make your own keyword".localized)
+                            .foregroundColor(.black)
                             .bold()
+                        Image(systemName: "chevron.forward")
+                            .foregroundColor(.gray)
                     }
                 }
+                
+                
             }
             
             Section {

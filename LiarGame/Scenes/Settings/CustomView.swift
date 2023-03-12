@@ -31,9 +31,9 @@ struct CustomView: View {
     var body: some View {
         List {            
             Section {
-                SaveButton {
+                Button {
                     save()
-                } content: {
+                } label: {
                     Text("Save".localized)
                         .foregroundColor(checkAll ? Color.gray : Color.white)
                         .bold()
@@ -58,8 +58,6 @@ struct CustomView: View {
                 } else if checkEmptyTitle {
                     Text("Please enter the title.".localized)
                         .foregroundColor(.red)
-                } else if !store.isPurchased {
-                    Text("Once purchased, unlimited use is available".localized)
                 }
             }
             
@@ -97,20 +95,8 @@ struct CustomView: View {
             } footer: {
                 Text("You can delete the word by pushing it to the left.".localized)
             }
-            
-            Section {
-                Button("Restore Purchases".localized) {
-                    Task {
-                        await store.updateCustomerProductStatus()
-                        self.showingRestoreAlert = true
-                    }
-                }
-            } header: {
-                Text("Did you buy it before?".localized)
-            }
-            
         }
-        .toast(message: "Purchase Restore Completed".localized, isShowing: $showingRestoreAlert, config: .init())
+        
         .navigationTitle("Edit mode".localized)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

@@ -42,9 +42,9 @@
 "Delete" = "Delete";
 "Would you like to Delete?" = "Would you like to Delete?";
 
+"Continue" = "Continue";
 "Restore Purchases" = "Restore Purchases";
 "Did you buy it before?" = "Did you buy it before?";
-"Purchase Restore Completed" = "Purchase Restore Completed";
 
 "You are LIAR" = "You are LIAR";
 "You are SPY" = "You are SPY";
@@ -101,8 +101,8 @@
 "How to play" = "How to play";
 "Rule Description1" = "You need one phone with the app installed and three or more people to play the game.";
 "Rule Description2" = "Please adjust the options according to your preference on the setting screen. Options are limited by the number of people. If the constraints are not met, the game cannot be started.";
-"Tip 2" = "✨Make funny words by <making your own keywords>✨";
+"Tip 2" = "Make funny words by <making your own keywords>";
 "Rule Description3" = "When you start the game, check your keywords in order. Never show it to the person next to you.";
-"Tip 3" = "✨Even if you become a liar, don't be nervous and keep a poker face.✨";
+"Tip 3" = "Even if you become a liar, don't be nervous and keep a poker face.";
 "Rule Description4" = "After everyone has checked the keyword, start searching for the liar. Take turns saying the words related to the keywords. If you say the wrong word, you are suspected of being a liar. For a given time, the liar deduces the correct answer from the given information. Vote to find the liar at the end of the given time.";
-"Tip 4" = "✨Be careful because if you say a clear word, the liar may notice it. If you tell a lie, you are suspected of being a liar.✨";
+"Tip 4" = "Be careful because if you say a clear word, the liar may notice it. If you tell a lie, you are suspected of being a liar.";

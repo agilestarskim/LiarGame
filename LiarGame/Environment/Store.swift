@@ -16,13 +16,21 @@ public enum StoreError: Error {
 
 class Store: ObservableObject {
     @Published private(set) var isPurchased: Bool = false
-    
+    private var product: Product?
+    var price: String {
+        self.product?.displayPrice ?? "US$0.99"
+    }
     var updateListenerTask: Task<Void, Error>? = nil
     
     init() {
         updateListenerTask = listenForTransactions()
         Task {
-            await updateCustomerProductStatus()
+            do {
+                self.product = try await Product.products(for: ["item01"]).first
+                await updateCustomerProductStatus()
+            } catch {
+                
+            }            
         }
     }
     
@@ -66,47 +74,35 @@ class Store: ObservableObject {
     @MainActor
     func updateCustomerProductStatus() async {
         Task {
-            do {
-                guard let product = try await Product.products(for: ["item01"]).first else { return }
-                guard let state = await product.currentEntitlement else { return }
-                switch state {
-                case .verified(_):
-                    self.isPurchased = true
-                case .unverified(_, _):
-                    self.isPurchased = false
-                }
-            } catch {
-                print("cannot load item")
-                return
+            guard let state = await product?.currentEntitlement else { return }
+            switch state {
+            case .verified(_):
+                self.isPurchased = true
+            case .unverified(_, _):
+                self.isPurchased = false
             }
         }
     }
     
-    func purchase() async throws -> Transaction?  {        
-            do {
-                guard let product = try await Product.products(for: ["item01"]).first else { return nil }
-                let result = try await product.purchase()
-                switch result {
-                case .success(let verification):
-                    //Check whether the transaction is verified. If it isn't,
-                    //this function rethrows the verification error.
-                    let transaction = try checkVerified(verification)
+    func purchase() async throws -> Transaction? {
+        let result = try await self.product?.purchase()
+        switch result {
+        case .success(let verification):
+            //Check whether the transaction is verified. If it isn't,
+            //this function rethrows the verification error.
+            let transaction = try checkVerified(verification)
 
-                    //The transaction is verified. Deliver content to the user.
-                    await updateCustomerProductStatus()
+            //The transaction is verified. Deliver content to the user.
+            await updateCustomerProductStatus()
 
-                    //Always finish a transaction.
-                    await transaction.finish()
+            //Always finish a transaction.
+            await transaction.finish()
 
-                    return transaction
-                case .userCancelled, .pending:
-                    return nil
-                default:
-                    return nil
-                }
-            } catch {
-                return nil
-            }
+            return transaction
+        case .userCancelled, .pending:
+            return nil
+        default:
+            return nil
         }
-    
+    }
 }

@@ -13,6 +13,7 @@ struct KeywordSettingView: View {
     @EnvironmentObject var store: Store
     @State private var showingResetAlert = false
     @State private var showingConfirmToast = false
+    let navigator: LinkNavigatorType
     
     var body: some View {
         List {
@@ -82,9 +83,22 @@ struct KeywordSettingView: View {
     }
 }
 
+struct KeywordSettingRouteBuilder: RouteBuilder {
+  var matchPath: String { "keyword" }
+
+  var build: (LinkNavigatorType, [String: String], DependencyType) -> MatchingViewController? {
+    { navigator, items, dependency in
+      return WrappingController(matchPath: matchPath) {
+          KeywordSettingView(navigator: navigator)
+      }
+    }
+  }
+}
+
 struct KeywordSettingView_Previews: PreviewProvider {
     static var previews: some View {
-        KeywordSettingView()
+        KeywordSettingView(navigator: LinkNavigator(dependency: AppDependency(), builders: []))
             .environmentObject(Game())
+            .environmentObject(Store())
     }
 }
