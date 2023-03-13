@@ -106,3 +106,10 @@
 "Tip 3" = "Even if you become a liar, don't be nervous and keep a poker face.";
 "Rule Description4" = "After everyone has checked the keyword, start searching for the liar. Take turns saying the words related to the keywords. If you say the wrong word, you are suspected of being a liar. For a given time, the liar deduces the correct answer from the given information. Vote to find the liar at the end of the given time.";
 "Tip 4" = "Be careful because if you say a clear word, the liar may notice it. If you tell a lie, you are suspected of being a liar.";
+
+//purchase
+"purchase1" = "Press the Continue button at the bottom to make the payment and go to the edit screen.
+(Unlimited use for one purchase)";
+"purchase2" = "Enter the desired title and keyword and press the Save button to save.";
+"purchase3" = "Go back to the first screen of the app and click Categories to select the keyword you just created.";
+"purchase4" = "Play the game with keywords you made!";

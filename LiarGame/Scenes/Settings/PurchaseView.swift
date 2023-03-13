@@ -15,21 +15,60 @@ struct PurchaseView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                Text("Make your own keyword".localized)
-                    .font(.largeTitle.bold())
-                
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack{
-                        Color.black
-                            .frame(width: 300, height: 500)
-                            .cornerRadius(10)
-                        Color.black
-                            .frame(width: 300, height: 500)
-                            .cornerRadius(10)
-                        Color.black
-                            .frame(width: 300, height: 500)
-                            .cornerRadius(10)
+                    HStack( alignment: .top, spacing: 20){
+                        VStack {
+                            Image("purchase1")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 230)
+                                .cornerRadius(10)
+                                .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+                            
+                            Text("purchase1".localized)
+                                .font(.caption)
+                                .frame(width: 230, alignment: .leading)
+                        }
+                        
+                        VStack {
+                            Image("purchase2")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 230)
+                                .cornerRadius(10)
+                                .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+                            
+                            Text("purchase2".localized)
+                                .font(.caption)
+                                .frame(width: 230, alignment: .leading)
+                        }
+                        VStack {
+                            Image("purchase3")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 230)
+                                .cornerRadius(10)
+                                .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+                            
+                            Text("purchase3".localized)
+                                .font(.caption)
+                                .frame(width: 230, alignment: .leading)
+                        }
+                        VStack {
+                            Image("purchase4")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 230)
+                                .cornerRadius(10)
+                                .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+                            
+                            Text("purchase4".localized)
+                                .font(.caption)
+                                .frame(width: 230, alignment: .leading)
+                        }
                     }
+                    .padding()
+                    
                     
                 }
                 .padding()
@@ -66,6 +105,7 @@ struct PurchaseView: View {
                 }
             }
         }
+        .navigationTitle("Make your own keyword".localized)
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
         .toolbar {
