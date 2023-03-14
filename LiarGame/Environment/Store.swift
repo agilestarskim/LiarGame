@@ -16,6 +16,7 @@ public enum StoreError: Error {
 
 class Store: ObservableObject {
     @Published private(set) var isPurchased: Bool = false
+    @Published private(set) var showingIndicator: Bool = false
     private var product: Product?
     var price: String {
         self.product?.displayPrice ?? "US$0.99"
@@ -84,8 +85,11 @@ class Store: ObservableObject {
         }
     }
     
+    @MainActor
     func purchase() async throws -> Transaction? {
+        self.showingIndicator = true
         let result = try await self.product?.purchase()
+        self.showingIndicator = false
         switch result {
         case .success(let verification):
             //Check whether the transaction is verified. If it isn't,

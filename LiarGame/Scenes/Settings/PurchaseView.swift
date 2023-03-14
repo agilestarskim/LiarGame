@@ -14,93 +14,102 @@ struct PurchaseView: View {
     let navigator: LinkNavigatorType
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack( alignment: .top, spacing: 20){
-                        VStack {
-                            Image("purchase1")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 230)
-                                .cornerRadius(10)
-                                .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+            ZStack {
+                VStack {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack( alignment: .top, spacing: 20){
+                            VStack {
+                                Image("purchase1")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 230)
+                                    .cornerRadius(10)
+                                    .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+                                
+                                Text("purchase1".localized)
+                                    .font(.caption)
+                                    .frame(width: 230, alignment: .leading)
+                            }
                             
-                            Text("purchase1".localized)
-                                .font(.caption)
-                                .frame(width: 230, alignment: .leading)
-                        }
-                        
-                        VStack {
-                            Image("purchase2")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 230)
-                                .cornerRadius(10)
-                                .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
-                            
-                            Text("purchase2".localized)
-                                .font(.caption)
-                                .frame(width: 230, alignment: .leading)
-                        }
-                        VStack {
-                            Image("purchase3")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 230)
-                                .cornerRadius(10)
-                                .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
-                            
-                            Text("purchase3".localized)
-                                .font(.caption)
-                                .frame(width: 230, alignment: .leading)
-                        }
-                        VStack {
-                            Image("purchase4")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 230)
-                                .cornerRadius(10)
-                                .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
-                            
-                            Text("purchase4".localized)
-                                .font(.caption)
-                                .frame(width: 230, alignment: .leading)
-                        }
-                    }
-                    .padding()
-                    
-                    
-                }
-                .padding()
-                Button {
-                    Task {
-                        await purchase()
-                    }
-                } label: {
-                    HStack(alignment: .firstTextBaseline) {
-                        Text("Continue".localized)
-                            .font(.largeTitle.bold())
-                        Text(store.price)
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding()                        
-                }
-                
-                
-                HStack {
-                    Text("Did you buy it before?".localized)
-                    Button("Restore Purchases".localized) {
-                        Task {
-                            await store.updateCustomerProductStatus()
-                            if store.isPurchased {
-                                navigator.next(paths: ["keyword"], items: [:], isAnimated: true)
-                                navigator.remove(paths: ["purchase"])
+                            VStack {
+                                Image("purchase2")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 230)
+                                    .cornerRadius(10)
+                                    .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+                                
+                                Text("purchase2".localized)
+                                    .font(.caption)
+                                    .frame(width: 230, alignment: .leading)
+                            }
+                            VStack {
+                                Image("purchase3")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 230)
+                                    .cornerRadius(10)
+                                    .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+                                
+                                Text("purchase3".localized)
+                                    .font(.caption)
+                                    .frame(width: 230, alignment: .leading)
+                            }
+                            VStack {
+                                Image("purchase4")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 230)
+                                    .cornerRadius(10)
+                                    .shadow(color: Color(uiColor: .lightGray), radius: 4, x: 2, y: 2)
+                                
+                                Text("purchase4".localized)
+                                    .font(.caption)
+                                    .frame(width: 230, alignment: .leading)
                             }
                         }
+                        .padding()
+                        
+                        
+                    }
+                    .padding()
+                    Button {
+                        Task {
+                            await purchase()
+                        }
+                    } label: {
+                        HStack(alignment: .firstTextBaseline) {
+                            Text("Continue".localized)
+                                .font(.largeTitle.bold())
+                            Text(store.price)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .padding()
+                    }
+                    
+                    
+                    HStack {
+                        Text("Did you buy it before?".localized)
+                        Button("Restore Purchases".localized) {
+                            Task {
+                                await store.updateCustomerProductStatus()
+                                if store.isPurchased {
+                                    navigator.next(paths: ["keyword"], items: [:], isAnimated: true)
+                                    navigator.remove(paths: ["purchase"])
+                                }
+                            }
+                        }
+                    }
+                }
+                if store.showingIndicator {
+                    ZStack{
+                       LottieView(fileName: "Loading")
+                            .frame(width: 300, height: 300)
+                            .offset(x: 0, y: 80)
                     }
                 }
             }
