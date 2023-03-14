@@ -26,6 +26,7 @@ struct SettingView: View {
                         Text(subject)
                     }
                 }
+                .listRowBackground(Glass())
                 
                 Button {
                     if store.isPurchased {
@@ -49,6 +50,7 @@ struct SettingView: View {
                             .foregroundColor(.gray)
                     }
                 }
+                .listRowBackground(Glass())
             }
             
             Section {
@@ -56,7 +58,9 @@ struct SettingView: View {
                     ForEach(GameMode.allCases, id: \.self) { value in
                         Text(value.localizedName)
                     }
-                }.pickerStyle(.segmented)
+                }
+                .pickerStyle(.segmented)
+                .listRowBackground(Glass())
             } footer: {
                 switch game.gameMode {
                 case .normal:
@@ -108,13 +112,14 @@ struct SettingView: View {
                     }
                 }
             }
+            .listRowBackground(Glass())
             
             Section {
                 Stepper("Liars: %d".localized(with: game.numberOfLiars), value: $game.numberOfLiars, in: 1...10)
                 Stepper("Time limit: %d".localized(with: game.time), value: $game.time, in: 1...10)
                 Toggle("Turn on sound effects".localized, isOn: $game.soundEffect)
             }
-            
+            .listRowBackground(Glass())
             Section {
                 Button {
                     game.resetGame()
@@ -138,7 +143,9 @@ struct SettingView: View {
                         .foregroundColor(.red)
                 }
             }
+            .listRowBackground(Glass())
         }
+        .colorfulForm()
         .toolbar {
             Button("How to".localized) {
                 showingRuleBook = true

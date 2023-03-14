@@ -39,6 +39,7 @@
 		1F4BAB392971D62C007CCF6A /* Dance.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4BAB382971D62C007CCF6A /* Dance.json */; };
 		1F4BAB3D2971D827007CCF6A /* Twerking.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4BAB3C2971D827007CCF6A /* Twerking.json */; };
 		1F4DC0EF29C031D50014710A /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F4DC0EE29C031D50014710A /* Loading.json */; };
+		1F4DC10B29C092220014710A /* ColorfulForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4DC10A29C092220014710A /* ColorfulForm.swift */; };
 		1F650EFA29A7828E00F44E77 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F650EFC29A7828E00F44E77 /* Localizable.strings */; };
 		1F650F0329A7883500F44E77 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F650F0229A7883500F44E77 /* String+.swift */; };
 		1F6856792872ED02002AA0D4 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6856782872ED02002AA0D4 /* ResultView.swift */; };
@@ -93,6 +94,7 @@
 		1F4BAB382971D62C007CCF6A /* Dance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dance.json; sourceTree = "<group>"; };
 		1F4BAB3C2971D827007CCF6A /* Twerking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Twerking.json; sourceTree = "<group>"; };
 		1F4DC0EE29C031D50014710A /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Loading.json; path = ../../../../../Desktop/Loading.json; sourceTree = "<group>"; };
+		1F4DC10A29C092220014710A /* ColorfulForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulForm.swift; sourceTree = "<group>"; };
 		1F650EFB29A7828E00F44E77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1F650EFF29A7829900F44E77 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1F650F0029A7829900F44E77 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				1F03F73129780FD200D58A2C /* MyButton.swift */,
 				1F03F7332978158D00D58A2C /* HalfSheet.swift */,
 				1F27E04329A65A440003EBB8 /* Toast.swift */,
+				1F4DC10A29C092220014710A /* ColorfulForm.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				1F03F73229780FD200D58A2C /* MyButton.swift in Sources */,
 				1FD42B7029A3842F000336F5 /* KeywordSettingView.swift in Sources */,
 				1F29940E286F0A5500A044F7 /* ChoiceView.swift in Sources */,
+				1F4DC10B29C092220014710A /* ColorfulForm.swift in Sources */,
 				1F2993D7286D9F5100A044F7 /* LiarGameApp.swift in Sources */,
 				1FD42B7D29A3BEA4000336F5 /* CustomView.swift in Sources */,
 				1F4BAB2F297189C3007CCF6A /* AppDelegate.swift in Sources */,
@@ -614,7 +618,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"LiarGame/Preview Content\"";
 				DEVELOPMENT_TEAM = G3RC7ALRKZ;
 				ENABLE_PREVIEWS = YES;
@@ -631,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = minseong.LiarGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -646,7 +650,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"LiarGame/Preview Content\"";
 				DEVELOPMENT_TEAM = G3RC7ALRKZ;
 				ENABLE_PREVIEWS = YES;
@@ -663,7 +667,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = minseong.LiarGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
