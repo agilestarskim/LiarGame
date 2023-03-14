@@ -15,7 +15,7 @@ struct ResultView: View {
     var body: some View {
         ScrollView {
             VStack{
-                Spacer()
+                Color.clear.frame(height: 30)
                 //시민이 스파이모드에서 스파이를 선택해서 스파이를 맞춤
                 if (game.selectedSpy != nil && game.selectedSpy == game.getSpyIndex) {
                     citizenWinningView
@@ -34,8 +34,7 @@ struct ResultView: View {
                 else if game.selectedCandidate != "" && game.selectedCandidate != game.answer {
                     //시민 승리
                     lastChanceFailure
-                }
-                Spacer()
+                }                
                 showingRollTableButton
                 restartButton
                 
