@@ -13,8 +13,8 @@ struct SettingView: View {
     @EnvironmentObject private var store: Store
     @FocusState private var isFocused: Bool
     @State private var showingRuleBook = false
-    
     let navigator: LinkNavigatorType
+    
     var body: some View {
         Form {
             Section {
@@ -49,8 +49,6 @@ struct SettingView: View {
                             .foregroundColor(.gray)
                     }
                 }
-                
-                
             }
             
             Section {

@@ -17,8 +17,7 @@ struct RuleBookView: View {
                 VStack(alignment: .leading) {
                     Image("rule1")
                         .resizable()
-                        .scaledToFit()
-                        
+                        .scaledToFit()                        
                     Text("Rule Description1".localized)
                 }
                 
@@ -26,8 +25,14 @@ struct RuleBookView: View {
                     Image("rule2")
                         .resizable()
                         .scaledToFit()
-                        
                     Text("Rule Description2".localized)
+                    Text("Tip")
+                        .foregroundColor(.black)
+                        .bold()
+                        .padding(5)
+                        .background(.yellow)
+                        .cornerRadius(5)
+                        .offset(x:0, y: 15)
                     Text("Tip 2".localized).bold()
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -36,13 +41,18 @@ struct RuleBookView: View {
                         
                 }
                 
-                
                 VStack(alignment: .leading, spacing: 10) {
                     Image("rule3")
                         .resizable()
                         .scaledToFit()
-                        
                     Text("Rule Description3".localized)
+                    Text("Tip")
+                        .foregroundColor(.black)
+                        .bold()
+                        .padding(5)
+                        .background(.orange)
+                        .cornerRadius(5)
+                        .offset(x:0, y: 15)
                     Text("Tip 3".localized).bold()
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -54,8 +64,14 @@ struct RuleBookView: View {
                     Image("rule4")
                         .resizable()
                         .scaledToFit()
-                        
                     Text("Rule Description4".localized)
+                    Text("Tip")
+                        .foregroundColor(.black)
+                        .bold()
+                        .padding(5)
+                        .background(.pink)
+                        .cornerRadius(5)
+                        .offset(x:0, y: 15)
                     Text("Tip 4".localized).bold()
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
