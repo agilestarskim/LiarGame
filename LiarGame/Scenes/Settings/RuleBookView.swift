@@ -65,6 +65,21 @@ struct RuleBookView: View {
                         .resizable()
                         .scaledToFit()
                     Text("Rule Description4".localized)
+                    
+                    Text("Example")
+                        .foregroundColor(.white)
+                        .bold()
+                        .padding(5)
+                        .background(.indigo)
+                        .cornerRadius(5)
+                        .offset(x:0, y: 15)
+                    
+                    Text("Rule Example".localized)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .background(Color(uiColor: .tertiarySystemGroupedBackground))
+                        .cornerRadius(5)
+                    
                     Text("Tip")
                         .foregroundColor(.black)
                         .bold()

@@ -104,7 +104,15 @@
 "Tip 2" = "Make funny words by <making your own keywords>";
 "Rule Description3" = "When you start the game, check your keywords in order. Never show it to the person next to you.";
 "Tip 3" = "Even if you become a liar, don't be nervous and keep a poker face.";
-"Rule Description4" = "After everyone has checked the keyword, start searching for the liar. Take turns saying the words related to the keywords. If you say the wrong word, you are suspected of being a liar. For a given time, the liar deduces the correct answer from the given information. Vote to find the liar at the end of the given time.";
+"Rule Description4" = "After everyone has checked the keyword, start searching for the liar. Take turns saying the words related to the keywords. ";
+"Rule Example" = "Keyword: <Movie> Avatar
+Citizen1: Blue!
+Citizen2: Whale!
+Liar: 'Blue? Whale?\' Sea!
+Citizen3: It's a recent movie!
+Citizen4: The running time is long.!
+-Repeat until time is up-
+When the time is up, guess who is the liar.";
 "Tip 4" = "Be careful because if you say a clear word, the liar may notice it. If you tell a lie, you are suspected of being a liar.";
 
 //purchase
